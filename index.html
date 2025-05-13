@@ -1,13 +1,16 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Portfolio">
   <meta name="format-detection" content="telephone=no">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -16,16 +19,6 @@
       background-size: cover;
       color: rgb(255, 255, 255);
       overflow-x: hidden;
-    }
-
-    #bgVideo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100vw;
-      min-height: 100vh;
-      z-index: -1;
-      object-fit: cover;
     }
 
     header, footer {
@@ -62,16 +55,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #0a2740;
+      background-color: rgba(0, 102, 204, 0.2);
       border-radius: 20px;
       padding: 2rem;
       max-width: 1100px;
       width: 100%;
       box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
-      
-
-      background: rgba(0, 102, 204, 0.2);
-
     }
 
     .intro-text {
@@ -94,44 +83,34 @@
       border: 3px solid #ffffff;
     }
 
-    .intro2 img {
-      width: 250px;
-      border-radius: 20px;
-      border: 3px solid #000000;
-    }
-    
-
     .links {
       margin-top: 1.5rem;
     }
 
     .links a {
       display: inline-block;
-      margin-right: 1rem;
-      color: #0e767e;
-      text-decoration: none;
-      font-weight: 500;
+      margin: 0.5rem 0.5rem 0 0;
+      color: #000;
       background-color: #ffffff;
       border: none;
       border-radius: 12px;
       padding: 10px 20px;
-      color: #000;
       font-weight: bold;
-      cursor: pointer;
+      text-decoration: none;
       transition: background-color 0.3s ease;
     }
 
     .links a:hover {
-      text-decoration: underline;
+      background-color: #e0e0e0;
     }
 
     .timeline-section {
       margin-top: 4rem;
       position: relative;
-      min-height: 3600px; /* Ajuste selon le nombre de projets */
+      min-height: 3600px;
     }
 
-    .timeline { /* LIGNE DIRECTRICE */
+    .timeline {
       position: absolute;
       top: 0;
       left: 50%;
@@ -159,10 +138,8 @@
       width: 320px;
       padding: 16px;
       background: rgba(0, 102, 204, 0.2);
-      border: none;
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,122,255,0.8)66;
-      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 4px 20px rgba(0,122,255,0.8);
       backdrop-filter: blur(4px);
       font-weight: 500;
     }
@@ -181,10 +158,6 @@
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease;
-    }
-
-    .step button:hover {
-      background-color: rgba(0,122,255,0.8);
     }
 
     .step.left {
@@ -241,33 +214,53 @@
       font-weight: bold;
     }
 
+    /* Responsive fix */
     @media screen and (max-width: 768px) {
-      .step {
-        width: 80%;
-        left: 10% !important;
+      .intro {
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 1rem;
+        text-align: center;
       }
+
+      .intro img {
+        width: 150px;
+        margin-top: 1.5rem;
+      }
+
+      .intro-text h1 {
+        font-size: 1.8rem;
+      }
+
+      .intro-text p {
+        font-size: 1rem;
+      }
+
+      .step {
+        width: 90% !important;
+        left: 5% !important;
+        padding: 1rem;
+      }
+
       .connector {
         display: none;
       }
-      .intro {
-        flex-direction: column;
-        text-align: center;
+
+      select {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+        width: 100%;
       }
-      .intro img {
-        margin-top: 2rem;
-        width: 200px;
+
+      .links a {
+        display: block;
+        margin-bottom: 0.8rem;
+        text-align: center;
       }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<!-- 🎥 Vidéo en arrière-plan
-<video autoplay muted loop id="bgVideo">
-  <source src="a.mp4" type="video/mp4">
-  Votre navigateur ne supporte pas la vidéo HTML5.
-</video> -->
 
 <header>
   <nav>
@@ -284,7 +277,7 @@
     <div class="intro-text">
       <h1>Mon portfolio ^^</h1>
       <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII. Auparavant, j'ai validé un BTS CRSA et un BAC PRO MELEC.</p>
-      <p>Mon objectif actuelle est de pouvoir monter en MASTER EEA (avec la bonne option qu'il ce doit) pour approfondir mes compétences en automatisme(tique!) et à terme, je deviendrais un automaticien confirmé par le biais de mes experiences professionel et Universitaire et de mon engagement infinie dans le domaine qui me plait temp par sa diversité. Aussi, je ne ferme pas la porte à l'enseignement.</p>
+      <p>Mon objectif actuel est d'intégrer un MASTER EEA (avec la spécialité adéquate) afin d’approfondir mes compétences en automatisme. À terme, je souhaite devenir un automaticien confirmé, grâce à mes expériences professionnelles, universitaires, et à mon engagement continu dans ce domaine passionnant par sa richesse et sa diversité. Je garde également une ouverture vers l’enseignement.</p>
       <div class="links">
         <a href="cv.pdf" target="_blank">Mon CV</a>
         <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a/" target="_blank">LinkedIn</a>
@@ -294,6 +287,11 @@
     <img src="MOI.jpg" alt="Photo profil">
   </div>
 </section>
+
+
+</body>
+</html>
+
 
 <section class="intro-section">
   <div class="intro">
