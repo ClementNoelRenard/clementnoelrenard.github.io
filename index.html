@@ -94,6 +94,13 @@
       border: 3px solid #ffffff;
     }
 
+    .intro2 img {
+      width: 250px;
+      border-radius: 20px;
+      border: 3px solid #000000;
+    }
+    
+
     .links {
       margin-top: 1.5rem;
     }
@@ -294,13 +301,49 @@
       <h1>À l'attention des professeurs universitaires GEII</h1>
       <p>La liste deroulante ci dessous vous permettra de facilement naviger dans le referentiel de competences, A la selection un document s'affichera, et sera une trace ecrite/preuve permettant la validation de la competence dans le cadre du BUT GEII. </p>
       <select style="width: 100%; padding: 10px; border-radius: 12px; font-size: 1rem; border: none; background-color: white; color: #000; font-weight: bold;">
-        <option value="" disabled selected>Veuillez choisir une competences :</option>
-        <option value="lettre-motivation"></option>
-        <option value="projets">Mes projets académiques</option>
-        <option value="disponibilite">Disponibilité pour entretien</option>
-      </select>
+        
+            <!-- Compétence CONCEVOIR -->
+        <option value="C.1">CONCEVOIR/C.1 : J’identifie les fonctions demandées à la lecture du cahier des charges (architecture fonctionnelle - sans solution technique) - AC11.01 | Produire une analyse fonctionnelle d’un système simple</option>
+        <option value="C.2">CONCEVOIR/C.2 : Je propose une solution technique pour répondre à une fonction - AC21.01 | Proposer des solutions techniques liées à l’analyse fonctionnelle</option>
+        <option value="C.2">CONCEVOIR/C.2 : Je propose une solution technique pour répondre à une fonction - AC11.02 | Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</option>
+        <option value="C.2">CONCEVOIR/C.2 : Je propose une solution technique pour répondre à une fonction - AC21.02 | Designer les solutions techniques retenues</option>
+        <option value="C.2">CONCEVOIR/C.2 : Je propose une solution technique pour répondre à une fonction - AC21.03 | Prouver la pertinence de ses choix technologiques</option>
+        <option value="C.3">CONCEVOIR/C.3 : J’affine une solution technique en m’appuyant sur un maquettage numérique et/ou matériel - AC11.02 | Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</option>
+        <option value="C.3">CONCEVOIR/C.3 : J’affine une solution technique en m’appuyant sur un maquettage numérique et/ou matériel - AC31.02 | Prouver la pertinence de ses choix technologiques</option>
+        <option value="C.4">CONCEVOIR/C.4 : Je rédige un dossier de conception et de fabrication - AC31.01 | Contribuer à la rédaction d’un cahier des charges</option>
+        <option value="C.4">CONCEVOIR/C.4 : Je rédige un dossier de conception et de fabrication - AC31.03 | Rédiger un dossier de conception</option>
+        <option value="C.4">CONCEVOIR/C.4 : Je rédige un dossier de conception et de fabrication - AC11.03 | Rédiger un dossier de fabrication à partir d’un dossier de conception</option>
+
+        <!-- Compétence VÉRIFIER -->
+        <option value="V.1">VÉRIFIER/V.1 : J’applique, j’élabore, je rédige une procédure d’essais - AC12.01 | Appliquer une procédure d’essais</option>
+        <option value="V.1">VÉRIFIER/V.1 : J’applique, j’élabore, je rédige une procédure d’essais - AC22.01 | Identifier les tests et mesures à mettre en place pour valider le fonctionnement d’un système</option>
+        <option value="V.1">VÉRIFIER/V.1 : J’applique, j’élabore, je rédige une procédure d’essais - AC22.02 | Certifier le fonctionnement d’un nouvel équipement industriel</option>
+        <option value="V.1">VÉRIFIER/V.1 : J’applique, j’élabore, je rédige une procédure d’essais - AC32.03 | Produire une procédure d’essais pour valider la conformité d’un système</option>
+        <option value="V.2">VÉRIFIER/V.2 : J’identifie, je corrige les non-conformités d’un prototype - AC12.02 | Identifier un dysfonctionnement</option>
+        <option value="V.2">VÉRIFIER/V.2 : J’identifie, je corrige les non-conformités d’un prototype - AC12.03 | Décrire un dysfonctionnement</option>
+        <option value="V.2">VÉRIFIER/V.2 : J’identifie, je corrige les non-conformités d’un prototype - AC32.01 | Évaluer la cause racine d’une non-conformité</option>
+        <option value="V.2">VÉRIFIER/V.2 : J’identifie, je corrige les non-conformités d’un prototype - AC32.02 | Proposer une solution corrective à une non-conformité</option>
+
+        <!-- Compétence MAINTENIR -->
+        <option value="M.1">MAINTENIR/M.1 : J’applique une opération de maintenance (préventive, corrective, améliorative) à un système - AC23.01 | Diagnostiquer un dysfonctionnement dans un système</option>
+        <option value="M.1">MAINTENIR/M.1 : J’applique une opération de maintenance (préventive, corrective, améliorative) à un système - AC23.02 | Identifier la cause d’un dysfonctionnement</option>
+        <option value="M.1">MAINTENIR/M.1 : J’applique une opération de maintenance (préventive, corrective, améliorative) à un système - AC23.03 | Exécuter une opération de maintenance (corrective, préventive, améliorative)</option>
+        <option value="M.2">MAINTENIR/M.2 : Je rédige la procédure de maintenance (préventive, corrective, améliorative) d’un système - AC33.01 | Proposer une solution de maintenance</option>
+        <option value="M.2">MAINTENIR/M.2 : Je rédige la procédure de maintenance (préventive, corrective, améliorative) d’un système - AC33.03 | Produire une procédure de maintenance</option>
+
+        <!-- Compétence INTÉGRER -->
+        <option value="I.1">INTÉGRER/I.1 : J’exécute l’installation et la mise en service d’un système - AC24.01AII | Appliquer la procédure d’installation d’un système</option>
+        <option value="I.1">INTÉGRER/I.1 : J’exécute l’installation et la mise en service d’un système - AC24.02AII | Exécuter la mise en service d’un système en respectant la procédure</option>
+        <option value="I.2">INTÉGRER/I.2 : Je gère le processus d’installation et de mise en service d’un système - AC34.01AII | Planifier l’installation et la mise en service d’un nouvel équipement</option>
+        <option value="I.2">INTÉGRER/I.2 : Je gère le processus d’installation et de mise en service d’un système - AC34.02AII | Produire une procédure d’installation et de mise en service d’un système</option>
+
+        <!-- Compétence MANAGER -->
+        <option value="G.1">MANAGER/G.1 : Je rédige et archive différents documents professionnels (e-mails, supports de présentation, comptes rendus, rapports…) - CE1.02 | En produisant l’ensemble des documents nécessaires pour les clients et les différents prestataires</option>
+        <option value="G.2">MANAGER/G.2 : J’effectue des tâches administratives (passer des commandes, devis, gestion d’un budget…)</option>
+        <option value="G.3">MANAGER/G.3 : Je privilégie une démarche éthique pour répondre aux enjeux économiques, réglementaires et environnementaux de la Société</option>
+    </select>
     </div>
-    <img src="GEII.jpeg" alt="Image illustrative">
+    <img src="GEII.jpeg" alt="GEII LOGO">
   </div>
 </section>
 
@@ -317,7 +360,7 @@
 </div>
 
 <footer id="contact">
-  <p>© 2025 Mon Portfolio - Tous droits réservés. | <a href="mailto:email@example.com" style="color:rgba(0,122,255,0.8);">email@example.com</a></p>
+  <p>// 2025 Clément Noël- Portfolio - Recopiage interdit sans demande prealable. // <a href="mailto:email@example.com" style="color:rgba(0,122,255,0.8);">clementnoelrenard.geii@gmail.com</a></p>
 </footer>
 
 <script>
