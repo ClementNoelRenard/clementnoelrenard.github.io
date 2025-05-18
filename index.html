@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,295 +10,186 @@
   <meta name="format-detection" content="telephone=no">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* Réinitialisation de base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background: url('25.png') no-repeat center center fixed;
       background-size: cover;
-      color: rgb(255, 255, 255);
+      color: #fff;
       overflow-x: hidden;
+      line-height: 1.5;
     }
 
+    /* En‑tête et pied de page */
     header, footer {
-      width: 95%;
-      padding: 1rem 2rem;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      color: rgba(0,122,255,0.8);
-    }
-
-    .intro-section {
-      padding: 4rem 2rem 2rem;
-      display: flex;
-      justify-content: center;
-    }
-
-    .intro {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: rgba(0, 102, 204, 0.2);
-      border-radius: 20px;
-      padding: 2rem;
-      max-width: 1100px;
       width: 100%;
-      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 1rem;
     }
-
-    .intro-text {
-      max-width: 600px;
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+    nav a { color: #fff; text-decoration: none; margin-left: 1rem; font-weight: 500; }
+    nav a:hover { color: rgba(0,122,255,0.8); }
 
-    .intro-text h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    /* Section d’introduction */
+    .intro-section { display: flex; justify-content: center; padding: 3rem 1rem; }
+    .intro {
+      display: flex; flex-direction: row; align-items: center;
+      background-color: rgba(0, 102, 204, 0.2); border-radius: 20px;
+      padding: 2rem; max-width: 1100px; width: 100%;
+      box-shadow: 0 4px 20px rgba(0,240,255,0.3);
     }
-
-    .intro-text p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .intro img {
-      width: 250px;
-      border-radius: 20px;
-      border: 3px solid #ffffff;
-    }
-
-    .links {
-      margin-top: 1.5rem;
-    }
-
+    .intro-text { flex: 1; }
+    .intro-text h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .intro-text p { font-size: 1.1rem; margin-bottom: 1rem; }
     .links a {
-      display: inline-block;
-      margin: 0.5rem 0.5rem 0 0;
-      color: #000;
-      background-color: #ffffff;
-      border: none;
-      border-radius: 12px;
-      padding: 10px 20px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
+      display: inline-block; margin: 0.5rem 0.5rem 0 0;
+      color: #000; background-color: #fff; border: none;
+      border-radius: 12px; padding: 10px 20px; font-weight: bold;
+      text-decoration: none; transition: background-color 0.3s ease;
+    }
+    .links a:hover { background-color: #e0e0e0; }
+    .intro img {
+      width: 250px; border-radius: 20px; border: 3px solid #fff; margin-left: 2rem;
     }
 
-    .links a:hover {
-      background-color: #e0e0e0;
+    /* Section compétences */
+    .competences-section { padding: 2rem 1rem; display: flex; justify-content: center; }
+    .competences {
+      display: flex; flex-direction: row; align-items: center;
+      background-color: rgba(0, 102, 204, 0.2); border-radius: 20px;
+      padding: 2rem; max-width: 1100px; width: 100%;
+      box-shadow: 0 4px 20px rgba(0,240,255,0.3);
+    }
+    .competences-text { flex: 1; }
+    .competences-text h1 { font-size: 2rem; margin-bottom: 1rem; }
+    .competences-text p { font-size: 1.1rem; margin-bottom: 1rem; }
+    .competences-text select {
+      width: 100%; padding: 10px; border-radius: 12px;
+      font-size: 1rem; border: none; background-color: #fff;
+      color: #000; font-weight: bold;
+    }
+    .competences img {
+      width: 200px; margin-left: 2rem; border-radius: 12px;
+      border: 2px solid #fff;
     }
 
-    .timeline-section {
-      margin-top: 4rem;
-      position: relative;
-      min-height: 3600px;
+    /* Section Carousel Timeline Simplifié */
+    .carousel-section { display: flex; justify-content: center; padding: 3rem 1rem; }
+    .carousel {
+      position: relative; max-width: 1100px; width: 100%; height: 500px;
+      overflow: hidden; border-radius: 20px;
+      background-color: rgba(0, 102, 204, 0.2);
+      box-shadow: 0 4px 20px rgba(0,240,255,0.3);
     }
-
-    .timeline {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 15px;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0,122,255,0.8), #418bb1);
-      border-radius: 50px;
+    .slides { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
+    .slide { min-width: 100%; position: relative; }
+    .slide img {
+      width: 100%; height: 100%; object-fit: cover;
+      border-radius: 20px;
     }
-
-    .rocket {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 100px;
-      background: url('') no-repeat center;
-      background-size: contain;
-      z-index: 2;
+    .slide-button {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background-color: rgba(0,0,0,0.5); border: none;
+      border-radius: 12px; padding: 12px 24px; font-weight: bold;
+      cursor: pointer; transition: background-color 0.3s ease;
     }
-
-    .step {
-      position: absolute;
-      width: 320px;
-      padding: 16px;
-      background: rgba(0, 102, 204, 0.2);
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,122,255,0.8);
-      backdrop-filter: blur(4px);
-      font-weight: 500;
+    .slide-button:hover { background-color: rgba(0,122,255,1); }
+    .arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); border: none; color: #fff;
+      font-size: 2rem; padding: 0.5rem 1rem; cursor: pointer;
+      border-radius: 50%; z-index: 10;
     }
+    .arrow-left { left: 10px; }
+    .arrow-right { right: 10px; }
 
-    .step h3 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-    }
-
-    .step button {
-      background-color: rgba(0,122,255,0.8);
-      border: none;
-      border-radius: 12px;
-      padding: 10px 20px;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .step.left {
-      left: calc(50% - 415px);
-    }
-
-    .step.right {
-      left: calc(50% + 60px);
-    }
-
-    .connector {
-      position: absolute;
-      width: 60px;
-      height: 2px;
-      background: rgba(0,122,255,0.8);
-      top: 24px;
-    }
-
-    .step.left .connector {
-      right: -60px;
-    }
-
-    .step.right .connector {
-      left: -60px;
-    }
-
+    /* Popup PDF centré et presque plein écran */
     .popup {
       display: none;
       position: fixed;
-      top: 10%;
-      left: 10%;
-      width: 80%;
-      height: 80%;
-      background: #000;
-      border-radius: 16px;
-      border: 2px solid rgba(0,122,255,0.8);
-      z-index: 999;
+      top: 5vh;
+      left: 5vw;
+      width: 90vw;
+      height: 90vh;
+      background: rgba(0,0,0,0.95);
+      border-radius: 8px;
+      z-index: 1000;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
       overflow: hidden;
     }
-
     .popup iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
-
-    .close-btn {
+    .popup .close-btn {
       position: absolute;
       top: 10px;
       right: 20px;
       font-size: 24px;
       cursor: pointer;
-      color: white;
+      color: #fff;
       font-weight: bold;
+      z-index: 1001;
     }
 
-    /* Responsive fix */
+    /* Responsive */
     @media screen and (max-width: 768px) {
-      .intro {
-        flex-direction: column;
-        align-items: center;
-        padding: 1.5rem 1rem;
-        text-align: center;
-      }
-
-      .intro img {
-        width: 150px;
-        margin-top: 1.5rem;
-      }
-
-      .intro-text h1 {
-        font-size: 1.8rem;
-      }
-
-      .intro-text p {
-        font-size: 1rem;
-      }
-
-      .step {
-        width: 90% !important;
-        left: 5% !important;
-        padding: 1rem;
-      }
-
-      .connector {
-        display: none;
-      }
-
-      select {
-        font-size: 0.9rem;
-        padding: 0.8rem;
-        width: 100%;
-      }
-
-      .links a {
-        display: block;
-        margin-bottom: 0.8rem;
-        text-align: center;
-      }
+      .carousel { height: 300px; }
+      .intro, .competences { flex-direction: column; text-align: center; }
+      .intro img, .competences img { margin: 1rem 0 0; width: 150px; }
+      .intro-text h1 { font-size: 2rem; }
+      .intro-text p, .competences-text p { font-size: 1rem; }
+      .competences-text h1 { font-size: 1.8rem; }
+      .slide-button { padding: 10px 20px; }
     }
   </style>
 </head>
 <body>
-
-<header>
-  <nav>
-    <div><strong>Mon Portfolio</strong></div>
-    <div>
-      <a href="#">Accueil</a>
-      <a href="#stepsContainer">Projets</a>
-    </div>
-  </nav>
-</header>
-
-<section class="intro-section">
-  <div class="intro">
-    <div class="intro-text">
-      <h1>Mon portfolio ^^</h1>
-      <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII. Auparavant, j'ai validé un BTS CRSA et un BAC PRO MELEC.</p>
-      <p>Mon objectif actuel est d'intégrer un MASTER EEA (avec la spécialité adéquate) afin d’approfondir mes compétences en automatisme. À terme, je souhaite devenir un automaticien confirmé, grâce à mes expériences professionnelles, universitaires, et à mon engagement continu dans ce domaine passionnant par sa richesse et sa diversité. Je garde également une ouverture vers l’enseignement.</p>
-      <div class="links">
-        <a href="cv.pdf" target="_blank">Mon CV</a>
-        <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a/" target="_blank">LinkedIn</a>
-        <a href="https://github.com/ClementNoelRenard?tab=repositories" target="_blank">GitHub</a>
+  <header>
+    <nav>
+      <div><strong>Mon Portfolio</strong></div>
+      <div>
+        <a href="#">Accueil</a>
+        <a href="#stepsContainer">Projets</a>
       </div>
+    </nav>
+  </header>
+
+  <!-- Section d'introduction -->
+  <section class="intro-section">
+    <div class="intro">
+      <div class="intro-text">
+        <h1>Mon portfolio ^^</h1>
+        <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII. Auparavant, j'ai validé un BTS CRSA et un BAC PRO MELEC.</p>
+        <p>Mon objectif actuel est d'intégrer un MASTER EEA (avec la spécialité adéquate) afin d’approfondir mes compétences en automatisme. À terme, je souhaite devenir un automaticien confirmé, grâce à mes expériences professionnelles, universitaires, et à mon engagement continu dans ce domaine passionnant par sa richesse et sa diversité. Je garde également une ouverture vers l’enseignement.</p>
+        <div class="links">
+          <a href="cv.pdf" target="_blank">Mon CV</a>
+          <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/ClementNoelRenard?tab=repositories" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <img src="MOI.jpg" alt="Photo profil">
     </div>
-    <img src="MOI.jpg" alt="Photo profil">
-  </div>
-</section>
+  </section>
 
-
-</body>
-</html>
-
-
-<section class="intro-section">
-  <div class="intro">
-    <div class="intro-text">
-      <h1>À l'attention des professeurs universitaires GEII</h1>
-      <p>La liste deroulante ci dessous vous permettra de facilement naviger dans le referentiel de competences, A la selection un document s'affichera, et sera une trace ecrite/preuve permettant la validation de la competence dans le cadre du BUT GEII. </p>
-      <select style="width: 100%; padding: 10px; border-radius: 12px; font-size: 1rem; border: none; background-color: white; color: #000; font-weight: bold;">
-        
-            <!-- Compétence CONCEVOIR -->
+  <!-- Section compétences -->
+  <section class="competences-section">
+    <div class="competences">
+      <div class="competences-text">
+        <h1>À l'attention des professeurs universitaires GEII</h1>
+        <p>La liste déroulante ci-dessous vous permettra de facilement naviguer dans le référentiel de compétences. À la sélection, un document s'affichera, et sera une preuve permettant la validation de la compétence dans le cadre du BUT GEII.</p>
+        <select onchange="loadCompetence(this.value)">
+          <option value="">-- Sélectionnez une compétence --</option>
+                      <!-- Compétence CONCEVOIR -->
         <option value="C.1">CONCEVOIR/C.1 : J’identifie les fonctions demandées à la lecture du cahier des charges (architecture fonctionnelle - sans solution technique) - AC11.01 | Produire une analyse fonctionnelle d’un système simple</option>
         <option value="C.2">CONCEVOIR/C.2 : Je propose une solution technique pour répondre à une fonction - AC21.01 | Proposer des solutions techniques liées à l’analyse fonctionnelle</option>
         <option value="C.2">CONCEVOIR/C.2 : Je propose une solution technique pour répondre à une fonction - AC11.02 | Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</option>
@@ -340,70 +229,92 @@
         <option value="G.2">MANAGER/G.2 : J’effectue des tâches administratives (passer des commandes, devis, gestion d’un budget…)</option>
         <option value="G.3">MANAGER/G.3 : Je privilégie une démarche éthique pour répondre aux enjeux économiques, réglementaires et environnementaux de la Société</option>
     </select>
+      </div>
+      <img src="GEII.jpeg" alt="GEII LOGO">
     </div>
-    <img src="GEII.jpeg" alt="GEII LOGO">
+  </section>
+
+  <!-- Section Carousel Timeline Simplifié -->
+  <section class="carousel-section" id="stepsContainer">
+    <div class="carousel">
+      <button class="arrow arrow-left" onclick="prevSlide()">‹</button>
+      <div class="slides" id="slidesContainer">
+        <!-- Les slides seront insérés ici via JavaScript -->
+      </div>
+      <button class="arrow arrow-right" onclick="nextSlide()">›</button>
+    </div>
+  </section>
+
+  <!-- Popup PDF -->
+  <div id="pdfPopup" class="popup">
+    <span class="close-btn" onclick="closePDF()">✖</span>
+    <iframe id="pdfFrame" src=""></iframe>
   </div>
-</section>
 
-<section class="timeline-section">
-  <div class="rocket"></div>
-  <div class="timeline"></div>
-  <div id="stepsContainer"></div>
-</section>
+  <footer id="contact">
+    <p>// 2025 Clément Noël - Portfolio - Recopiage interdit sans demande préalable. // <a href="mailto:email@example.com" style="color:rgba(0,122,255,0.8);">clementnoelrenard.geii@gmail.com</a></p>
+  </footer>
 
-<!-- Popup PDF -->
-<div id="pdfPopup" class="popup">
-  <span class="close-btn" onclick="closePDF()">✖</span>
-  <iframe id="pdfFrame" src=""></iframe>
-</div>
+  <script>
+    // Liste des projets avec titre, chemin PDF et chemin image d'aperçu
+    const projects = [
+      { title: "Projet le plus récent", pdf: "pdfs/projet1.pdf", img: "images/1.jpg" },
+      { title: "Projet précédent",      pdf: "pdfs/projet2.pdf", img: "images/2.jpg" },
+      { title: "Projet plus ancien",     pdf: "pdfs/projet3.pdf", img: "images/projet3_preview.jpg" },
+      { title: "Projet plus plus ancien",pdf: "pdfs/projet4.pdf", img: "images/projet4_preview.jpg" }
+    ];
 
-<footer id="contact">
-  <p>// 2025 Clément Noël- Portfolio - Recopiage interdit sans demande prealable. // <a href="mailto:email@example.com" style="color:rgba(0,122,255,0.8);">clementnoelrenard.geii@gmail.com</a></p>
-</footer>
+    const slidesContainer = document.getElementById('slidesContainer');
+    let currentSlide = 0;
 
-<script>
-  const projects = [
-    { title: "Projet le plus récent", pdf: "pdfs/projet1.pdf" },
-    { title: "Projet précédent", pdf: "pdfs/projet2.pdf" },
-    { title: "Projet plus ancien", pdf: "pdfs/projet3.pdf" },
-    { title: "Projet plus plus ancien", pdf: "pdfs/projet4.pdf" },
-  ];
+    // Générer les slides simplifiées
+    projects.forEach((project) => {
+      const slide = document.createElement('div');
+      slide.classList.add('slide');
 
-  const stepsContainer = document.getElementById('stepsContainer');
-  const verticalSpacing = 250;
+      const imgEl = document.createElement('img');
+      imgEl.src = project.img;
+      imgEl.alt = project.title + ' aperçu';
+      slide.appendChild(imgEl);
 
-  projects.forEach((project, index) => {
-    const step = document.createElement('div');
-    step.classList.add('step');
-    step.classList.add(index % 2 === 0 ? 'left' : 'right');
-    step.style.top = (index * verticalSpacing + 200) + 'px';
+      const button = document.createElement('button');
+      button.classList.add('slide-button');
+      button.textContent = 'Voir PDF';
+      button.onclick = () => openPDF(project.pdf);
+      slide.appendChild(button);
 
-    const connector = document.createElement('div');
-    connector.classList.add('connector');
-    step.appendChild(connector);
+      slidesContainer.appendChild(slide);
+    });
 
-    const title = document.createElement('h3');
-    title.textContent = project.title;
-    step.appendChild(title);
+    function updateSlides() {
+      const offset = -currentSlide * 100;
+      slidesContainer.style.transform = `translateX(${offset}%)`;
+    }
 
-    const button = document.createElement('button');
-    button.textContent = 'Voir PDF';
-    button.onclick = () => openPDF(project.pdf);
-    step.appendChild(button);
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % projects.length;
+      updateSlides();
+    }
 
-    stepsContainer.appendChild(step);
-  });
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + projects.length) % projects.length;
+      updateSlides();
+    }
 
-  function openPDF(pdfUrl) {
-    document.getElementById('pdfFrame').src = pdfUrl;
-    document.getElementById('pdfPopup').style.display = 'block';
-  }
+    function openPDF(pdfUrl) {
+      document.getElementById('pdfFrame').src = pdfUrl;
+      document.getElementById('pdfPopup').style.display = 'block';
+    }
+    function closePDF() {
+      document.getElementById('pdfPopup').style.display = 'none';
+      document.getElementById('pdfFrame').src = '';
+    }
+    function loadCompetence(path) {
+      if (path) openPDF(path);
+    }
 
-  function closePDF() {
-    document.getElementById('pdfPopup').style.display = 'none';
-    document.getElementById('pdfFrame').src = '';
-  }
-</script>
-
+    // Initialiser la position au démarrage
+    updateSlides();
+  </script>
 </body>
 </html>
