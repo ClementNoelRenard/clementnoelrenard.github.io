@@ -171,8 +171,9 @@
         <h1>Mon portfolio ^^</h1>
         <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII. Auparavant, j'ai validé un BTS CRSA et un BAC PRO MELEC.</p>
         <p>Mon objectif actuel est d'intégrer un MASTER EEA (avec la spécialité adéquate) afin d’approfondir mes compétences en automatisme. À terme, je souhaite devenir un automaticien confirmé, grâce à mes expériences professionnelles, universitaires, et à mon engagement continu dans ce domaine passionnant par sa richesse et sa diversité. Je garde également une ouverture vers l’enseignement.</p>
-        <div class="links">
-          <a href="cv.pdf" target="_blank">Mon CV</a>
+         <div class="links">
+          <!-- Lien CV ouvre la popup PDF avec le même style que LinkedIn/GitHub -->
+          <a href="#" onclick="openPDF('cv.pdf')">Mon CV</a>
           <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a/" target="_blank">LinkedIn</a>
           <a href="https://github.com/ClementNoelRenard?tab=repositories" target="_blank">GitHub</a>
         </div>
@@ -261,7 +262,8 @@
       { title: "Projet le plus récent", pdf: "pdfs/projet1.pdf", img: "images/1.jpg" },
       { title: "Projet précédent",      pdf: "pdfs/projet2.pdf", img: "images/2.jpg" },
       { title: "Projet plus ancien",     pdf: "pdfs/projet3.pdf", img: "images/projet3_preview.jpg" },
-      { title: "Projet plus plus ancien",pdf: "pdfs/projet4.pdf", img: "images/projet4_preview.jpg" }
+      { title: "Projet plus plus ancien",pdf: "pdfs/projet4.pdf", img: "images/projet4_preview.jpg" },
+      { title: "TEST",pdf: "pdfs/projet4.pdf", img: "images/projet4_preview.jpg" }
     ];
 
     const slidesContainer = document.getElementById('slidesContainer');
