@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compétences GEII</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: url('25.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+    header, footer {
+      width: 100%;
+      background: rgba(30, 42, 56, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem;
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #339CFF;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .competence-section {
+      background: rgba(30, 42, 56, 0.6);
+      margin-bottom: 2rem;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .competence-section h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    .competence-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .competence-content img {
+      width: 200px;
+      border-radius: 12px;
+      border: 2px solid #fff;
+    }
+    .competence-content button {
+      background-color: #1e2a38;
+      color: #fff;
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .competence-content button:hover {
+      background-color: #339CFF;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+    }
+    footer a {
+      color: #339CFF;
+      text-decoration: none;
+    }
+    @media screen and (max-width: 768px) {
+      .competence-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .competence-content img {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><strong>Mon Portfolio</strong></div>
+      <div>
+        <a href="index.html">Accueil</a>
+        <a href="Competences.html" target="_blank">Competences GEII</a>
+        <a href="Projet_et_SAE.html">Projets et SAE</a>
+        <a href="snakev2.html">Jeux Snake</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Compétences GEII</h1>
+    <h2>La liste ci-dessous vous permettra de facilement naviguer dans le référentiel de compétences.Pour chaque competence un PDF liée sera une preuve permettant la validation de la compétence dans le cadre du BUT GEII.</h2>
+
+    <section class="competence-section">
+      <h2>C.1 – Identifier les fonctions demandées</h2>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="Aperçu compétence C1">
+        <button onclick="window.open('pdfs/C1.pdf', '_blank')">Voir le PDF</button>
+      </div>
+    </section>
+
+    <section class="competence-section">
+      <h2>C.2 – Proposer une solution technique</h2>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="Aperçu compétence C2">
+        <button onclick="window.open('pdfs/C2.pdf', '_blank')">Voir le PDF</button>
+      </div>
+    </section>
+
+    <!-- Ajoute ici d'autres sections -->
+  </div>
+
+  <footer id="contact">
+    <p>// 2025 Clément Noël - Portfolio - Recopiage interdit sans demande préalable. //
+      <a href="mailto:clementnoelrenard.geii@gmail.com">clementnoelrenard.geii@gmail.com</a>
+    </p>
+  </footer>
+</body>
+</html>
