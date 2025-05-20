@@ -18,6 +18,13 @@
     }
   </style>
 </head>
+
+<div style="margin-top: 20px; text-align: center; position: absolute; bottom: 20px; width: 100%;">
+  <button onclick="startGame()">▶️ Play</button>
+  <button onclick="pauseGame()">⏸️ Pause</button>
+  <button onclick="restartGame()">🔁 Restart</button>
+</div>
+
 <body>
   <canvas id="game" width="300" height="300"></canvas>
   <script>
@@ -148,7 +155,29 @@
     }
 
     // Boucle de jeu : environ 10 mises à jour par seconde
-    const gameInterval = setInterval(update, 100);
+    let gameInterval = null;
+    function startGame() {
+  if (!gameInterval && !gameOver) {
+    gameInterval = setInterval(update, 100);
+  }
+}
+
+function pauseGame() {
+  clearInterval(gameInterval);
+  gameInterval = null;
+}
+
+function restartGame() {
+  pauseGame();
+  snake = [{ x: Math.floor(COLS / 2), y: Math.floor(ROWS / 2) }];
+  direction = { x: 1, y: 0 };
+  food = placeFood(snake);
+  score = 0;
+  gameOver = false;
+  drawGame();
+  startGame();
+}
+
   </script>
 </body>
 </html>

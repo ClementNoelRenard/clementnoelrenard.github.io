@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="LOGO.png">
   <style>
     * {
       box-sizing: border-box;
@@ -27,8 +28,20 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem;
       transition: all 0.3s ease-in-out;
     }
+
+    /* header, footer {
+      width: 100%;
+      background: rgba(30, 42, 56, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem;
+    } */
 
     nav {
       max-width: 1200px;
@@ -232,9 +245,10 @@
       <div><strong>Mon Portfolio</strong></div>
       <div>
         <a href="index.html">Accueil</a>
-        <a href="Competences.html" target="_blank">Competences GEII</a>
+        <a href="Competences.html">Competences GEII</a>
         <a href="Projet_et_SAE.html">Projets et SAE</a>
-        <a href="snakev2.html">Jeux Snake</a>
+        <!-- <a href="snakev2.html">Jeux Snake</a> -->
+        <a href="snakev2.html" onclick="window.open('snakev2.html', 'popup', 'width=600,height=400'); return false;">Jeux Snake</a>
       </div>
     </nav>
   </header>
@@ -264,7 +278,8 @@
         <h1>À l'attention des professeurs universitaires GEII</h1>
          <p>La page "Competences" Disponible en tete de ce site ou via le bouton ci dessous, vous permettra d'acceder à une page listant mes preuves de validation de competences</p>       
          <div class="links">
-          <a href="Competences.html" target="_blank">Mes competences</a>
+        <a href="Competences.html">Page des competences GEII</a>
+        <a href="#" onclick="openPDF('competence.pdf')">Organigramme des competences</a>
         </div>
       </div>
       <img src="GEII.jpeg" alt="GEII">

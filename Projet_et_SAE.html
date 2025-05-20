@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <link rel="icon" type="image/png" href="chemin/vers/favicon.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Compétences GEII</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="LOGO.png">
+</head>
   <style>
     body {
       margin: 0;
@@ -15,15 +18,15 @@
       color: white;
       backdrop-filter: blur(8px);
     }
-    header, footer {
-      width: 100%;
+    header, footer, .intro, .competences, .carousel, .popup {
       background: rgba(30, 42, 56, 0.6);
       border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.18);
       padding: 1rem;
+      transition: all 0.3s ease-in-out;
     }
     nav {
       max-width: 1200px;
@@ -111,9 +114,10 @@
       <div><strong>Mon Portfolio</strong></div>
       <div>
         <a href="index.html">Accueil</a>
-        <a href="Competences.html" target="_blank">Competences GEII</a>
+        <a href="Competences.html">Competences GEII</a>
         <a href="Projet_et_SAE.html">Projets et SAE</a>
-        <a href="snakev2.html">Jeux Snake</a>
+        <!-- <a href="snakev2.html">Jeux Snake</a> -->
+        <a href="snakev2.html" onclick="window.open('snakev2.html', 'popup', 'width=600,height=400'); return false;">Jeux Snake</a>
       </div>
     </nav>
   </header>
