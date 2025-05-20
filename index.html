@@ -4,114 +4,155 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Portfolio">
-  <meta name="format-detection" content="telephone=no">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Réinitialisation de base */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background: url('25.png') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
+      backdrop-filter: blur(8px);
       overflow-x: hidden;
-      line-height: 1.5;
     }
 
-    /* En‑tête et pied de page */
-    header, footer {
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      padding: 1rem;
+    header, footer, .intro, .competences, .carousel, .popup {
+      background: rgba(30, 42, 56, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 0.3s ease-in-out;
     }
+
     nav {
       max-width: 1200px;
-      margin: 0 auto;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    nav a { color: #fff; text-decoration: none; margin-left: 1rem; font-weight: 500; }
-    nav a:hover { color: rgba(0,122,255,0.8); }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #339CFF;
+    }
 
-    /* Section d’introduction */
-    .intro-section { display: flex; justify-content: center; padding: 3rem 1rem; }
-    .intro {
-      display: flex; flex-direction: row; align-items: center;
-      background-color: rgba(0, 102, 204, 0.2); border-radius: 20px;
-      padding: 2rem; max-width: 1100px; width: 100%;
-      box-shadow: 0 4px 20px rgba(0,240,255,0.3);
+    .intro-section, .competences-section, .carousel-section {
+      padding: 3rem 1rem;
+      display: flex;
+      justify-content: center;
     }
-    .intro-text { flex: 1; }
-    .intro-text h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    .intro-text p { font-size: 1.1rem; margin-bottom: 1rem; }
-    .links a {
-      display: inline-block; margin: 0.5rem 0.5rem 0 0;
-      color: #000; background-color: #fff; border: none;
-      border-radius: 12px; padding: 10px 20px; font-weight: bold;
-      text-decoration: none; transition: background-color 0.3s ease;
+    .intro, .competences, .carousel {
+      padding: 2rem;
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      overflow: hidden;
     }
-    .links a:hover { background-color: #e0e0e0; }
+
+    .intro-text, .competences-text {
+      flex: 1;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .links a, .slide-button, select {
+      display: inline-block;
+      background-color: #1e2a38;
+      color: #fff;
+      border: 2px solid #000;
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin: 0.5rem 0.5rem 0 0;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      max-width: 100%;
+    }
+    .links a:hover, .slide-button:hover {
+      background-color: #339CFF;
+    }
+
+    select {
+      width: 100%;
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      border-radius: 20px;
+      border: 3px solid #fff;
+    }
     .intro img {
-      width: 250px; border-radius: 20px; border: 3px solid #fff; margin-left: 2rem;
-    }
-
-    /* Section compétences */
-    .competences-section { padding: 2rem 1rem; display: flex; justify-content: center; }
-    .competences {
-      display: flex; flex-direction: row; align-items: center;
-      background-color: rgba(0, 102, 204, 0.2); border-radius: 20px;
-      padding: 2rem; max-width: 1100px; width: 100%;
-      box-shadow: 0 4px 20px rgba(0,240,255,0.3);
-    }
-    .competences-text { flex: 1; }
-    .competences-text h1 { font-size: 2rem; margin-bottom: 1rem; }
-    .competences-text p { font-size: 1.1rem; margin-bottom: 1rem; }
-    .competences-text select {
-      width: 100%; padding: 10px; border-radius: 12px;
-      font-size: 1rem; border: none; background-color: #fff;
-      color: #000; font-weight: bold;
+      width: 250px;
+      margin-left: 2rem;
     }
     .competences img {
-      width: 200px; margin-left: 2rem; border-radius: 12px;
-      border: 2px solid #fff;
+      width: 200px;
+      margin-left: 2rem;
     }
 
-    /* Section Carousel Timeline Simplifié */
-    .carousel-section { display: flex; justify-content: center; padding: 3rem 1rem; }
     .carousel {
-      position: relative; max-width: 1100px; width: 100%; height: 500px;
-      overflow: hidden; border-radius: 20px;
-      background-color: rgba(0, 102, 204, 0.2);
-      box-shadow: 0 4px 20px rgba(0,240,255,0.3);
+      position: relative;
+      height: 500px;
+      overflow: hidden;
     }
-    .slides { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
-    .slide { min-width: 100%; position: relative; }
+    .slides {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
     .slide img {
-      width: 100%; height: 100%; object-fit: cover;
-      border-radius: 20px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    .slide-button {
-      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-      background-color: rgba(0,0,0,0.5); border: none;
-      border-radius: 12px; padding: 12px 24px; font-weight: bold;
-      cursor: pointer; transition: background-color 0.3s ease;
-    }
-    .slide-button:hover { background-color: rgba(0,122,255,1); }
+
     .arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0,0,0,0.5); border: none; color: #fff;
-      font-size: 2rem; padding: 0.5rem 1rem; cursor: pointer;
-      border-radius: 50%; z-index: 10;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+      transition: background-color 0.3s;
+    }
+    .arrow:hover {
+      background: #339CFF;
     }
     .arrow-left { left: 10px; }
     .arrow-right { right: 10px; }
 
-    /* Popup PDF centré et presque plein écran */
     .popup {
       display: none;
       position: fixed;
@@ -119,11 +160,13 @@
       left: 5vw;
       width: 90vw;
       height: 90vh;
-      background: rgba(0,0,0,0.95);
-      border-radius: 8px;
       z-index: 1000;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
       overflow: hidden;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup.active {
+      display: flex;
     }
     .popup iframe {
       width: 100%;
@@ -141,17 +184,50 @@
       z-index: 1001;
     }
 
-    /* Responsive */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+    }
+    footer a {
+      color: #339CFF;
+      text-decoration: none;
+    }
+
     @media screen and (max-width: 768px) {
       .carousel { height: 300px; }
       .intro, .competences { flex-direction: column; text-align: center; }
       .intro img, .competences img { margin: 1rem 0 0; width: 150px; }
-      .intro-text h1 { font-size: 2rem; }
-      .intro-text p, .competences-text p { font-size: 1rem; }
-      .competences-text h1 { font-size: 1.8rem; }
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
       .slide-button { padding: 10px 20px; }
+      select { font-size: 0.9rem; }
     }
   </style>
+</head>
+<body>
+  <!-- Colle ici le <body> complet avec la structure HTML de ton portfolio -->
+
+  <script>
+    function openPDF(pdfUrl) {
+      const popup = document.getElementById('pdfPopup');
+      document.getElementById('pdfFrame').src = pdfUrl;
+      popup.classList.add('active');
+    }
+
+    function closePDF() {
+      const popup = document.getElementById('pdfPopup');
+      document.getElementById('pdfFrame').src = '';
+      popup.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
+
+</head>
+<body>
+</body>
+</html>
 </head>
 <body>
   <header>
@@ -191,7 +267,7 @@
         <p>La liste déroulante ci-dessous vous permettra de facilement naviguer dans le référentiel de compétences. À la sélection, un document s'affichera, et sera une preuve permettant la validation de la compétence dans le cadre du BUT GEII.</p>
         <select onchange="loadCompetence(this.value)">
           <option value="">-- Sélectionnez une compétence --</option>
-                      <!-- Compétence CONCEVOIR -->
+          <!-- Compétence CONCEVOIR -->
         <option value="C.1">CONCEVOIR/C.1 : J’identifie les fonctions demandées à la lecture du cahier des charges (architecture fonctionnelle - sans solution technique) - AC11.01 | Produire une analyse fonctionnelle d’un système simple</option>
         <option value="C.2">CONCEVOIR/C.2 : Je propose une solution technique pour répondre à une fonction - AC21.01 | Proposer des solutions techniques liées à l’analyse fonctionnelle</option>
         <option value="C.2">CONCEVOIR/C.2 : Je propose une solution technique pour répondre à une fonction - AC11.02 | Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</option>
