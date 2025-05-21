@@ -369,5 +369,39 @@
     // Initialiser la position au démarrage
     updateSlides();
   </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
+  });
+
+  function goTo(url) {
+    document.body.classList.remove("fade-in");
+    document.body.classList.add("fade-out");
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500); // Durée de l'animation
+  }
+</script>
+
+<style>
+  body.fade-in {
+    animation: fadeIn 1s forwards;
+  }
+
+  body.fade-out {
+    animation: fadeOut 1s forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1 }
+    to { opacity: 0 }
+  }
+</style>
 </body>
 </html>
