@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfolio VisionOS Style</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+  }
+
+body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #fff;
+  padding: 40px 20px 100px;
+}
+
+/* Arrière-plan flouté */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('images/villes/TourCorsica_FR-FR6133264090_UHD.jpg');
+  background-size: cover;
+  background-position: center center;
+  filter: blur(10px);
+  opacity: 0.95;
+  z-index: -1;
+}
+
+
+  /* Conteneur central */
+  .window-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  /* Fenêtres style VisionOS */
+  .window {
+    background: rgba(255 255 255 / 0.15);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 36px;
+    border: 1px solid rgba(255 255 255 / 0.3);
+    box-shadow:
+      0 20px 40px rgba(0 0 0 / 0.25),
+      inset 0 0 50px rgba(255 255 255 / 0.15);
+    padding: 2rem 2.5rem;
+    flex: 1 1 450px;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+  }
+  .window:hover {
+    transform: scale(1.03);
+    box-shadow:
+      0 30px 60px rgba(0 0 0 / 0.35),
+      inset 0 0 60px rgba(255 255 255 / 0.3);
+  }
+
+  /* Lueur interne subtile (glow) */
+  .window::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    border-radius: 40px;
+    pointer-events: none;
+    box-shadow: 0 0 20px 4px rgba(255 255 255 / 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+  .window:hover::before {
+    opacity: 1;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    z-index: 2;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+    z-index: 2;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: auto;
+    z-index: 2;
+  }
+
+  .links a {
+    background: rgba(255 255 255 / 0.3);
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 28px;
+    text-decoration: none;
+    box-shadow: 0 6px 12px rgba(0 0 0 / 0.15);
+    transition: all 0.25s ease;
+    user-select: none;
+  }
+  .links a:hover {
+    background: rgba(255 255 255 / 0.5);
+    transform: scale(1.05);
+    color: #000;
+  }
+
+  img {
+    border-radius: 24px;
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    box-shadow: 0 12px 20px rgba(0 0 0 / 0.3);
+  }
+
+  /* Navigation flottante en bas façon iOS/Horizon OS */
+  .bottom-nav {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255 255 255 / 0.3);
+    backdrop-filter: blur(24px);
+    border-radius: 44px;
+    padding: 10px 28px;
+    display: flex;
+    gap: 36px;
+    box-shadow: 0 4px 24px rgba(0 0 0 / 0.18);
+    z-index: 1000;
+  }
+
+  .bottom-nav a {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    transition: transform 0.2s ease;
+  }
+  .bottom-nav a:hover {
+    transform: scale(1.25);
+  }
+  .bottom-nav svg {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 4px;
+    stroke-width: 2.4;
+    stroke: currentColor;
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .window-container {
+      gap: 28px;
+    }
+    .window {
+      flex-basis: 100%;
+      max-width: 100%;
+      padding: 1.8rem 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 30px 12px 100px;
+    }
+    .bottom-nav {
+      gap: 18px;
+      padding: 8px 18px;
+    }
+    .bottom-nav svg {
+      width: 22px;
+      height: 22px;
+    }
+    .bottom-nav a {
+      font-size: 0.7rem;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="window-container">
+
+  <!-- Fenêtre Introduction -->
+  <section class="window" aria-label="Introduction">
+    <h1>Bienvenue sur mon portfolio 😁</h1>
+    <p>Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII. J'ai validé un BTS CRSA et un BAC PRO MELEC.</p>
+    <p>Mon objectif est d'intégrer un MASTER EEA pour approfondir mes compétences en automatisme. À terme, je souhaite devenir un automaticien confirmé.</p>
+    <div class="links">
+      <a href="#" onclick="openPDF('cv.pdf')">Mon CV</a>
+      <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ClementNoelRenard?tab=repositories" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <img src="MOI.jpg" alt="Photo de profil Clément Noël" />
+  </section>
+
+  <!-- Fenêtre Compétences -->
+  <section class="window" aria-label="Compétences GEII">
+    <h1>COMPÉTENCES GEII</h1>
+    <p>Accédez à une page listant mes preuves de validation de compétences.</p>
+    <div class="links">
+      <a href="Competences.html">Page des compétences GEII</a>
+      <a href="#" onclick="openPDF('competence.pdf')">Organigramme des compétences</a>
+    </div>
+    <img src="GEII.jpeg" alt="Illustration Compétences GEII" />
+  </section>
+
+  <!-- Fenêtre SAE -->
+  <section class="window" aria-label="SAE">
+    <h1>LA SAE</h1>
+    <p>La Situation d'Apprentissage et d'Évaluation m'a permis de concevoir des prototypes en équipe, reproduisant un environnement professionnel.</p>
+    <p>Accédez à la page listant mes activités en SAE.</p>
+    <div class="links">
+      <a href="Projet_et_SAE.html">Page des Projets et SAE</a>
+    </div>
+    <img src="images/SAE_S3.png" alt="Photo Robot Sumo" />
+  </section>
+
+  <!-- Fenêtre Activités -->
+  <section class="window" aria-label="Activités">
+    <h1>MES ACTIVITÉS</h1>
+    <p>Découvrez mes activités et projets divers.</p>
+    <div class="links">
+      <a href="Mes_Activites.html">Page de mes activités et projets</a>
+    </div>
+    <img src="images/Activite.png" alt="Illustration Activités" />
+  </section>
+
+</div>
+
+<!-- Navigation flottante -->
+<nav class="bottom-nav" aria-label="Navigation principale">
+  <a href="index.html" title="Accueil" aria-current="page">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M4 10v10h16V10"/></svg>
+    Accueil
+  </a>
+  <a href="Competences.html" title="Compétences">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2M12 12a9 9 0 1 0 9 9 9 9 0 0 0-9-9z"/></svg>
+    Compétences
+  </a>
+  <a href="Projet_et_SAE.html" title="Projets">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m2 8H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5l2 2h5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z"/></svg>
+    Projets
+  </a>
+  <a href="snakev2.html" title="Snake 🕹️" target="_blank" rel="noopener">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2H5v2h4v2h2V7h4V5h-4V3z"/><circle cx="12" cy="12" r="9" stroke="currentColor"/></svg>
+    Snake
+  </a>
+</nav>
+
+<script>
+  function openPDF(pdfUrl) {
+    const popup = document.getElementById('pdfPopup');
+    document.getElementById('pdfFrame').src = pdfUrl;
+    popup.classList.add('active');
+  }
+  function closePDF() {
+    const popup = document.getElementById('pdfPopup');
+    document.getElementById('pdfFrame').src = '';
+    popup.classList.remove('active');
+  }
+</script>
+
+<!-- Popup PDF -->
+<div id="pdfPopup" style="
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.75);
+  display:
