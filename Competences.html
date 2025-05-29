@@ -138,6 +138,71 @@
     }
 
 
+.popup {
+  display: none;
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+  width: 90vw;
+  height: 90vh;
+  z-index: 1000;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background: rgba(30, 42, 56, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.popup.active {
+  display: flex;
+}
+
+.popup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.popup .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  z-index: 1001;
+}
+
+.links a,
+.slide-button {
+  display: inline-block;
+  background-color: #1e2a38;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 0.5rem 0.5rem 0 0;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  max-width: 100%;
+}
+
+.links a:hover,
+.slide-button:hover {
+  background-color: #339CFF;
+}
+
+
+
+
+
     @media screen and (max-width: 768px) {
       .competence-content {
         flex-direction: column;
@@ -151,6 +216,27 @@
   </style>
 </head>
 <body>
+
+
+<script>
+  function openPDF(pdfUrl) {
+    const popup = document.getElementById('pdfPopup');
+    document.getElementById('pdfFrame').src = pdfUrl;
+    popup.classList.add('active');
+  }
+
+  function closePDF() {
+    const popup = document.getElementById('pdfPopup');
+    document.getElementById('pdfFrame').src = '';
+    popup.classList.remove('active');
+  }
+</script>
+<!-- Pop-up PDF (à placer tout à la fin du body de préférence) -->
+<div id="pdfPopup" class="popup">
+  <span class="close-btn" onclick="closePDF()">✖</span>
+  <iframe id="pdfFrame" src=""></iframe>
+</div>
+
   <header>
     <nav>
       <div>
@@ -168,7 +254,7 @@
 
   <div class="container">
     <h1>COMPETENCE GEII</h1>
-    <h2>La liste ci-dessous vous permettra de facilement naviguer dans le référentiel de compétences.Pour chaque competence un PDF liée sera une preuve permettant la validation de la compétence dans le cadre du BUT GEII.</h2>
+    <h2>Les listes deroulantes ci-dessous vous permettront de facilement naviguer dans le référentiel des compétences.Pour chaque competencse un PDF liée sera une preuve permettant la validation de la compétence dans le cadre du BUT GEII.</h2>
     
 <div class="dropdown">
   <div class="dropdown-header">🛠️ CONCEVOIR (C)</div>
@@ -176,7 +262,16 @@
     <!-- Section C.1 à C.4 -->
 
     <section class="competence-section">
-      <h1>C.1 – CONCEVOIR - J’identifie les fonctions demandées...</h1>
+      <h1>C.1 – CONCEVOIR - J’identifie les fonctions demandées à la lecture du cahier des charges (architecture fonctionnelle - sans solution technique)</h1>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="C1">
+        <div class="links">
+          <a href="#" onclick="openPDF('./pdfs/SAE_S4.pdf')">Voir le pdf</a>
+        </div>
+    </section>
+
+    <section class="competence-section">
+      <h1>C.2 – CONCEVOIR - Je propose une solution technique pour répondre à une fonction</h1>
       <div class="competence-content">
         <img src="GEII.jpeg" alt="C1">
         <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
@@ -184,15 +279,7 @@
     </section>
 
     <section class="competence-section">
-      <h1>C.2 – CONCEVOIR - J’identifie les fonctions demandées...</h1>
-      <div class="competence-content">
-        <img src="GEII.jpeg" alt="C1">
-        <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
-      </div>
-    </section>
-
-    <section class="competence-section">
-      <h1>C.3 – CONCEVOIR - J’identifie les fonctions demandées...</h1>
+      <h1>C.3 – CONCEVOIR - J’affine une solution technique en m’appuyant sur un maquettage numérique et/ou matériel</h1>
       <div class="competence-content">
         <img src="GEII.jpeg" alt="C1">
         <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
@@ -200,7 +287,7 @@
     </section>
     
     <section class="competence-section">
-      <h1>C.4 – CONCEVOIR - J’identifie les fonctions demandées...</h1>
+      <h1>C.4 – CONCEVOIR - Je rédige un dossier de conception et de fabrication</h1>
       <div class="competence-content">
         <img src="GEII.jpeg" alt="C1">
         <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
@@ -215,7 +302,7 @@
     <!-- Section V.1 à V.2 ici -->
 
     <section class="competence-section">
-      <h1>V.1 – CONCEVOIR - J’identifie les fonctions demandées...</h1>
+      <h1>V.1 – VÉRIFIER - J’applique, j’élabore, je rédige une procédure d’essais</h1>
       <div class="competence-content">
         <img src="GEII.jpeg" alt="C1">
         <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
@@ -223,7 +310,7 @@
     </section>
 
     <section class="competence-section">
-      <h1>V.2 – CONCEVOIR - J’identifie les fonctions demandées...</h1>
+      <h1>V.2 – VÉRIFIER - J’identifie, je corrige les non-conformités d’un prototype</h1>
       <div class="competence-content">
         <img src="GEII.jpeg" alt="C1">
         <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
@@ -236,6 +323,21 @@
   <div class="dropdown-header">🔧 MAINTENIR (M)</div>
   <div class="dropdown-content">
     <!-- Section M.1 à M.2 ici -->
+
+    <section class="competence-section">
+      <h1>M.1 – MAINTENIR - J’applique une opération de maintenance (préventive, corrective, améliorative) à un système</h1>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="C1">
+        <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
+      </div>
+    </section>
+
+    <section class="competence-section">
+      <h1>M.2 – MAINTENIR - Je rédige la procédure de maintenance (préventive, corrective, améliorative) d’un système</h1>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="C1">
+        <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
+      </div>
   </div>
 </div>
 
@@ -243,6 +345,21 @@
   <div class="dropdown-header">⚙️ INTÉGRER (I)</div>
   <div class="dropdown-content">
     <!-- Section I.1.1 à I.1.2 ici -->
+
+    <section class="competence-section">
+      <h1>I.1.1 – INTÉGRER - J’exécute l’installation et la mise en service d’un système</h1>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="C1">
+        <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
+      </div>
+    </section>
+
+    <section class="competence-section">
+      <h1>I.1.2 – INTÉGRER - Je gère le processus d’installation et de mise en service d’un système</h1>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="C1">
+        <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
+      </div>
   </div>
 </div>
 
@@ -250,6 +367,30 @@
   <div class="dropdown-header">📋 MANAGER (G)</div>
   <div class="dropdown-content">
     <!-- Section G.1 à G.3 ici -->
+
+    <section class="competence-section">
+      <h1>G.1 – MANAGER - Je rédige et archive différents documents professionnels (e-mails, supports de présentations, comptes rendus, rapports ... )</h1>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="C1">
+        <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
+      </div>
+    </section>
+
+    <section class="competence-section">
+      <h1>G.2 – MANAGER - J’effectue des tâches administratives (passer des commandes, demander un devis, gestion d’un budget ...)</h1>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="C1">
+        <button onclick="window.open('pdfs/C1_AC.pdf', '_blank')">Voir le PDF</button>
+      </div>
+    </section>
+
+    <section class="competence-section">
+      <h1>G.3 – MANAGER - Je privilégie une démarche éthique pour répondre aux enjeux économiques, réglementaires et environnementaux de la Société</h1>
+      <div class="competence-content">
+        <img src="GEII.jpeg" alt="C1">
+        <button onclick="window.open('pdfs/C1_AC','_blank')">Voir le PDF</button>
+      </div>
+    </section>
   </div>
 </div>
 
