@@ -213,6 +213,60 @@
         max-width: 300px;
       }
     }
+
+
+/* Barre de navigation flottante (mobile seulement) */
+.mobile-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(50, 50, 50, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 0.5rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+  z-index: 999;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.mobile-nav a {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-nav img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0.2rem;
+  filter: invert(1);
+}
+
+/* Affichage conditionnel */
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  header, footer {
+    display: none;
+  }
+}
+
+
+
   </style>
 </head>
 <body>
@@ -449,6 +503,25 @@
     });
   });
 </script>
+
+
+
+<!-- Barre de navigation mobile (affichée seulement sur téléphone) -->
+<div class="mobile-nav">
+  <a href="index.html">
+    <img src="icons/home.svg" alt="Accueil"><span>Accueil</span>
+  </a>
+  <a href="Competences.html">
+    <img src="icons/skills.svg" alt="Compétences"><span>Compétences</span>
+  </a>
+  <a href="Projet_et_SAE.html">
+    <img src="icons/projects.svg" alt="Projets"><span>Projets</span>
+  </a>
+  <a href="snakev2.html" onclick="window.open('snakev2.html', 'popup', 'width=600,height=400'); return false;">
+    <img src="icons/snake.svg" alt="Snake"><span>Snake</span>
+  </a>
+</div>
+
 
 
 </body>
