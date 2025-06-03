@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./images/LOGO.png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: url('./images/25.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      backdrop-filter: blur(8px);
+      overflow-x: hidden;
+    }
+
+    header, footer, .intro, .competences, .carousel, .popup {
+      background: rgba(30, 42, 56, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* header, footer {
+      width: 100%;
+      background: rgba(30, 42, 56, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem;
+    } */
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #339CFF;
+    }
+
+    .intro-section, .competences-section, .carousel-section {
+      padding: 3rem 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    .intro, .competences, .carousel {
+      padding: 2rem;
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .intro-text, .competences-text {
+      flex: 1;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .links a, .slide-button, select {
+      display: inline-block;
+      background-color: #1e2a38;
+      color: #fff;
+      border: 2px solid #000;
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin: 0.5rem 0.5rem 0 0;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      max-width: 100%;
+    }
+    .links a:hover, .slide-button:hover {
+      background-color: #339CFF;
+    }
+
+    select {
+      width: 100%;
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      border-radius: 20px;
+      border: 3px solid #fff;
+    }
+    .intro img {
+      width: 250px;
+      margin-left: 2rem;
+    }
+    .competences img {
+      width: 200px;
+      margin-left: 2rem;
+    }
+
+    .carousel {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+    .slides {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+      transition: background-color 0.3s;
+    }
+    .arrow:hover {
+      background: #339CFF;
+    }
+    .arrow-left { left: 10px; }
+    .arrow-right { right: 10px; }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 5vh;
+      left: 5vw;
+      width: 90vw;
+      height: 90vh;
+      z-index: 1000;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup.active {
+      display: flex;
+    }
+    .popup iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: bold;
+      z-index: 1001;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+    }
+    footer a {
+      color: #339CFF;
+      text-decoration: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .carousel { height: 300px; }
+      .intro, .competences { flex-direction: column; text-align: center; }
+      .intro img, .competences img { margin: 1rem 0 0; width: 150px; }
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      .slide-button { padding: 10px 20px; }
+      select { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function openPDF(pdfUrl) {
+      const popup = document.getElementById('pdfPopup');
+      document.getElementById('pdfFrame').src = pdfUrl;
+      popup.classList.add('active');
+    }
+
+    function closePDF() {
+      const popup = document.getElementById('pdfPopup');
+      document.getElementById('pdfFrame').src = '';
+      popup.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
+</head>
+<body>
+</body>
+</html>
+</head>
+<body>
+  <header>
+    <nav>
+      <div>
+        <a href="index.html"><strong>Accueil</strong></a>
+        <a href="Competences.html">Competences GEII</a>
+        <a href="Projet_et_SAE.html">Projets et SAE</a>
+        <!-- <a href="snakev2.html">Jeux Snake</a> -->
+        <a href="snakev2.html" onclick="window.open('snakev2.html', 'popup', 'width=600,height=400'); return false;">Snake 🕹️</a>
+        <a href="snake_v3_tactile.html">Snake (tactile!)</a>
+      </div>
+      <div>Clément Noël - Portfolio 2025</div>
+    </nav>
+  </header>
+
+  <!-- Section d'introduction -->
+  <section class="intro-section">
+    <div class="intro">
+      <div class="intro-text">
+        <h1>Mon portfolio 😁</h1>
+        <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII. Auparavant, j'ai validé un BTS CRSA et un BAC PRO MELEC.</p>
+        <p>Mon objectif actuel est d'intégrer un MASTER EEA (avec la spécialité adéquate) afin d’approfondir mes compétences en automatisme. À terme, je souhaite devenir un automaticien confirmé, grâce à mes expériences professionnelles, universitaires, et à mon engagement continu dans ce domaine passionnant par sa richesse et sa diversité. Je garde également une ouverture vers l’enseignement.</p>
+         <div class="links">
+          <!-- Lien CV ouvre la popup PDF avec le même style que LinkedIn/GitHub -->
+          <a href="#" onclick="openPDF('./pdfs/cv.pdf')">Mon CV</a>
+          <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/ClementNoelRenard?tab=repositories" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <img src="./images/MOI.png" alt="Photo profil">
+    </div>
+  </section>
+
+  <!-- Section compétences -->
+  <section class="intro-section">
+    <div class="intro">
+      <div class="intro-text">
+        <h1>COMPETENCES GEII</h1>
+         <p>La page "Competences" Disponible en tete de ce site ou via le bouton ci dessous, vous permettra d'acceder à une page listant mes preuves de validation de competences</p>       
+         <div class="links">
+        <a href="Competences.html">Page des competences GEII</a>
+        <a href="#" onclick="openPDF('./pdfs/competence.pdf')">Organigramme des competences</a>
+        </div>
+      </div>
+      <img src="./images/GEII.png" alt="GEII">
+    </div>
+  </section>
+
+  
+  <!-- Section SAE -->
+  <section class="intro-section">
+    <div class="intro">
+      <div class="intro-text">
+        <h1>LA SAE</h1>
+        <p>La "SAE" etant "Situation d'Apprentissage et d'Évaluation", m'a permis de concevoir des prototypes, en equipe, à partir d'un cahier des charges, reproduisant ainsi l'environnement professionnel.</p>
+        <p>La page "SAE" Disponible en tete de ce site ou via le bouton ci dessous, vous permettra d'acceder à une page listant mes activité en SAE.</p>
+         <div class="links">
+          <a href="Projet_et_SAE.html">Page des Projet et SAE</a>
+        </div>
+      </div>
+      <img src="./images/SAE_S3.png" alt="Photo Robot Sumo">
+    </div>
+  </section>
+
+
+                                                                                                <h1>⚠️ /// EN TRAVAUX \\\ ⚠️</h1>
+
+    <!-- Section Mes Activités -->
+  <section class="intro-section">
+    <div class="intro">
+      <div class="intro-text">
+        <h1>MES ACTIVITES</h1>
+        <p>///</p>
+        <p>///</p>
+         <div class="links">
+          <a href="Mes_Activites.html">Page de mes activitée et projets divers</a>
+        </div>
+      </div>
+      <img src="./images/Activite.png" alt="Photo Activite">
+    </div>
+  </section>
+  
+
+  <!-- Section Carousel Timeline Simplifié -->
+  <section class="carousel-section" id="stepsContainer">
+    <div class="carousel">
+      <button class="arrow arrow-left" onclick="prevSlide()">‹</button>
+      <div class="slides" id="slidesContainer">
+        <!-- Les slides seront insérés ici via JavaScript -->
+      </div>
+      <button class="arrow arrow-right" onclick="nextSlide()">›</button>
+    </div>
+  </section>
+
+  <!-- Popup PDF -->
+  <div id="pdfPopup" class="popup">
+    <span class="close-btn" onclick="closePDF()">✖</span>
+    <iframe id="pdfFrame" src=""></iframe>
+  </div>
+
+  <footer id="contact">
+    <p>// 2025 Clément Noël - Portfolio - Recopiage interdit sans demande préalable. // <a href="mailto:email@example.com" style="color:rgba(0,122,255,0.8);">clementnoelrenard.geii@gmail.com</a></p>
+  </footer>
+
+  <script>
+    // Liste des projets avec titre, chemin PDF et chemin image d'aperçu
+    const projects = [
+      { title: "Projet SAE S4", pdf: "pdfs/SAE_S4.pdf", img: "images/SAE_S4.png" },
+      { title: "Projet SAE S3",      pdf: "pdfs/SAE_S3.pdf", img: "images/SAE_S3.jpg" },
+      { title: "Projet plus ancien",     pdf: "pdfs/projet3.pdf", img: "images/projet3_preview.jpg" },
+      { title: "Projet plus plus ancien",pdf: "pdfs/projet4.pdf", img: "images/projet4_preview.jpg" },
+      { title: "TEST",pdf: "pdfs/projet4.pdf", img: "images/projet4_preview.jpg" }
+    ];
+
+    const slidesContainer = document.getElementById('slidesContainer');
+    let currentSlide = 0;
+
+    // Générer les slides simplifiées
+    projects.forEach((project) => {
+      const slide = document.createElement('div');
+      slide.classList.add('slide');
+
+      const imgEl = document.createElement('img');
+      imgEl.src = project.img;
+      imgEl.alt = project.title + ' aperçu';
+      slide.appendChild(imgEl);
+
+      const button = document.createElement('button');
+      button.classList.add('slide-button');
+      button.textContent = 'Voir PDF';
+      button.onclick = () => openPDF(project.pdf);
+      slide.appendChild(button);
+
+      slidesContainer.appendChild(slide);
+    });
+
+    function updateSlides() {
+      const offset = -currentSlide * 100;
+      slidesContainer.style.transform = `translateX(${offset}%)`;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % projects.length;
+      updateSlides();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + projects.length) % projects.length;
+      updateSlides();
+    }
+
+    function openPDF(pdfUrl) {
+      document.getElementById('pdfFrame').src = pdfUrl;
+      document.getElementById('pdfPopup').style.display = 'block';
+    }
+    function closePDF() {
+      document.getElementById('pdfPopup').style.display = 'none';
+      document.getElementById('pdfFrame').src = '';
+    }
+    function loadCompetence(path) {
+      if (path) openPDF(path);
+    }
+
+    // Initialiser la position au démarrage
+    updateSlides();
+  </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
+  });
+
+  function goTo(url) {
+    document.body.classList.remove("fade-in");
+    document.body.classList.add("fade-out");
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500); // Durée de l'animation
+  }
+</script>
+
+<style>
+  body.fade-in {
+    animation: fadeIn 1s forwards;
+  }
+
+  body.fade-out {
+    animation: fadeOut 1s forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1 }
+    to { opacity: 0 }
+  }
+</style>
+</body>
+</html>
