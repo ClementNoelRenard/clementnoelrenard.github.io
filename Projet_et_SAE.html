@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compétences GEII</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./images/LOGO.png">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: url('./images/25.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+
+    header, footer, .intro, .competences, .carousel, .popup {
+      background: rgba(30, 42, 56, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #339CFF;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .competence-section {
+      background: rgba(30, 42, 56, 0.6);
+      margin-bottom: 2rem;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .competence-section h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    .competence-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .competence-content img {
+      width: 200px;
+      border-radius: 12px;
+      border: 2px solid #fff;
+    }
+    .competence-content button {
+      background-color: #1e2a38;
+      color: #fff;
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .container button {
+      background-color: #1e2a38;
+      color: #fff;
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .competence-content button:hover {
+      background-color: #339CFF;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+    }
+    footer a {
+      color: #339CFF;
+      text-decoration: none;
+    }
+
+
+    .dropdown {
+      margin-bottom: 2rem;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      background: rgba(30, 42, 56, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .dropdown-header {
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #1e2a38;
+      color: #fff;
+      user-select: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      padding: 1rem 2rem;
+    }
+
+    .dropdown.open .dropdown-content {
+      display: block;
+    }
+
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+  width: 90vw;
+  height: 90vh;
+  z-index: 1000;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background: rgba(30, 42, 56, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.popup.active {
+  display: flex;
+}
+
+.popup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.popup .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  z-index: 1001;
+}
+
+.links a,
+.slide-button {
+  display: inline-block;
+  background-color: #1e2a38;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 0.5rem 0.5rem 0 0;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  max-width: 100%;
+}
+
+.links a:hover,
+.slide-button:hover {
+  background-color: #339CFF;
+}
+
+
+
+
+
+    @media screen and (max-width: 768px) {
+      .competence-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .competence-content img {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+<script>
+  function openPDF(pdfUrl) {
+    const popup = document.getElementById('pdfPopup');
+    document.getElementById('pdfFrame').src = pdfUrl;
+    popup.classList.add('active');
+  }
+
+  function closePDF() {
+    const popup = document.getElementById('pdfPopup');
+    document.getElementById('pdfFrame').src = '';
+    popup.classList.remove('active');
+  }
+</script>
+<!-- Pop-up PDF (à placer tout à la fin du body de préférence) -->
+<div id="pdfPopup" class="popup">
+  <span class="close-btn" onclick="closePDF()">✖</span>
+  <iframe id="pdfFrame" src=""></iframe>
+</div>
+
+  <header>
+    <nav>
+      <div>
+        <a href="index.html"><strong>Accueil</strong></a>
+        <a href="Competences.html">Competences GEII</a>
+        <a href="Projet_et_SAE.html">Projets et SAE</a>
+        <!-- <a href="snakev2.html">Jeux Snake</a> -->
+        <a href="snakev2.html" onclick="window.open('snakev2.html', 'popup', 'width=600,height=400'); return false;">Snake 🕹️</a>
+        <a href="snake_v3_tactile.html">Snake (tactile!)</a>
+      </div>
+      <div>Clément Noël - Portfolio 2025</div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>PROJET ET SAE</h1>
+    <h2>Les SAE Permettent de faire confronter l'etudiant au systeme de projet, equivalent dans le monde du travail. Mais aussi de faire monter en competence tout les aquis principaux vue dans les matieres liée.</h2>
+
+    <section class="competence-section">
+      <h2>SAE S4 - MUGOCHAUD</h2>
+      <div class="competence-content">
+        <img src="images/SAE_S4.png" alt="images/1.jpg">
+        <div class="links">
+          <a href="#" onclick="openPDF('./pdfs/SAE_S4.pdf')">Voir le pdf</a>
+        </div>
+    </section>
+
+    <section class="competence-section">
+      <h2>SAE S3 - Robot sumo</h2>
+      <div class="competence-content">
+        <img src="images/SAE_S3.png" alt="Aperçu compétence C2">
+        <button onclick="window.open('pdfs/C2.pdf', '_blank')">Voir le PDF (🔴NON DISPONILE)</button>
+      </div>
+    </section>
+
+    <!-- Ajoute ici d'autres sections -->
+  </div>
+
+  <footer id="contact">
+    <p>// 2025 Clément Noël - Portfolio - Recopiage interdit sans demande préalable. //
+      <a href="mailto:clementnoelrenard.geii@gmail.com">clementnoelrenard.geii@gmail.com</a>
+    </p>
+  </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
+  });
+
+  function goTo(url) {
+    document.body.classList.remove("fade-in");
+    document.body.classList.add("fade-out");
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500); // Durée de l'animation
+  }
+</script>
+
+<style>
+  body.fade-in {
+    animation: fadeIn 2s forwards;
+  }
+
+  body.fade-out {
+    animation: fadeOut 2s forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1 }
+    to { opacity: 0 }
+  }
+
+
+  
+</style>
+
+
+<script>
+  document.querySelectorAll('.dropdown-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+
+</body>
+</html>

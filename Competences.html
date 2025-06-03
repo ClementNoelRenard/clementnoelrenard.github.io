@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compétences GEII</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./images/LOGO.png">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: url('./images/25.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+
+    header, footer, .intro, .competences, .carousel, .popup {
+      background: rgba(30, 42, 56, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #339CFF;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .competence-section {
+      background: rgba(30, 42, 56, 0.6);
+      margin-bottom: 2rem;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .competence-section h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    .competence-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .competence-content img {
+      width: 200px;
+      border-radius: 12px;
+      border: 2px solid #fff;
+    }
+    .competence-content button {
+      background-color: #1e2a38;
+      color: #fff;
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .container button {
+      background-color: #1e2a38;
+      color: #fff;
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .competence-content button:hover {
+      background-color: #339CFF;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+    }
+    footer a {
+      color: #339CFF;
+      text-decoration: none;
+    }
+
+
+    .dropdown {
+      margin-bottom: 2rem;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      background: rgba(30, 42, 56, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .dropdown-header {
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #1e2a38;
+      color: #fff;
+      user-select: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      padding: 1rem 2rem;
+    }
+
+    .dropdown.open .dropdown-content {
+      display: block;
+    }
+
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+  width: 90vw;
+  height: 90vh;
+  z-index: 1000;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background: rgba(30, 42, 56, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.popup.active {
+  display: flex;
+}
+
+.popup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.popup .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  z-index: 1001;
+}
+
+.links a,
+.slide-button {
+  display: inline-block;
+  background-color: #1e2a38;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 0.5rem 0.5rem 0 0;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  max-width: 100%;
+}
+
+.links a:hover,
+.slide-button:hover {
+  background-color: #339CFF;
+}
+
+
+
+
+
+    @media screen and (max-width: 768px) {
+      .competence-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .competence-content img {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+
+
+
+.mobile-nav a {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-nav img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0.2rem;
+  filter: invert(1);
+}
+
+
+
+  </style>
+</head>
+<body>
+
+</head>
+<body>
+
+<script>
+  function openPDF(pdfUrl) {
+    const popup = document.getElementById('pdfPopup');
+    document.getElementById('pdfFrame').src = pdfUrl;
+    popup.classList.add('active');
+  }
+
+  function closePDF() {
+    const popup = document.getElementById('pdfPopup');
+    document.getElementById('pdfFrame').src = '';
+    popup.classList.remove('active');
+  }
+
+  // Gestion des dropdowns
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.dropdown-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const dropdown = header.parentElement;
+        dropdown.classList.toggle('open');
+      });
+    });
+  });
+</script>
+
+<!-- Pop-up PDF -->
+<div id="pdfPopup" class="popup">
+  <span class="close-btn" onclick="closePDF()">✖</span>
+  <iframe id="pdfFrame" src=""></iframe>
+</div>
+
+<header>
+  <nav>
+      <div>
+        <a href="index.html"><strong>Accueil</strong></a>
+        <a href="Competences.html">Competences GEII</a>
+        <a href="Projet_et_SAE.html">Projets et SAE</a>
+        <!-- <a href="snakev2.html">Jeux Snake</a> -->
+        <a href="snakev2.html" onclick="window.open('snakev2.html', 'popup', 'width=600,height=400'); return false;">Snake 🕹️</a>
+        <a href="snake_v3_tactile.html">Snake (tactile!)</a>
+      </div>
+    <div>Clément Noël - Portfolio 2025</div>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>COMPÉTENCES GEII</h1>
+  <h2>Les listes déroulantes ci-dessous vous permettront de facilement naviguer dans le référentiel des compétences. Pour chaque compétence, un PDF lié servira de preuve pour la validation dans le cadre du BUT GEII.</h2>
+
+  <!-- 🛠️ CONCEVOIR -->
+  <div class="dropdown">
+    <div class="dropdown-header">🛠️ CONCEVOIR (C)</div>
+    <div class="dropdown-content">
+      <section class="competence-section">
+        <h1>C.1 – J’identifie les fonctions demandées à la lecture du cahier des charges</h1>
+        <div class="competence-content">
+          <img src="./images/SAE_S3.png" alt="C1">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/C1.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+
+      <section class="competence-section">
+        <h1>C.2 – Je propose une solution technique pour répondre à une fonction</h1>
+        <div class="competence-content">
+          <img src="./images/SAE_S3.png" alt="C2">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/C2.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+
+      <section class="competence-section">
+        <h1>C.3 – J’affine une solution technique à l’aide d’un maquettage</h1>
+        <div class="competence-content">
+          <img src="./images/CRSA2023.png" alt="C3">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/C3.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+
+      <section class="competence-section">
+        <h1>C.4 – Je rédige un dossier de conception et de fabrication</h1>
+        <div class="competence-content">
+          <img src="./images/SAE_S3.png" alt="C4">
+          <div class="links">
+            <a href="#" onclick="openPDF('./pdfs/C4_DDC.pdf')">PDF Conception</a>
+            <a href="#" onclick="openPDF('./pdfs/C4_DDF.pdf')">PDF Fabrication</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- 🔍 VÉRIFIER -->
+  <div class="dropdown">
+    <div class="dropdown-header">🔍 VÉRIFIER (V)</div>
+    <div class="dropdown-content">
+      <section class="competence-section">
+        <h1>V.1 – J’élabore une procédure d’essais</h1>
+        <div class="competence-content">
+          <img src="./images/SAE_S4.png" alt="V1">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/V1.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+
+      <section class="competence-section">
+        <h1>V.2 – Je corrige les non-conformités d’un prototype</h1>
+        <div class="competence-content">
+          <img src="./images/SAE_S3.png" alt="V2">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/V2.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- 🔧 MAINTENIR -->
+  <div class="dropdown">
+    <div class="dropdown-header">🔧 MAINTENIR (M)</div>
+    <div class="dropdown-content">
+      <section class="competence-section">
+        <h1>M.1 – J’effectue une opération de maintenance</h1>
+        <div class="competence-content">
+          <img src="./images/CRSA2024.png" alt="M1">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/M1.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+
+      <section class="competence-section">
+        <h1>M.2 – Je rédige une procédure de maintenance</h1>
+        <div class="competence-content">
+          <img src="./images/SAE_S4.png" alt="crsa">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/M2.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ⚙️ INTÉGRER -->
+  <div class="dropdown">
+    <div class="dropdown-header">⚙️ INTÉGRER (I)</div>
+    <div class="dropdown-content">
+      <section class="competence-section">
+        <h1>I.1.1 – J’installe et mets en service un système</h1>
+        <div class="competence-content">
+          <img src="./images/B.png" alt="I1.1">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/I11.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+
+      <section class="competence-section">
+        <h1>I.1.2 – Je gère l’installation d’un système</h1>
+        <div class="competence-content">
+          <img src="./images/GEII.png" alt="I1.2">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/I11.pdf')">Voir le pdf (🔴NON DISPONILE)</a></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- 📋 MANAGER -->
+  <div class="dropdown">
+    <div class="dropdown-header">📋 MANAGER (G)</div>
+    <div class="dropdown-content">
+      <section class="competence-section">
+         <h1>G2 – G.2 : J'effectue des taches administratives (passer des commandes, demander un devis, gestiond'un budget, ... )</h1>
+        <div class="competence-content">
+          <img src="./images/G2.png" alt="I1.1">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/G2.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+
+      <section class="competence-section">
+        <h1>G3 – G3 : Je rédige et archive différents documents professionnels (e-mails, supports de présentations, comptes rendus, rapports ... ) établis dans différentes langues (Français, Anglais, Espagnol, Chinois, etc ... )</h1>
+        <div class="competence-content">
+          <img src="./images/GEII.png" alt="I1.2">
+          <div class="links"><a href="#" onclick="openPDF('./pdfs/G1.pdf')">Voir le pdf</a></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Clément Noël - Tous droits réservés. <a href="index.html">Retour à l'accueil</a></p>
+</footer>
+
+</body>
+</html>
