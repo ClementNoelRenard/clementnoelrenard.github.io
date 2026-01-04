@@ -21,82 +21,124 @@
       color: #fff;
       overflow-x: hidden;
       line-height: 1.6;
+      /* IMPORTANT : On pousse le contenu vers la droite pour laisser la place au menu */
+      padding-left: 260px; 
     }
 
-    /* Animation de transition de page */
+    /* Animation de transition */
     body.fade-in { animation: fadeIn 0.8s forwards; }
-    body.fade-out { animation: fadeOut 0.5s forwards; }
-
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
 
     a { text-decoration: none; color: inherit; transition: 0.3s; }
     ul { list-style: none; }
 
-    /* --- LAYOUT COMMONS --- */
-    header, footer, .glass-panel, .popup {
-      background: rgba(30, 42, 56, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    /* --- SIDEBAR (MENU LATÉRAL) --- */
+    header {
+      position: fixed; /* Reste toujours visible */
+      top: 0;
+      left: 0;
+      width: 260px; /* Largeur du menu */
+      height: 100vh; /* Toute la hauteur de l'écran */
+      z-index: 1000;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Espacement entre le haut et le bas */
+      
+      /* Style Glassmorphism */
+      background: rgba(30, 42, 56, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .brand-block {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .brand-block h2 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .brand-block span {
+      font-size: 0.8rem;
+      color: #339CFF;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    nav a {
+      display: block;
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      font-weight: 500;
+      color: #e0e0e0;
+      background: rgba(255,255,255,0.05);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    nav a:hover {
+      background: #339CFF;
+      color: #fff;
+      transform: translateX(5px); /* Petit effet de glissement vers la droite */
+    }
+    
+    /* Bouton Snake spécial */
+    nav a.game-link {
+      border: 1px solid #339CFF;
+      background: transparent;
+      margin-top: 1rem;
+    }
+    nav a.game-link:hover {
+      background: #339CFF;
+    }
+
+    .sidebar-footer {
+      font-size: 0.75rem;
+      text-align: center;
+      color: #aaa;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem;
+    }
+
+    /* --- SECTIONS CONTENT --- */
+    section {
+      padding: 3rem 2rem; /* Plus d'espace car on est décalé */
+      display: flex;
+      justify-content: center;
+    }
+    
+    /* Le panneau transparent derrière le texte */
+    .glass-panel {
+      background: rgba(30, 42, 56, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     }
 
-    /* --- HEADER --- */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 1rem 2rem;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      margin-bottom: 2rem;
-    }
-    nav {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    nav .nav-links a {
-      margin-right: 1.5rem;
-      font-weight: 500;
-      position: relative;
-    }
-    nav .nav-links a:hover { color: #339CFF; }
-    nav .nav-links a::after {
-        content: '';
-        display: block;
-        width: 0;
-        height: 2px;
-        background: #339CFF;
-        transition: width .3s;
-    }
-    nav .nav-links a:hover::after { width: 100%; }
-
-    .brand-name { font-weight: 700; color: #ccc; font-size: 0.9rem; }
-
-    /* --- SECTIONS --- */
-    section {
-      padding: 2rem 1rem;
-      display: flex;
-      justify-content: center;
-    }
     .container {
-      max-width: 1100px;
+      max-width: 1000px; /* Largeur max un peu réduite pour l'équilibre */
       width: 100%;
-      border-radius: 20px;
       padding: 2.5rem;
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 2rem;
+      gap: 3rem;
     }
 
     .text-content { flex: 1; }
-    h1 { font-size: 2.2rem; margin-bottom: 1rem; color: #339CFF; }
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #339CFF; }
     p { margin-bottom: 1rem; font-size: 1.05rem; color: #e0e0e0; }
 
     /* Images */
@@ -108,9 +150,9 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.5);
       transition: transform 0.3s;
     }
-    .section-img:hover { transform: scale(1.02); }
+    .section-img:hover { transform: scale(1.02); rotate: 2deg; }
 
-    /* Boutons */
+    /* Boutons standards */
     .btn {
       display: inline-block;
       background: linear-gradient(135deg, #1e2a38 0%, #2c3e50 100%);
@@ -121,166 +163,131 @@
       margin: 0.5rem 0.5rem 0 0;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      font-size: 0.9rem;
     }
     .btn:hover {
       background: #339CFF;
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(51, 156, 255, 0.3);
+      box-shadow: 0 0 15px rgba(51, 156, 255, 0.5);
     }
 
     /* --- CAROUSEL --- */
-    .carousel-container {
-      flex-direction: column;
-      text-align: center;
-    }
+    .carousel-container { flex-direction: column; text-align: center; }
     .carousel-view {
       position: relative;
       width: 100%;
-      height: 400px; /* Ajusté */
+      height: 400px;
       overflow: hidden;
       border-radius: 15px;
       margin-top: 1rem;
+      background: rgba(0,0,0,0.2);
     }
-    .slides-wrapper {
-      display: flex;
-      height: 100%;
-      transition: transform 0.5s ease-in-out;
-    }
+    .slides-wrapper { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
     .slide {
       min-width: 100%;
       position: relative;
       display: flex;
-      flex-direction: column; /* Image en haut, bouton en bas si besoin */
       justify-content: center;
       align-items: center;
     }
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Remplit bien le cadre */
-      position: absolute;
-      top: 0; left: 0; z-index: 1;
-    }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
     .slide-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      position: absolute; bottom: 0; left: 0; width: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
       padding: 20px;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: flex; justify-content: center;
     }
-
     .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: #fff;
-      font-size: 1.5rem;
-      width: 40px; height: 40px;
-      display: flex; justify-content: center; align-items: center;
-      cursor: pointer;
-      border-radius: 50%;
-      z-index: 10;
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.6); color: #fff;
+      border: none; font-size: 2rem; padding: 0 1rem;
+      cursor: pointer; z-index: 10; height: 100%;
       transition: 0.3s;
     }
-    .arrow:hover { background: #339CFF; }
-    .arrow-left { left: 15px; }
-    .arrow-right { right: 15px; }
+    .arrow:hover { background: rgba(51, 156, 255, 0.5); }
+    .arrow-left { left: 0; }
+    .arrow-right { right: 0; }
 
     /* --- POPUP PDF --- */
     .popup {
-      display: none;
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      display: none; position: fixed;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
       width: 90vw; height: 90vh;
-      z-index: 1000;
-      border-radius: 10px;
-      flex-direction: column;
+      z-index: 2000; /* Au dessus du menu */
+      background: #1e2a38;
+      border-radius: 10px; flex-direction: column;
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
     }
     .popup.active { display: flex; }
     .popup-header {
-      padding: 10px;
-      text-align: right;
-      background: rgba(0,0,0,0.2);
+      padding: 10px; text-align: right; background: #151e29; border-radius: 10px 10px 0 0;
     }
-    .close-btn {
-      font-size: 28px;
-      cursor: pointer;
-      color: #ff4444;
-      font-weight: bold;
-    }
-    .popup iframe {
-      flex: 1;
-      width: 100%;
-      border: none;
-      border-radius: 0 0 10px 10px;
-    }
+    .close-btn { color: #ff4444; font-weight: bold; cursor: pointer; font-size: 1.2rem; }
+    .popup iframe { flex: 1; border: none; border-radius: 0 0 10px 10px; }
 
-    /* --- TRAVAUX SECTION --- */
-    .wip-section {
-      text-align: center;
-      border: 2px dashed #f1c40f;
-      background: rgba(241, 196, 15, 0.1);
-    }
-    .wip-title { color: #f1c40f; }
+    /* --- MOBILE RESPONSIVE --- */
+    @media screen and (max-width: 900px) {
+      /* On annule la sidebar et on repasse en header classique */
+      body { padding-left: 0; padding-top: 80px; } /* On enlève la marge gauche, on ajoute marge haut */
+      
+      header {
+        width: 100%;
+        height: auto;
+        flex-direction: row; /* Horizontal */
+        align-items: center;
+        padding: 1rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      
+      .brand-block { margin-bottom: 0; text-align: left; }
+      .brand-block h2 { margin: 0; font-size: 1rem; }
+      .brand-block span { display: none; } /* On cache le sous-titre sur mobile */
+      
+      nav { flex-direction: row; width: auto; gap: 10px; flex-wrap: wrap; justify-content: center;}
+      nav a { margin: 0; padding: 5px 10px; font-size: 0.8rem; width: auto; }
+      nav a.game-link { margin-top: 0; }
+      .sidebar-footer { display: none; }
 
-    /* --- FOOTER --- */
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      border-radius: 20px 20px 0 0;
-    }
-
-    /* --- RESPONSIVE --- */
-    @media screen and (max-width: 768px) {
       .container { flex-direction: column; text-align: center; padding: 1.5rem; }
-      .section-img { margin: 1rem 0 0; width: 80%; max-width: 200px; }
-      nav { flex-direction: column; gap: 1rem; }
-      nav .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-      nav .nav-links a { margin: 0; font-size: 0.9rem; }
-      .carousel-view { height: 250px; }
+      .section-img { width: 60%; margin-top: 1rem; }
     }
   </style>
 </head>
 <body class="fade-in">
 
   <header>
+    <div class="brand-block">
+      <h2>Clément Noël</h2>
+      <span>Portfolio 2025</span>
+    </div>
+
     <nav>
-      <div class="nav-links">
-        <a href="index.html"><strong>Accueil</strong></a>
-        <a href="Competences.html">Compétences GEII</a>
-        <a href="Projet_et_SAE.html">Projets & SAE</a>
-        <a href="#" onclick="openSnakeGame()">Snake 🕹️</a>
-      </div>
-      <div class="brand-name">Clément Noël - Portfolio 2025</div>
+      <a href="index.html">🏠 Accueil</a>
+      <a href="Competences.html">⚡ Compétences</a>
+      <a href="Projet_et_SAE.html">🛠️ Projets & SAE</a>
+      <a href="Mes_Activites.html">🚀 Activités</a>
+      <a href="#" onclick="openSnakeGame()" class="game-link">🐍 Snake Game</a>
     </nav>
+
+    <div class="sidebar-footer">
+      <p>&copy; 2025<br>Clément Noël</p>
+    </div>
   </header>
 
   <section>
-    <div class="container glass-panel intro">
+    <div class="container glass-panel">
       <div class="text-content">
-        <h1>Mon Portfolio 😁</h1>
+        <h1>Mon Portfolio</h1>
         <p>Bienvenue ! Je suis actuellement étudiant à l'<strong>IUT de Bordeaux en BUT GEII</strong> (Génie Électrique et Informatique Industrielle). J'ai précédemment validé un BTS CRSA et un BAC PRO MELEC.</p>
-        <p><strong>Mon objectif :</strong> Intégrer un <strong>Master EEA</strong> pour approfondir mes compétences en automatisme. Je souhaite devenir un automaticien confirmé, fort de mes expériences techniques et universitaires. Curieux et engagé, je garde également une ouverture vers l'enseignement.</p>
+        <p><strong>Mon objectif :</strong> Intégrer un <strong>Master EEA</strong> pour devenir un automaticien confirmé. Passionné par l'automatisme et la technique, je suis toujours à la recherche de nouveaux défis.</p>
         
         <div class="links">
-          <a class="btn" onclick="openPDF('./pdfs/CV_Reseaux.pdf')">Voir mon CV</a>
+          <a class="btn" onclick="openPDF('./pdfs/CV_Reseaux.pdf')">📄 Mon CV</a>
           <a class="btn" href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a/" target="_blank">LinkedIn</a>
           <a class="btn" href="https://github.com/ClementNoelRenard?tab=repositories" target="_blank">GitHub</a>
         </div>
       </div>
-      <img src="./images/MOI.png" alt="Photo de profil Clément Noël" class="section-img">
+      <img src="./images/MOI.png" alt="Clément Noël" class="section-img">
     </div>
   </section>
 
@@ -288,13 +295,13 @@
     <div class="container glass-panel">
       <div class="text-content">
         <h1>Compétences GEII</h1>
-        <p>Découvrez mes compétences techniques validées au cours de ma formation.</p>
+        <p>Automatisme, Électricité, Informatique Industrielle... Accédez au détail de mes validations de compétences.</p>
         <div class="links">
-          <a class="btn" href="Competences.html">Détails Compétences</a>
-          <a class="btn" onclick="openPDF('./pdfs/competence.pdf')">Organigramme (PDF)</a>
+          <a class="btn" href="Competences.html">Voir les Compétences</a>
+          <a class="btn" onclick="openPDF('./pdfs/competence.pdf')">Organigramme PDF</a>
         </div>
       </div>
-      <img src="./images/GEII.png" alt="Logo GEII" class="section-img">
+      <img src="./images/GEII.png" alt="GEII" class="section-img">
     </div>
   </section>
 
@@ -302,18 +309,18 @@
     <div class="container glass-panel">
       <div class="text-content">
         <h1>Projets & SAE</h1>
-        <p>Les <strong>SAE</strong> (Situations d'Apprentissage et d'Évaluation) m'ont permis de concevoir des prototypes en équipe, sur la base d'un cahier des charges réel.</p>
+        <p>Développement de prototypes, travail d'équipe et cahier des charges : découvrez mes Situations d'Apprentissage et d'Évaluation.</p>
         <div class="links">
-          <a class="btn" href="Projet_et_SAE.html">Voir les Projets & SAE</a>
+          <a class="btn" href="Projet_et_SAE.html">Explorer les projets</a>
         </div>
       </div>
-      <img src="./images/SAE_S3.png" alt="Robot Sumo SAE" class="section-img">
+      <img src="./images/SAE_S3.png" alt="Projet SAE" class="section-img">
     </div>
   </section>
 
   <section>
     <div class="container glass-panel carousel-container">
-      <h2>Aperçu rapide des projets</h2>
+      <h2>Mes Réalisations</h2>
       <div class="carousel-view">
         <button class="arrow arrow-left" onclick="prevSlide()">‹</button>
         <div class="slides-wrapper" id="slidesContainer">
@@ -323,54 +330,34 @@
     </div>
   </section>
 
-  <section>
-    <div class="container glass-panel wip-section">
-      <div class="text-content">
-        <h1 class="wip-title">⚠️ Zone en Construction ⚠️</h1>
-        <p>La section "Mes Activités" est en cours de rédaction. Elle regroupera prochainement mes projets personnels et associatifs.</p>
-        <div class="links">
-            <a class="btn" href="Mes_Activites.html" style="opacity:0.6;">Bientôt disponible</a>
-        </div>
-      </div>
-      <img src="./images/Activite.png" alt="Activités" class="section-img" style="opacity: 0.7;">
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Clément Noël - Portfolio. <br> 
-    <a href="mailto:clementnoelrenard.geii@gmail.com" style="color:#339CFF;">clementnoelrenard.geii@gmail.com</a></p>
+  <footer style="text-align: center; padding: 2rem; color: #aaa; font-size: 0.8rem;">
+    <a href="mailto:clementnoelrenard.geii@gmail.com" style="color:#339CFF;">Me contacter par mail</a>
   </footer>
 
   <div id="pdfPopup" class="popup">
-    <div class="popup-header">
-      <span class="close-btn" onclick="closePDF()">✖ Fermer</span>
-    </div>
+    <div class="popup-header"><span class="close-btn" onclick="closePDF()">✖ Fermer</span></div>
     <iframe id="pdfFrame" src=""></iframe>
   </div>
 
   <script>
-    // --- GESTION DU CAROUSEL ---
+    /* --- CONFIGURATION DES PROJETS --- */
     const projects = [
       { title: "Projet SAE S4", pdf: "pdfs/SAE_S4.pdf", img: "images/SAE_S4.png" },
       { title: "Projet SAE S3", pdf: "pdfs/SAE_S3.pdf", img: "images/SAE_S3.jpg" },
-      { title: "Projet Ancien", pdf: "pdfs/projet3.pdf", img: "images/projet3_preview.jpg" },
-      { title: "Autre Projet",  pdf: "pdfs/projet4.pdf", img: "images/projet4_preview.jpg" }
+      { title: "Ancien Projet", pdf: "pdfs/projet3.pdf", img: "images/projet3_preview.jpg" }
     ];
 
     const slidesContainer = document.getElementById('slidesContainer');
     let currentSlide = 0;
 
-    // Génération automatique des slides
     if(slidesContainer) {
         projects.forEach((project) => {
             const slide = document.createElement('div');
             slide.classList.add('slide');
-            
-            // Structure HTML de la slide
             slide.innerHTML = `
-                <img src="${project.img}" alt="${project.title}" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Non+Trouvée'">
+                <img src="${project.img}" alt="${project.title}" onerror="this.src='https://via.placeholder.com/800x400/1e2a38/ffffff?text=Image+Projet'">
                 <div class="slide-overlay">
-                    <button class="btn" onclick="openPDF('${project.pdf}')">Voir le PDF : ${project.title}</button>
+                    <button class="btn" onclick="openPDF('${project.pdf}')">Voir PDF</button>
                 </div>
             `;
             slidesContainer.appendChild(slide);
@@ -379,54 +366,25 @@
 
     function updateSlides() {
       if(!slidesContainer) return;
-      const offset = -currentSlide * 100;
-      slidesContainer.style.transform = `translateX(${offset}%)`;
+      slidesContainer.style.transform = `translateX(${-currentSlide * 100}%)`;
     }
+    function nextSlide() { currentSlide = (currentSlide + 1) % projects.length; updateSlides(); }
+    function prevSlide() { currentSlide = (currentSlide - 1 + projects.length) % projects.length; updateSlides(); }
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % projects.length;
-      updateSlides();
+    /* --- POPUP --- */
+    function openPDF(url) {
+        document.getElementById('pdfFrame').src = url;
+        document.getElementById('pdfPopup').classList.add('active');
     }
-
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + projects.length) % projects.length;
-      updateSlides();
-    }
-
-    // --- GESTION DES POPUPS ---
-    function openPDF(pdfUrl) {
-      const popup = document.getElementById('pdfPopup');
-      const iframe = document.getElementById('pdfFrame');
-      if(popup && iframe) {
-          iframe.src = pdfUrl;
-          popup.classList.add('active');
-      } else {
-          console.error("Popup introuvable");
-      }
-    }
-
     function closePDF() {
-      const popup = document.getElementById('pdfPopup');
-      const iframe = document.getElementById('pdfFrame');
-      if(popup) {
-          popup.classList.remove('active');
-          iframe.src = ''; // Arrête le chargement/lecture
-      }
+        document.getElementById('pdfPopup').classList.remove('active');
+        document.getElementById('pdfFrame').src = '';
     }
+    document.getElementById('pdfPopup').addEventListener('click', (e) => { if(e.target.id === 'pdfPopup') closePDF(); });
 
-    // Fermer la popup si on clique en dehors du contenu (sur le fond gris)
-    document.getElementById('pdfPopup').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closePDF();
-        }
-    });
-
-    function openSnakeGame() {
-        window.open('snakev2.html', 'popup', 'width=600,height=450'); 
-        return false;
-    }
-
-    // Initialisation
+    function openSnakeGame() { window.open('snakev2.html', 'popup', 'width=600,height=450'); return false; }
+    
+    // Auto start
     updateSlides();
   </script>
 </body>
