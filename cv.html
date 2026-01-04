@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Interactif - Clément Noël</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="LOGO.png">
+  
+  <style>
+    /* --- RESET & GLOBAL --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: url('./images/25.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+      padding-left: 260px; /* Espace menu gauche */
+      padding-right: 200px; /* Espace menu droite */
+    }
+
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    
+    /* --- MENU GAUCHE (COPIE DU SITE) --- */
+    header.left-sidebar {
+      position: fixed; top: 0; left: 0;
+      width: 260px; height: 100vh;
+      z-index: 1000; padding: 2rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: rgba(30, 42, 56, 0.9);
+      backdrop-filter: blur(15px);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .brand-block { text-align: center; margin-bottom: 2rem; }
+    .brand-block h2 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .brand-block span { font-size: 0.8rem; color: #339CFF; letter-spacing: 1px; }
+    
+    nav.main-nav a {
+      display: block; padding: 15px 20px; margin-bottom: 10px;
+      border-radius: 10px; font-weight: 500; color: #e0e0e0;
+      background: rgba(255,255,255,0.05); text-align: center;
+    }
+    nav.main-nav a:hover, nav.main-nav a.active { background: #339CFF; color: #fff; transform: translateX(5px); }
+    nav.main-nav a.game-link { border: 1px solid #339CFF; background: transparent; margin-top: 1rem; }
+    nav.main-nav a.game-link:hover { background: #339CFF; }
+    .sidebar-footer { font-size: 0.75rem; text-align: center; color: #aaa; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; }
+
+    /* --- MENU DROITE (SOMMAIRE CV) --- */
+    nav.right-toc {
+      position: fixed; top: 50%; right: 20px;
+      transform: translateY(-50%);
+      width: 160px;
+      z-index: 900;
+      display: flex; flex-direction: column; gap: 15px;
+    }
+    
+    nav.right-toc a {
+      font-size: 0.9rem; color: #aaa; text-align: right;
+      padding-right: 15px; position: relative;
+      transition: all 0.3s;
+    }
+    
+    nav.right-toc a::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%); width: 8px; height: 8px;
+      background: #aaa; border-radius: 50%; transition: 0.3s;
+    }
+    
+    nav.right-toc a:hover, nav.right-toc a.active { color: #339CFF; transform: translateX(-5px); }
+    nav.right-toc a:hover::after, nav.right-toc a.active::after { background: #339CFF; width: 12px; height: 12px; }
+
+    /* --- CONTENU CV --- */
+    .cv-container {
+      max-width: 900px; margin: 0 auto; padding: 4rem 2rem;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 4rem;
+      opacity: 0; transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-title {
+      font-size: 1.8rem; color: #339CFF; margin-bottom: 2rem;
+      border-bottom: 2px solid rgba(51, 156, 255, 0.3);
+      padding-bottom: 10px; display: inline-block;
+    }
+
+    /* Header CV */
+    .cv-header {
+      display: flex; align-items: center; gap: 2rem;
+      background: rgba(30, 42, 56, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 2rem; border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .cv-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid #339CFF; object-fit: cover;
+    }
+    .header-info h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .header-info h2 { font-size: 1.2rem; color: #339CFF; margin-bottom: 1rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem; color: #ccc; }
+    .contact-item i { width: 20px; color: #339CFF; }
+
+    /* Timeline (Experience & Formation) */
+    .timeline-item {
+      position: relative; padding-left: 30px; margin-bottom: 2rem;
+      border-left: 2px solid rgba(51, 156, 255, 0.3);
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -6px; top: 0;
+      width: 10px; height: 10px; background: #339CFF; border-radius: 50%;
+    }
+    .date { font-size: 0.9rem; color: #339CFF; font-weight: bold; margin-bottom: 5px; }
+    .role { font-size: 1.2rem; font-weight: bold; }
+    .place { font-size: 1rem; font-style: italic; color: #aaa; margin-bottom: 10px; }
+    .desc { color: #e0e0e0; font-size: 0.95rem; }
+
+    /* Compétences Grid */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;
+    }
+    .skill-card {
+      background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .skill-category { font-size: 1.1rem; color: #339CFF; margin-bottom: 1rem; font-weight: bold; }
+    .skill-tags span {
+      display: inline-block; background: rgba(51, 156, 255, 0.2);
+      padding: 5px 10px; border-radius: 5px; font-size: 0.85rem; margin: 3px;
+    }
+
+    /* Passions */
+    .hobbies-text {
+      background: rgba(30, 42, 56, 0.6); padding: 2rem;
+      border-radius: 20px; line-height: 1.8;
+    }
+
+    /* Mobile Responsive */
+    @media screen and (max-width: 1100px) {
+      body { padding-left: 0; padding-right: 0; padding-top: 80px; }
+      header.left-sidebar {
+        width: 100%; height: auto; flex-direction: row; padding: 1rem;
+        align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      .brand-block span, .sidebar-footer { display: none; }
+      .brand-block { margin: 0; text-align: left; }
+      nav.main-nav { flex-direction: row; gap: 10px; }
+      nav.main-nav a { padding: 5px 10px; margin: 0; font-size: 0.8rem; }
+      
+      nav.right-toc { display: none; } /* Cache le menu droite sur mobile */
+      
+      .cv-header { flex-direction: column; text-align: center; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="left-sidebar">
+    <div class="brand-block">
+      <h2>Clément Noël</h2>
+      <span>Portfolio 2025</span>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">🏠 Accueil</a>
+      <a href="cv.html" class="active">📄 CV Interactif</a>
+      <a href="Competences.html">⚡ Compétences</a>
+      <a href="Projet_et_SAE.html">🛠️ Projets & SAE</a>
+      <a href="#" onclick="openSnakeGame()" class="game-link">🐍 Snake Game</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>&copy; 2025 Clément Noël</p>
+    </div>
+  </header>
+
+  <nav class="right-toc" id="toc">
+    <a href="#infos" class="toc-link active">Profil</a>
+    <a href="#formation" class="toc-link">Formation</a>
+    <a href="#experience" class="toc-link">Expérience</a>
+    <a href="#competences" class="toc-link">Compétences</a>
+    <a href="#passions" class="toc-link">Passions</a>
+  </nav>
+
+  <main class="cv-container">
+
+    <section id="infos" class="visible">
+      <div class="cv-header">
+        <img src="./images/MOI.png" alt="Clément Noël">
+        <div class="header-info">
+          <h1>Clément Noël</h1>
+          <h2>Technicien Automatisme Supérieur</h2>
+          <p style="margin-bottom: 15px;">
+            Actuellement étudiant à l'IUT de Bordeaux. Passionné par l'univers spatial et la gestion d'équipe.
+            Mon objectif : devenir Ingénieur en Automatisation ou enseignant.
+          </p>
+          <div class="contact-grid">
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Pessac (33160)</div>
+            <div class="contact-item"><i class="fas fa-envelope"></i> clementnoel.geii@gmail.com</div>
+            <div class="contact-item"><i class="fas fa-phone"></i> 06 15 11 46 68</div>
+            <div class="contact-item"><i class="fas fa-car"></i> Permis B</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formation">
+      <h3 class="section-title">Formation</h3>
+      
+      <div class="timeline-item">
+        <div class="date">2023 – 2025</div>
+        <div class="role">BUT GEII (Génie Électrique & Info Indus)</div>
+        <div class="place">IUT de Bordeaux, Gradignan</div>
+        <div class="desc">Programmation, électronique, informatique, énergie, automatisme.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">2020 – 2023</div>
+        <div class="role">BTS CRSA (Conception & Réalisation de Systèmes Auto)</div>
+        <div class="place">Lycée Val de Garonne, Marmande</div>
+        <div class="desc">Mécanique, Informatique industrielle, Automatisme.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">2020</div>
+        <div class="role">BAC PRO MELEC</div>
+        <div class="place">Mention Très Bien</div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h3 class="section-title">Expérience Professionnelle</h3>
+
+      <div class="timeline-item">
+        <div class="date">Avril 2025 – Juillet 2025</div>
+        <div class="role">Stagiaire Automaticien</div>
+        <div class="place">INEO Aquitaine</div>
+        <div class="desc">Conception industrielle, rétrofit d’IHM Schneider.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">Avril 2024 – Juillet 2024</div>
+        <div class="role">Stagiaire Bureau d'Étude</div>
+        <div class="place">ISP Aquitaine</div>
+        <div class="desc">Conception et implémentation d’une supervision en OPC UA.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">Avril 2021 – Juillet 2021</div>
+        <div class="role">Stagiaire Électricien / Maintenance</div>
+        <div class="place">Lacosse Emballage</div>
+        <div class="desc">Projet de restauration complète d’une machine de découpe de bois.</div>
+      </div>
+    </section>
+
+    <section id="competences">
+      <h3 class="section-title">Compétences Techniques</h3>
+      <div class="skills-grid">
+        
+        <div class="skill-card">
+          <div class="skill-category">Automatisme & Elec</div>
+          <div class="skill-tags">
+            <span>EcoStruxure</span> <span>Unity Pro XL</span> <span>TIA Portal v15/19</span>
+            <span>Vijeo Designer</span> <span>Xrelais</span> <span>See-Elec</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-category">Programmation</div>
+          <div class="skill-tags">
+            <span>C++</span> <span>Java</span> <span>Python</span>
+            <span>Matlab / Julia</span> <span>GNU Octave</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-category">Mécanique & DAO</div>
+          <div class="skill-tags">
+            <span>Solidworks 2018</span> <span>Inventor</span> <span>Fusion 360</span>
+            <span>RDM</span> <span>Cinématique</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-category">Électronique & IT</div>
+          <div class="skill-tags">
+            <span>Kicad 7.0</span> <span>EasyEDA</span> <span>Linux</span>
+            <span>Réseaux</span> <span>VMware</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="passions">
+      <h3 class="section-title">Passions & Intérêts</h3>
+      <div class="hobbies-text">
+        <p>
+          Passionné par l'ingénierie globale, je consacre mon temps libre à lier l'utile à l'agréable :
+        </p>
+        <ul style="margin: 15px 0 15px 20px; color: #ccc;">
+          <li><strong>Espace & Simulation :</strong> Conception de fusées sur <em>Kerbal Space Program</em>.</li>
+          <li><strong>Logistique :</strong> Gestion de réseaux d’automatisation complexes sur <em>Factorio</em>.</li>
+          <li><strong>Maker :</strong> Conception de petits circuits électroniques et de maquettes.</li>
+          <li><strong>Sport :</strong> Pratique du Roller.</li>
+          <li><strong>Curiosité :</strong> Contributeur et lecteur assidu de Wikipédia.</li>
+        </ul>
+        <p>
+          J'ai également obtenu le <strong>BIA</strong> (Brevet d'Initiation Aéronautique) et participé à des olympiades de robotique.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // 1. Animation au scroll (Apparition des sections)
+    const observerOptions = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // 2. Gestion du Menu Droite (Active Link)
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".toc-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // 3. Fonction Snake
+    function openSnakeGame() {
+        const w = 600; const h = 450;
+        const y = window.top.outerHeight / 2 + window.top.screenY - (h / 2);
+        const x = window.top.outerWidth / 2 + window.top.screenX - (w / 2);
+        window.open('snakev2.html', 'SnakeGame', `width=${w},height=${h},top=${y},left=${x}`); 
+        return false; 
+    }
+  </script>
+
+</body>
+</html>
