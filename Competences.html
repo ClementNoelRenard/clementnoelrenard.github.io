@@ -1,429 +1,455 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Compétences GEII</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compétences GEII - Clément Noël</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="icon" type="image/png" href="LOGO.png">
+  
   <style>
+    /* --- RESET & GLOBAL --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    
     body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: url('./images/25.png') no-repeat center center fixed;
       background-size: cover;
-      color: white;
-      backdrop-filter: blur(8px);
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+      padding-left: 260px; /* Espace menu gauche */
+      min-height: 100vh;
     }
 
-    header, footer, .intro, .competences, .carousel, .popup {
-      background: rgba(30, 42, 56, 0.6);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 1rem;
-      transition: all 0.3s ease-in-out;
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    
+    /* --- MENU LATÉRAL (IDENTIQUE A L'INDEX) --- */
+    header.left-sidebar {
+      position: fixed; top: 0; left: 0;
+      width: 260px; height: 100vh;
+      z-index: 1000; padding: 2rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: rgba(30, 42, 56, 0.9);
+      backdrop-filter: blur(15px);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
     }
-    nav {
-      max-width: 1200px;
+    .brand-block { text-align: center; margin-bottom: 2rem; }
+    .brand-block h2 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #fff; }
+    .brand-block span { font-size: 0.8rem; color: #339CFF; letter-spacing: 1px; text-transform: uppercase; }
+    
+    nav.main-nav { display: flex; flex-direction: column; width: 100%; }
+    nav.main-nav a {
+      display: block; padding: 15px 20px; margin-bottom: 10px;
+      border-radius: 10px; font-weight: 500; color: #e0e0e0;
+      background: rgba(255,255,255,0.05); text-align: center; transition: 0.3s;
+    }
+    nav.main-nav a:hover, nav.main-nav a.active { background: #339CFF; color: #fff; transform: translateX(5px); }
+    nav.main-nav a.game-link { border: 1px solid #339CFF; background: transparent; margin-top: 1rem; }
+    nav.main-nav a.game-link:hover { background: #339CFF; }
+    .sidebar-footer { font-size: 0.75rem; text-align: center; color: #aaa; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; }
+
+    /* --- CONTENU PRINCIPAL --- */
+    .main-content {
+      padding: 3rem 2rem;
+      max-width: 1000px;
       margin: 0 auto;
+    }
+
+    .page-header {
+      text-align: center; margin-bottom: 3rem;
+      animation: fadeIn Down 0.8s ease-out;
+    }
+    .page-header h1 { font-size: 2.5rem; color: #339CFF; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.1rem; color: #ddd; max-width: 800px; margin: 0 auto; }
+
+    /* --- ACCORDÉONS (DROPDOWN) STYLE --- */
+    .accordion-item {
+      margin-bottom: 1.5rem;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(30, 42, 56, 0.6);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+      opacity: 0; transform: translateY(20px); /* Pour l'animation JS */
+    }
+    
+    .accordion-item.visible { opacity: 1; transform: translateY(0); }
+
+    .accordion-header {
+      width: 100%;
+      padding: 1.2rem 2rem;
+      background: rgba(30, 42, 56, 0.8);
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: left;
+      border: none;
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.3s;
     }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 1rem;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #339CFF;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-    }
-    .competence-section {
-      background: rgba(30, 42, 56, 0.6);
-      margin-bottom: 2rem;
-      border-radius: 20px;
+    .accordion-header:hover { background: rgba(51, 156, 255, 0.1); color: #339CFF; }
+    .accordion-header i { transition: transform 0.3s; }
+    .accordion-item.open .accordion-header i { transform: rotate(180deg); }
+    .accordion-item.open .accordion-header { border-bottom: 1px solid rgba(255,255,255,0.1); color: #339CFF; }
+
+    .accordion-content {
+      display: none; /* Caché par défaut */
       padding: 2rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.2);
     }
-    .competence-section h2 {
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-    }
-    .competence-content {
+    .accordion-item.open .accordion-content { display: block; animation: fadeIn 0.5s; }
+
+    /* --- CARTES DE COMPÉTENCES (INTÉRIEUR ACCORDÉON) --- */
+    .comp-card {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: row;
       align-items: center;
       gap: 2rem;
-    }
-    .competence-content img {
-      width: 200px;
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
-      border: 2px solid #fff;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.2s;
     }
-    .competence-content button {
-      background-color: #1e2a38;
+    .comp-card:hover { transform: scale(1.01); background: rgba(255, 255, 255, 0.08); }
+    
+    .comp-info { flex: 1; }
+    .comp-info h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #e0e0e0; }
+    
+    .comp-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 150px;
+    }
+    .comp-visual img {
+      width: 100px; height: 100px; object-fit: cover;
+      border-radius: 10px; border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    /* Boutons */
+    .btn-small {
+      display: inline-block;
+      background: #1e2a38;
       color: #fff;
-      border: 2px solid black;
+      border: 1px solid #339CFF;
       border-radius: 20px;
-      padding: 10px 20px;
+      padding: 8px 15px;
+      font-size: 0.85rem;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: 0.3s;
+      margin-top: 5px;
     }
+    .btn-small:hover { background: #339CFF; box-shadow: 0 0 10px rgba(51, 156, 255, 0.5); }
+    .btn-disabled { opacity: 0.5; cursor: not-allowed; border-color: #555; }
+    .btn-disabled:hover { background: #1e2a38; box-shadow: none; }
 
-    .container button {
-      background-color: #1e2a38;
-      color: #fff;
-      border: 2px solid black;
-      border-radius: 20px;
-      padding: 10px 20px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
+    /* --- POPUP PDF --- */
+    .popup {
+      display: none; position: fixed;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 90vw; height: 90vh;
+      z-index: 2000;
+      background: #1e2a38;
+      border-radius: 10px; flex-direction: column;
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    .competence-content button:hover {
-      background-color: #339CFF;
+    .popup.active { display: flex; }
+    .popup-header { padding: 10px; text-align: right; background: #151e29; border-radius: 10px 10px 0 0; }
+    .close-btn { color: #ff4444; font-weight: bold; cursor: pointer; font-size: 1.2rem; margin-right: 10px; }
+    .popup iframe { flex: 1; border: none; border-radius: 0 0 10px 10px; }
+    .popup-backdrop {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 1999;
     }
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      padding: 1rem;
-    }
-    footer a {
-      color: #339CFF;
-      text-decoration: none;
-    }
+    .popup-backdrop.active { display: block; }
 
-
-    .dropdown {
-      margin-bottom: 2rem;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-      background: rgba(30, 42, 56, 0.6);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .dropdown-header {
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      background-color: #1e2a38;
-      color: #fff;
-      user-select: none;
-    }
-
-    .dropdown-content {
-      display: none;
-      padding: 1rem 2rem;
-    }
-
-    .dropdown.open .dropdown-content {
-      display: block;
-    }
-
-
-.popup {
-  display: none;
-  position: fixed;
-  top: 5vh;
-  left: 5vw;
-  width: 90vw;
-  height: 90vh;
-  z-index: 1000;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  background: rgba(30, 42, 56, 0.6);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.popup.active {
-  display: flex;
-}
-
-.popup iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.popup .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #fff;
-  font-weight: bold;
-  z-index: 1001;
-}
-
-.links a,
-.slide-button {
-  display: inline-block;
-  background-color: #1e2a38;
-  color: #fff;
-  border: 2px solid #000;
-  border-radius: 20px;
-  padding: 10px 20px;
-  margin: 0.5rem 0.5rem 0 0;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  max-width: 100%;
-}
-
-.links a:hover,
-.slide-button:hover {
-  background-color: #339CFF;
-}
-
-
-
-
-
-    @media screen and (max-width: 768px) {
-      .competence-content {
-        flex-direction: column;
-        text-align: center;
+    /* --- RESPONSIVE MOBILE --- */
+    @media screen and (max-width: 900px) {
+      body { padding-left: 0; padding-top: 80px; }
+      header.left-sidebar {
+        width: 100%; height: auto; flex-direction: row; padding: 1rem;
+        align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);
       }
-      .competence-content img {
-        width: 100%;
-        max-width: 300px;
-      }
+      .brand-block span, .sidebar-footer { display: none; }
+      .brand-block { margin: 0; text-align: left; }
+      nav.main-nav { flex-direction: row; gap: 10px; flex-wrap: wrap; justify-content: center; }
+      nav.main-nav a { padding: 5px 10px; margin: 0; font-size: 0.8rem; }
+      
+      .comp-card { flex-direction: column; text-align: center; }
+      .comp-visual { width: 100%; }
+      .accordion-header { font-size: 1.1rem; }
     }
 
-
-
-
-.mobile-nav a {
-  text-align: center;
-  color: white;
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mobile-nav img {
-  width: 24px;
-  height: 24px;
-  margin-bottom: 0.2rem;
-  filter: invert(1);
-}
-
-
-
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 <body>
 
-</head>
-<body>
+  <div id="popupBackdrop" class="popup-backdrop" onclick="closePDF()"></div>
 
-<script>
-  function openPDF(pdfUrl) {
-    const popup = document.getElementById('pdfPopup');
-    document.getElementById('pdfFrame').src = pdfUrl;
-    popup.classList.add('active');
-  }
+  <header class="left-sidebar">
+    <div class="brand-block">
+      <h2>Clément Noël</h2>
+      <span>Portfolio 2025</span>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">🏠 Accueil</a>
+      <a href="cv.html">📄 CV Interactif</a>
+      <a href="Competences.html" class="active">⚡ Compétences</a>
+      <a href="Projet_et_SAE.html">🛠️ Projets & SAE</a>
+      <a href="Mes_Activites.html">🚀 Activités</a>
+      <a href="#" onclick="openSnakeGame()" class="game-link">🐍 Snake Game</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>&copy; 2025 Clément Noël</p>
+    </div>
+  </header>
 
-  function closePDF() {
-    const popup = document.getElementById('pdfPopup');
-    document.getElementById('pdfFrame').src = '';
-    popup.classList.remove('active');
-  }
+  <main class="main-content">
+    
+    <div class="page-header">
+      <h1>Référentiel de Compétences</h1>
+      <p>Cliquez sur les catégories ci-dessous pour dérouler les compétences validées. Chaque compétence est associée à une preuve (PDF) consultable directement.</p>
+    </div>
 
-  // Gestion des dropdowns
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.dropdown-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const dropdown = header.parentElement;
-        dropdown.classList.toggle('open');
-      });
-    });
-  });
-</script>
-
-<!-- Pop-up PDF -->
-<div id="pdfPopup" class="popup">
-  <span class="close-btn" onclick="closePDF()">✖</span>
-  <iframe id="pdfFrame" src=""></iframe>
-</div>
-
-<header>
-  <nav>
-      <div>
-        <a href="index.html"><strong>Accueil</strong></a>
-        <a href="Competences.html">Competences GEII</a>
-        <a href="Projet_et_SAE.html">Projets et SAE</a>
-        <!-- <a href="snakev2.html">Jeux Snake</a> -->
-        <a href="snakev2.html" onclick="window.open('snakev2.html', 'popup', 'width=600,height=400'); return false;">Snake 🕹️</a>
-      </div>
-    <div>Clément Noël - Portfolio 2025</div>
-  </nav>
-</header>
-
-<div class="container">
-  <h1>COMPÉTENCES GEII</h1>
-  <h2>Les listes déroulantes ci-dessous vous permettront de facilement naviguer dans le référentiel des compétences. Pour chaque compétence, un PDF lié servira de preuve pour la validation dans le cadre du BUT GEII.</h2>
-
-  <!-- 🛠️ CONCEVOIR -->
-  <div class="dropdown">
-    <div class="dropdown-header">🛠️ CONCEVOIR (C)</div>
-    <div class="dropdown-content">
-      <section class="competence-section">
-        <h1>C.1 – J’identifie les fonctions demandées à la lecture du cahier des charges</h1>
-        <div class="competence-content">
-          <img src="./images/SAE_S3.png" alt="C1">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/C1.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
-
-      <section class="competence-section">
-        <h1>C.2 – Je propose une solution technique pour répondre à une fonction</h1>
-        <div class="competence-content">
-          <img src="./images/SAE_S3.png" alt="C2">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/C2.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
-
-      <section class="competence-section">
-        <h1>C.3 – J’affine une solution technique à l’aide d’un maquettage</h1>
-        <div class="competence-content">
-          <img src="./images/CRSA2023.png" alt="C3">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/C3.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
-
-      <section class="competence-section">
-        <h1>C.4 – Je rédige un dossier de conception et de fabrication</h1>
-        <div class="competence-content">
-          <img src="./images/SAE_S3.png" alt="C4">
-          <div class="links">
-            <a href="#" onclick="openPDF('./pdfs/C4_DDC.pdf')">PDF Conception</a>
-            <a href="#" onclick="openPDF('./pdfs/C4_DDF.pdf')">PDF Fabrication</a>
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>🛠️ CONCEVOIR (C)</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="accordion-content">
+        
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>C.1 – J’identifie les fonctions demandées à la lecture du cahier des charges</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/SAE_S3.png" alt="Aperçu C1">
+            <button class="btn-small" onclick="openPDF('./pdfs/C1.pdf')">Voir Preuve</button>
           </div>
         </div>
-      </section>
+
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>C.2 – Je propose une solution technique pour répondre à une fonction</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/SAE_S3.png" alt="Aperçu C2">
+            <button class="btn-small" onclick="openPDF('./pdfs/C2.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>C.3 – J’affine une solution technique à l’aide d’un maquettage</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/CRSA2023.png" alt="Aperçu C3">
+            <button class="btn-small" onclick="openPDF('./pdfs/C3.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>C.4 – Je rédige un dossier de conception et de fabrication</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/SAE_S3.png" alt="Aperçu C4">
+            <button class="btn-small" onclick="openPDF('./pdfs/C4_DDC.pdf')">Dossier Conception</button>
+            <button class="btn-small" onclick="openPDF('./pdfs/C4_DDF.pdf')">Dossier Fabrication</button>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>🔍 VÉRIFIER (V)</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="accordion-content">
+        
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>V.1 – J’élabore une procédure d’essais</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/SAE_S4.png" alt="Aperçu V1">
+            <button class="btn-small" onclick="openPDF('./pdfs/V1.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>V.2 – Je corrige les non-conformités d’un prototype</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/SAE_S3.png" alt="Aperçu V2">
+            <button class="btn-small" onclick="openPDF('./pdfs/V2.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>🔧 MAINTENIR (M)</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="accordion-content">
+        
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>M.1 – J’effectue une opération de maintenance</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/CRSA2024.png" alt="Aperçu M1">
+            <button class="btn-small" onclick="openPDF('./pdfs/M1.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>M.2 – Je rédige une procédure de maintenance</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/SAE_S4.png" alt="Aperçu M2">
+            <button class="btn-small" onclick="openPDF('./pdfs/M2.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>⚙️ INTÉGRER (I)</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="accordion-content">
+        
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>I.1.1 – J’installe et mets en service un système</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/B.png" alt="Aperçu I1">
+            <button class="btn-small" onclick="openPDF('./pdfs/I11.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>I.1.2 – Je gère l’installation d’un système</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/GEII.png" alt="Aperçu I1.2">
+            <button class="btn-small btn-disabled" title="Non disponible">🔴 Indisponible</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>📋 MANAGER (G)</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="accordion-content">
+        
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>G.2 – J'effectue des tâches administratives (commandes, devis, budget...)</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/G2.png" alt="Aperçu G2">
+            <button class="btn-small" onclick="openPDF('./pdfs/G2.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-info">
+            <h3>G.3 – Je rédige et archive différents documents professionnels multilingues</h3>
+          </div>
+          <div class="comp-visual">
+            <img src="./images/GEII.png" alt="Aperçu G3">
+            <button class="btn-small" onclick="openPDF('./pdfs/G1.pdf')">Voir Preuve</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <div id="pdfPopup" class="popup">
+    <div class="popup-header">
+        <span class="close-btn" onclick="closePDF()">✖ Fermer</span>
+    </div>
+    <iframe id="pdfFrame" src=""></iframe>
   </div>
 
-  <!-- 🔍 VÉRIFIER -->
-  <div class="dropdown">
-    <div class="dropdown-header">🔍 VÉRIFIER (V)</div>
-    <div class="dropdown-content">
-      <section class="competence-section">
-        <h1>V.1 – J’élabore une procédure d’essais</h1>
-        <div class="competence-content">
-          <img src="./images/SAE_S4.png" alt="V1">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/V1.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
+  <script>
+    // 1. GESTION DES ACCORDEONS
+    const headers = document.querySelectorAll('.accordion-header');
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        item.classList.toggle('open');
+      });
+    });
 
-      <section class="competence-section">
-        <h1>V.2 – Je corrige les non-conformités d’un prototype</h1>
-        <div class="competence-content">
-          <img src="./images/SAE_S3.png" alt="V2">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/V2.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
-    </div>
-  </div>
+    // 2. GESTION DES POPUPS PDF
+    function openPDF(url) {
+        document.getElementById('pdfFrame').src = url;
+        document.getElementById('pdfPopup').classList.add('active');
+        document.getElementById('popupBackdrop').classList.add('active');
+    }
 
-  <!-- 🔧 MAINTENIR -->
-  <div class="dropdown">
-    <div class="dropdown-header">🔧 MAINTENIR (M)</div>
-    <div class="dropdown-content">
-      <section class="competence-section">
-        <h1>M.1 – J’effectue une opération de maintenance</h1>
-        <div class="competence-content">
-          <img src="./images/CRSA2024.png" alt="M1">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/M1.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
+    function closePDF() {
+        document.getElementById('pdfPopup').classList.remove('active');
+        document.getElementById('popupBackdrop').classList.remove('active');
+        document.getElementById('pdfFrame').src = '';
+    }
 
-      <section class="competence-section">
-        <h1>M.2 – Je rédige une procédure de maintenance</h1>
-        <div class="competence-content">
-          <img src="./images/SAE_S4.png" alt="crsa">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/M2.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
-    </div>
-  </div>
+    // 3. ANIMATION AU SCROLL
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
 
-  <!-- ⚙️ INTÉGRER -->
-  <div class="dropdown">
-    <div class="dropdown-header">⚙️ INTÉGRER (I)</div>
-    <div class="dropdown-content">
-      <section class="competence-section">
-        <h1>I.1.1 – J’installe et mets en service un système</h1>
-        <div class="competence-content">
-          <img src="./images/B.png" alt="I1.1">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/I11.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
+    document.querySelectorAll('.accordion-item').forEach(item => {
+      observer.observe(item);
+    });
 
-      <section class="competence-section">
-        <h1>I.1.2 – Je gère l’installation d’un système</h1>
-        <div class="competence-content">
-          <img src="./images/GEII.png" alt="I1.2">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/I11.pdf')">Voir le pdf (🔴NON DISPONILE)</a></div>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <!-- 📋 MANAGER -->
-  <div class="dropdown">
-    <div class="dropdown-header">📋 MANAGER (G)</div>
-    <div class="dropdown-content">
-      <section class="competence-section">
-         <h1>G2 – G.2 : J'effectue des taches administratives (passer des commandes, demander un devis, gestion d'un budget fixe, ... )</h1>
-        <div class="competence-content">
-          <img src="./images/G2.png" alt="I1.1">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/G2.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
-
-      <section class="competence-section">
-        <h1>G3 – G3 : Je rédige et archive différents documents professionnels (e-mails, supports de présentations, comptes rendus, rapports ... ) établis dans différentes langues (Français, Anglais, Espagnol, Chinois, etc ... )</h1>
-        <div class="competence-content">
-          <img src="./images/GEII.png" alt="I1.2">
-          <div class="links"><a href="#" onclick="openPDF('./pdfs/G1.pdf')">Voir le pdf</a></div>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p>© 2025 Clément Noël - Tous droits réservés. <a href="index.html">Retour à l'accueil</a></p>
-</footer>
+    // 4. JEU SNAKE
+    function openSnakeGame() { 
+        const w = 600; const h = 450;
+        const y = window.top.outerHeight / 2 + window.top.screenY - (h / 2);
+        const x = window.top.outerWidth / 2 + window.top.screenX - (w / 2);
+        window.open('snakev2.html', 'SnakeGame', `width=${w},height=${h},top=${y},left=${x}`); 
+        return false; 
+    }
+  </script>
 
 </body>
 </html>
