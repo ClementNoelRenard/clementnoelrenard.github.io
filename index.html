@@ -375,8 +375,9 @@
         projects.forEach((project) => {
             const slide = document.createElement('div');
             slide.classList.add('slide');
+            // Suppression de l'attribut onerror et de placeholder.com
             slide.innerHTML = `
-                <img src="${project.img}" alt="${project.title}" onerror="this.src='https://via.placeholder.com/800x400/1e2a38/ffffff?text=Image+Projet'">
+                <img src="${project.img}" alt="${project.title}">
                 <div class="slide-overlay">
                     <button class="btn" onclick="openPDF('${project.pdf}')">Voir PDF</button>
                 </div>
