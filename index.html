@@ -207,6 +207,14 @@
     .arrow-left { left: 0; }
     .arrow-right { right: 0; }
 
+    /* --- TRAVAUX SECTION (Style Jaune) --- */
+    .wip-section {
+      text-align: center;
+      border: 2px dashed #f1c40f;
+      background: rgba(241, 196, 15, 0.1) !important; /* Force le fond jaune */
+    }
+    .wip-title { color: #f1c40f !important; }
+
     /* --- POPUP PDF --- */
     .popup {
       display: none; position: fixed;
@@ -327,6 +335,19 @@
           </div>
         <button class="arrow arrow-right" onclick="nextSlide()">›</button>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container glass-panel wip-section">
+      <div class="text-content">
+        <h1 class="wip-title">⚠️ Zone en Construction ⚠️</h1>
+        <p>La section "Mes Activités" est en cours de rédaction. Elle regroupera prochainement mes projets personnels et associatifs.</p>
+        <div class="links">
+           <a class="btn" href="Mes_Activites.html" style="opacity:0.6;">Bientôt disponible</a>
+        </div>
+      </div>
+      <img src="./images/Activite.png" alt="Activités" class="section-img" style="opacity: 0.7;">
     </div>
   </section>
 
