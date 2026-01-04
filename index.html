@@ -21,31 +21,32 @@
       color: #fff;
       overflow-x: hidden;
       line-height: 1.6;
-      /* IMPORTANT : On pousse le contenu vers la droite pour laisser la place au menu */
-      padding-left: 260px; 
+      padding-left: 260px; /* Espace pour le menu */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Centre verticalement le contenu principal */
     }
 
-    /* Animation de transition */
+    /* Animation */
     body.fade-in { animation: fadeIn 0.8s forwards; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     a { text-decoration: none; color: inherit; transition: 0.3s; }
-    ul { list-style: none; }
 
     /* --- SIDEBAR (MENU LATÉRAL) --- */
     header {
-      position: fixed; /* Reste toujours visible */
+      position: fixed;
       top: 0;
       left: 0;
-      width: 260px; /* Largeur du menu */
-      height: 100vh; /* Toute la hauteur de l'écran */
+      width: 260px;
+      height: 100vh;
       z-index: 1000;
       padding: 2rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* Espacement entre le haut et le bas */
+      justify-content: space-between;
       
-      /* Style Glassmorphism */
       background: rgba(30, 42, 56, 0.85);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
@@ -53,72 +54,34 @@
       box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
     }
 
-    .brand-block {
-      text-align: center;
-      margin-bottom: 2rem;
+    .brand-block { text-align: center; margin-bottom: 2rem; }
+    .brand-block h2 { font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; }
+    .brand-block span { font-size: 0.8rem; color: #339CFF; text-transform: uppercase; letter-spacing: 1px; }
+
+    nav { display: flex; flex-direction: column; width: 100%; }
+    nav a {
+      display: block; padding: 15px 20px; margin-bottom: 10px;
+      border-radius: 10px; font-weight: 500; color: #e0e0e0;
+      background: rgba(255,255,255,0.05); text-align: center;
     }
-    .brand-block h2 {
-      font-size: 1.2rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-    .brand-block span {
-      font-size: 0.8rem;
-      color: #339CFF;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    nav a:hover { background: #339CFF; color: #fff; transform: translateX(5px); }
+    nav a.game-link { border: 1px solid #339CFF; background: transparent; margin-top: 1rem; }
+    nav a.game-link:hover { background: #339CFF; }
+
+    .sidebar-footer {
+      font-size: 0.75rem; text-align: center; color: #aaa;
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;
     }
 
-    nav {
+    /* --- CONTENU CENTRAL --- */
+    section {
+      padding: 2rem;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       width: 100%;
     }
     
-    nav a {
-      display: block;
-      padding: 15px 20px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      font-weight: 500;
-      color: #e0e0e0;
-      background: rgba(255,255,255,0.05);
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-    
-    nav a:hover {
-      background: #339CFF;
-      color: #fff;
-      transform: translateX(5px); /* Petit effet de glissement vers la droite */
-    }
-    
-    /* Bouton Snake spécial */
-    nav a.game-link {
-      border: 1px solid #339CFF;
-      background: transparent;
-      margin-top: 1rem;
-    }
-    nav a.game-link:hover {
-      background: #339CFF;
-    }
-
-    .sidebar-footer {
-      font-size: 0.75rem;
-      text-align: center;
-      color: #aaa;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 1rem;
-    }
-
-    /* --- SECTIONS CONTENT --- */
-    section {
-      padding: 3rem 2rem; /* Plus d'espace car on est décalé */
-      display: flex;
-      justify-content: center;
-    }
-    
-    /* Le panneau transparent derrière le texte */
     .glass-panel {
       background: rgba(30, 42, 56, 0.7);
       backdrop-filter: blur(10px);
@@ -128,9 +91,9 @@
     }
 
     .container {
-      max-width: 1000px; /* Largeur max un peu réduite pour l'équilibre */
+      max-width: 1000px;
       width: 100%;
-      padding: 2.5rem;
+      padding: 3rem;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -138,12 +101,11 @@
     }
 
     .text-content { flex: 1; }
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #339CFF; }
-    p { margin-bottom: 1rem; font-size: 1.05rem; color: #e0e0e0; }
+    h1 { font-size: 2.8rem; margin-bottom: 1.5rem; color: #339CFF; }
+    p { margin-bottom: 1.2rem; font-size: 1.1rem; color: #e0e0e0; }
 
-    /* Images */
     .section-img {
-      width: 250px;
+      width: 280px;
       height: auto;
       border-radius: 15px;
       border: 3px solid rgba(255,255,255,0.2);
@@ -152,116 +114,92 @@
     }
     .section-img:hover { transform: scale(1.02); rotate: 2deg; }
 
-    /* Boutons standards */
     .btn {
       display: inline-block;
       background: linear-gradient(135deg, #1e2a38 0%, #2c3e50 100%);
       color: #fff;
       border: 1px solid #339CFF;
       border-radius: 50px;
-      padding: 10px 25px;
-      margin: 0.5rem 0.5rem 0 0;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.9rem;
+      padding: 12px 30px;
+      margin: 1rem 0.5rem 0 0;
+      font-weight: 600; cursor: pointer; font-size: 1rem;
     }
-    .btn:hover {
-      background: #339CFF;
-      box-shadow: 0 0 15px rgba(51, 156, 255, 0.5);
-    }
+    .btn:hover { background: #339CFF; box-shadow: 0 0 15px rgba(51, 156, 255, 0.5); }
 
-    /* --- CAROUSEL --- */
-    .carousel-container { flex-direction: column; text-align: center; }
-    .carousel-view {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      border-radius: 15px;
-      margin-top: 1rem;
-      background: rgba(0,0,0,0.2);
-    }
-    .slides-wrapper { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
-    .slide {
-      min-width: 100%;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .slide img { width: 100%; height: 100%; object-fit: cover; }
-    .slide-overlay {
-      position: absolute; bottom: 0; left: 0; width: 100%;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-      padding: 20px;
-      display: flex; justify-content: center;
-    }
-    .arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0,0,0,0.6); color: #fff;
-      border: none; font-size: 2rem; padding: 0 1rem;
-      cursor: pointer; z-index: 10; height: 100%;
-      transition: 0.3s;
-    }
-    .arrow:hover { background: rgba(51, 156, 255, 0.5); }
-    .arrow-left { left: 0; }
-    .arrow-right { right: 0; }
-
-    /* --- TRAVAUX SECTION (Style Jaune) --- */
-    .wip-section {
-      text-align: center;
-      border: 2px dashed #f1c40f;
-      background: rgba(241, 196, 15, 0.1) !important; /* Force le fond jaune */
-    }
-    .wip-title { color: #f1c40f !important; }
-
-    /* --- POPUP PDF --- */
+    /* --- POPUP CENTRÉE CORRIGÉE --- */
     .popup {
-      display: none; position: fixed;
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 90vw; height: 90vh;
-      z-index: 2000; /* Au dessus du menu */
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      /* La transformation assure le centrage parfait */
+      transform: translate(-50%, -50%);
+      width: 85vw;
+      height: 85vh;
+      /* Z-index très haut pour passer au dessus de tout */
+      z-index: 9999;
       background: #1e2a38;
-      border-radius: 10px; flex-direction: column;
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      border-radius: 12px;
+      flex-direction: column;
+      box-shadow: 0 0 100px rgba(0,0,0,0.9);
+      border: 1px solid rgba(255,255,255,0.2);
     }
+    
     .popup.active { display: flex; }
+
     .popup-header {
-      padding: 10px; text-align: right; background: #151e29; border-radius: 10px 10px 0 0;
+      padding: 12px;
+      text-align: right;
+      background: #151e29;
+      border-radius: 12px 12px 0 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .close-btn { color: #ff4444; font-weight: bold; cursor: pointer; font-size: 1.2rem; }
-    .popup iframe { flex: 1; border: none; border-radius: 0 0 10px 10px; }
+    .close-btn {
+      color: #ff4444; font-weight: bold; cursor: pointer; font-size: 1.2rem;
+      padding: 5px 10px; border-radius: 5px;
+    }
+    .close-btn:hover { background: rgba(255, 68, 68, 0.1); }
+    
+    .popup iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      border-radius: 0 0 12px 12px;
+    }
+    
+    /* Fond sombre derrière la popup */
+    .popup-backdrop {
+      display: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      z-index: 9998;
+    }
+    .popup-backdrop.active { display: block; }
 
     /* --- MOBILE RESPONSIVE --- */
     @media screen and (max-width: 900px) {
-      /* On annule la sidebar et on repasse en header classique */
-      body { padding-left: 0; padding-top: 80px; } /* On enlève la marge gauche, on ajoute marge haut */
-      
+      body { padding-left: 0; padding-top: 80px; display: block; }
       header {
-        width: 100%;
-        height: auto;
-        flex-direction: row; /* Horizontal */
-        align-items: center;
-        padding: 1rem;
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        width: 100%; height: auto; position: fixed;
+        flex-direction: row; align-items: center; padding: 1rem;
+        border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1);
       }
-      
-      .brand-block { margin-bottom: 0; text-align: left; }
-      .brand-block h2 { margin: 0; font-size: 1rem; }
-      .brand-block span { display: none; } /* On cache le sous-titre sur mobile */
-      
+      .brand-block { margin: 0; text-align: left; }
+      .brand-block h2 { font-size: 1rem; margin: 0; }
+      .brand-block span { display: none; }
       nav { flex-direction: row; width: auto; gap: 10px; flex-wrap: wrap; justify-content: center;}
-      nav a { margin: 0; padding: 5px 10px; font-size: 0.8rem; width: auto; }
-      nav a.game-link { margin-top: 0; }
+      nav a { margin: 0; padding: 5px 10px; font-size: 0.8rem; }
       .sidebar-footer { display: none; }
-
       .container { flex-direction: column; text-align: center; padding: 1.5rem; }
       .section-img { width: 60%; margin-top: 1rem; }
+      .popup { width: 95vw; height: 80vh; }
     }
   </style>
 </head>
 <body class="fade-in">
+
+  <div id="popupBackdrop" class="popup-backdrop" onclick="closePDF()"></div>
 
   <header>
     <div class="brand-block">
@@ -270,7 +208,7 @@
     </div>
 
     <nav>
-      <a href="index.html">🏠 Accueil</a>
+      <a href="index.html" style="background:#339CFF; color:white;">🏠 Accueil</a>
       <a href="Competences.html">⚡ Compétences</a>
       <a href="Projet_et_SAE.html">🛠️ Projets & SAE</a>
       <a href="Mes_Activites.html">🚀 Activités</a>
@@ -287,10 +225,10 @@
       <div class="text-content">
         <h1>Mon Portfolio</h1>
         <p>Bienvenue ! Je suis actuellement étudiant à l'<strong>IUT de Bordeaux en BUT GEII</strong> (Génie Électrique et Informatique Industrielle). J'ai précédemment validé un BTS CRSA et un BAC PRO MELEC.</p>
-        <p><strong>Mon objectif :</strong> Intégrer un <strong>Master EEA</strong> pour devenir un automaticien confirmé. Passionné par l'automatisme et la technique, je suis toujours à la recherche de nouveaux défis.</p>
+        <p><strong>Mon objectif :</strong> Intégrer un <strong>Master EEA</strong> pour approfondir mes compétences en automatisme. À terme, je souhaite devenir un automaticien confirmé, grâce à mes expériences professionnelles et universitaires.</p>
         
         <div class="links">
-          <a class="btn" onclick="openPDF('./pdfs/CV_Reseaux.pdf')">📄 Mon CV</a>
+          <a class="btn" onclick="openPDF('./pdfs/CV_Reseaux.pdf')">📄 Voir mon CV</a>
           <a class="btn" href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a/" target="_blank">LinkedIn</a>
           <a class="btn" href="https://github.com/ClementNoelRenard?tab=repositories" target="_blank">GitHub</a>
         </div>
@@ -299,115 +237,37 @@
     </div>
   </section>
 
-  <section>
-    <div class="container glass-panel">
-      <div class="text-content">
-        <h1>Compétences GEII</h1>
-        <p>Automatisme, Électricité, Informatique Industrielle... Accédez au détail de mes validations de compétences.</p>
-        <div class="links">
-          <a class="btn" href="Competences.html">Voir les Compétences</a>
-          <a class="btn" onclick="openPDF('./pdfs/competence.pdf')">Organigramme PDF</a>
-        </div>
-      </div>
-      <img src="./images/GEII.png" alt="GEII" class="section-img">
-    </div>
-  </section>
-
-  <section>
-    <div class="container glass-panel">
-      <div class="text-content">
-        <h1>Projets & SAE</h1>
-        <p>Développement de prototypes, travail d'équipe et cahier des charges : découvrez mes Situations d'Apprentissage et d'Évaluation.</p>
-        <div class="links">
-          <a class="btn" href="Projet_et_SAE.html">Explorer les projets</a>
-        </div>
-      </div>
-      <img src="./images/SAE_S3.png" alt="Projet SAE" class="section-img">
-    </div>
-  </section>
-
-  <section>
-    <div class="container glass-panel carousel-container">
-      <h2>Mes Réalisations</h2>
-      <div class="carousel-view">
-        <button class="arrow arrow-left" onclick="prevSlide()">‹</button>
-        <div class="slides-wrapper" id="slidesContainer">
-          </div>
-        <button class="arrow arrow-right" onclick="nextSlide()">›</button>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container glass-panel wip-section">
-      <div class="text-content">
-        <h1 class="wip-title">⚠️ Zone en Construction ⚠️</h1>
-        <p>La section "Mes Activités" est en cours de rédaction. Elle regroupera prochainement mes projets personnels et associatifs.</p>
-        <div class="links">
-           <a class="btn" href="Mes_Activites.html" style="opacity:0.6;">Bientôt disponible</a>
-        </div>
-      </div>
-      <img src="./images/Activite.png" alt="Activités" class="section-img" style="opacity: 0.7;">
-    </div>
-  </section>
-
-  <footer style="text-align: center; padding: 2rem; color: #aaa; font-size: 0.8rem;">
-    <a href="mailto:clementnoelrenard.geii@gmail.com" style="color:#339CFF;">Me contacter par mail</a>
-  </footer>
-
   <div id="pdfPopup" class="popup">
-    <div class="popup-header"><span class="close-btn" onclick="closePDF()">✖ Fermer</span></div>
+    <div class="popup-header">
+        <span class="close-btn" onclick="closePDF()">✖ Fermer</span>
+    </div>
     <iframe id="pdfFrame" src=""></iframe>
   </div>
 
   <script>
-    /* --- CONFIGURATION DES PROJETS --- */
-    const projects = [
-      { title: "Projet SAE S4", pdf: "pdfs/SAE_S4.pdf", img: "images/SAE_S4.png" },
-      { title: "Projet SAE S3", pdf: "pdfs/SAE_S3.pdf", img: "images/SAE_S3.jpg" },
-      { title: "Ancien Projet", pdf: "pdfs/projet3.pdf", img: "images/projet3_preview.jpg" }
-    ];
-
-    const slidesContainer = document.getElementById('slidesContainer');
-    let currentSlide = 0;
-
-    if(slidesContainer) {
-        projects.forEach((project) => {
-            const slide = document.createElement('div');
-            slide.classList.add('slide');
-            // Suppression de l'attribut onerror et de placeholder.com
-            slide.innerHTML = `
-                <img src="${project.img}" alt="${project.title}">
-                <div class="slide-overlay">
-                    <button class="btn" onclick="openPDF('${project.pdf}')">Voir PDF</button>
-                </div>
-            `;
-            slidesContainer.appendChild(slide);
-        });
-    }
-
-    function updateSlides() {
-      if(!slidesContainer) return;
-      slidesContainer.style.transform = `translateX(${-currentSlide * 100}%)`;
-    }
-    function nextSlide() { currentSlide = (currentSlide + 1) % projects.length; updateSlides(); }
-    function prevSlide() { currentSlide = (currentSlide - 1 + projects.length) % projects.length; updateSlides(); }
-
-    /* --- POPUP --- */
+    /* --- GESTION POPUP --- */
     function openPDF(url) {
         document.getElementById('pdfFrame').src = url;
         document.getElementById('pdfPopup').classList.add('active');
+        document.getElementById('popupBackdrop').classList.add('active'); // Active le fond sombre
     }
+
     function closePDF() {
         document.getElementById('pdfPopup').classList.remove('active');
+        document.getElementById('popupBackdrop').classList.remove('active');
         document.getElementById('pdfFrame').src = '';
     }
-    document.getElementById('pdfPopup').addEventListener('click', (e) => { if(e.target.id === 'pdfPopup') closePDF(); });
 
-    function openSnakeGame() { window.open('snakev2.html', 'popup', 'width=600,height=450'); return false; }
-    
-    // Auto start
-    updateSlides();
+    function openSnakeGame() { 
+        // Ouvre le jeu dans une nouvelle petite fenêtre centrée
+        const w = 600;
+        const h = 450;
+        const y = window.top.outerHeight / 2 + window.top.screenY - (h / 2);
+        const x = window.top.outerWidth / 2 + window.top.screenX - (w / 2);
+        window.open('snakev2.html', 'SnakeGame', `width=${w},height=${h},top=${y},left=${x}`); 
+        return false; 
+    }
   </script>
+
 </body>
 </html>
