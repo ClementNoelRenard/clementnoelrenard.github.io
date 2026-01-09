@@ -21,7 +21,7 @@
       color: #fff;
       overflow-x: hidden;
       line-height: 1.6;
-      padding-left: 260px; /* Espace pour le menu */
+      padding-left: 260px; /* Espace pour le menu PC */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -34,7 +34,7 @@
 
     a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-    /* --- SIDEBAR (MENU LATÉRAL) --- */
+    /* --- SIDEBAR (MENU LATÉRAL - PC) --- */
     header {
       position: fixed;
       top: 0;
@@ -132,11 +132,9 @@
       position: fixed;
       top: 50%;
       left: 50%;
-      /* La transformation assure le centrage parfait */
       transform: translate(-50%, -50%);
       width: 85vw;
       height: 85vh;
-      /* Z-index très haut pour passer au dessus de tout */
       z-index: 9999;
       background: #1e2a38;
       border-radius: 12px;
@@ -167,7 +165,6 @@
       border-radius: 0 0 12px 12px;
     }
     
-    /* Fond sombre derrière la popup */
     .popup-backdrop {
       display: none;
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -177,22 +174,90 @@
     }
     .popup-backdrop.active { display: block; }
 
-    /* --- MOBILE RESPONSIVE --- */
+    /* --- MOBILE RESPONSIVE (BARRE DU BAS) --- */
     @media screen and (max-width: 900px) {
-      body { padding-left: 0; padding-top: 80px; display: block; }
-      header {
-        width: 100%; height: auto; position: fixed;
-        flex-direction: row; align-items: center; padding: 1rem;
-        border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1);
+      
+      /* 1. Ajustement du corps de page */
+      body { 
+        padding-left: 0; 
+        padding-top: 20px; 
+        padding-bottom: 90px; /* IMPORTANT : Espace en bas pour que le menu ne cache pas le texte */
+        display: block; 
       }
-      .brand-block { margin: 0; text-align: left; }
-      .brand-block h2 { font-size: 1rem; margin: 0; }
-      .brand-block span { display: none; }
-      nav { flex-direction: row; width: auto; gap: 10px; flex-wrap: wrap; justify-content: center;}
-      nav a { margin: 0; padding: 5px 10px; font-size: 0.8rem; }
-      .sidebar-footer { display: none; }
-      .container { flex-direction: column; text-align: center; padding: 1.5rem; }
-      .section-img { width: 60%; margin-top: 1rem; }
+
+      /* 2. Transformation du Header en Barre du Bas */
+      header {
+        width: 100%; 
+        height: 70px;           /* Hauteur fixe et fine */
+        position: fixed;
+        top: auto;              /* On détache du haut */
+        bottom: 0;              /* On colle en bas */
+        left: 0;
+        flex-direction: row;    /* Alignement horizontal */
+        align-items: center; 
+        padding: 0;
+        border-right: none; 
+        border-top: 1px solid rgba(255,255,255,0.2);
+        background: #1e2a38;    /* Fond opaque */
+        z-index: 9999;
+      }
+
+      /* 3. On cache le Titre (Nom) et le Footer sur mobile */
+      .brand-block, .sidebar-footer { 
+        display: none; 
+      }
+
+      /* 4. Configuration de la navigation */
+      nav { 
+        flex-direction: row; 
+        width: 100%; 
+        height: 100%;
+        gap: 0; 
+        justify-content: space-between; /* Répartition équitable */
+      }
+
+      /* 5. Style des boutons (Lien) */
+      nav a { 
+        margin: 0; 
+        padding: 5px 0; 
+        font-size: 0.7rem;      /* Texte petit */
+        background: transparent; 
+        border-radius: 0;
+        flex: 1;                /* Chaque bouton prend la même largeur */
+        display: flex;
+        flex-direction: column; /* Emojis au-dessus du texte */
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: #b0b0b0;
+      }
+
+      nav a:hover, nav a:active { 
+        background: rgba(51, 156, 255, 0.1); 
+        color: #339CFF; 
+        transform: none; /* Pas de décalage sur mobile */
+      }
+
+      nav a.game-link { 
+        border: none; 
+        margin-top: 0; 
+        background: transparent;
+      }
+
+      /* 6. Ajustement du contenu */
+      .container { 
+        flex-direction: column-reverse; /* Image au dessus ou en dessous selon préférence */
+        text-align: center; 
+        padding: 1.5rem; 
+        gap: 2rem;
+      }
+
+      .section-img { 
+        width: 60%; 
+        max-width: 200px;
+        margin-top: 0; 
+      }
+      
       .popup { width: 95vw; height: 80vh; }
     }
   </style>
@@ -207,15 +272,14 @@
       <span>Portfolio 2025</span>
     </div>
 
-<nav class="main-nav">
-  <a href="index.html">🏠 Accueil</a>
-  <a href="cv.html">📄 CV Interactif</a>
-  <a href="Competences.html">⚡ Compétences</a>
-  <a href="Projet_et_SAE.html">🛠️ Projets & SAE</a>
-  <a href="Mes_Activites.html">🚀 Activités</a>
-  
-  <a href="games.html" class="game-link">🎮 Games</a> 
-</nav>
+    <nav class="main-nav">
+      <a href="index.html">🏠 Accueil</a>
+      <a href="cv.html">📄 CV Interactif</a>
+      <a href="Competences.html">⚡ Compétences</a>
+      <a href="Projet_et_SAE.html">🛠️ Projets & SAE</a>
+      <a href="Mes_Activites.html">🚀 Activités</a>
+      <a href="games.html" class="game-link">🎮 Games</a> 
+    </nav>
 
     <div class="sidebar-footer">
       <p>Derniere Mise à jour :<br>04/01/2026</p>
@@ -252,7 +316,7 @@
     function openPDF(url) {
         document.getElementById('pdfFrame').src = url;
         document.getElementById('pdfPopup').classList.add('active');
-        document.getElementById('popupBackdrop').classList.add('active'); // Active le fond sombre
+        document.getElementById('popupBackdrop').classList.add('active'); 
     }
 
     function closePDF() {
@@ -262,7 +326,6 @@
     }
 
     function openSnakeGame() { 
-        // Ouvre le jeu dans une nouvelle petite fenêtre centrée
         const w = 600;
         const h = 450;
         const y = window.top.outerHeight / 2 + window.top.screenY - (h / 2);
