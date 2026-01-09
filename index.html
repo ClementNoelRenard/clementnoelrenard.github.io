@@ -174,32 +174,33 @@
     }
     .popup-backdrop.active { display: block; }
 
-    /* --- MOBILE RESPONSIVE (BARRE DU BAS) --- */
+    /* --- MOBILE RESPONSIVE (BARRE DU HAUT) --- */
     @media screen and (max-width: 900px) {
       
       /* 1. Ajustement du corps de page */
       body { 
         padding-left: 0; 
-        padding-top: 20px; 
-        padding-bottom: 90px; /* IMPORTANT : Espace en bas pour que le menu ne cache pas le texte */
+        padding-top: 90px; /* IMPORTANT : Espace EN HAUT pour que le menu ne cache pas le titre */
+        padding-bottom: 20px;
         display: block; 
       }
 
-      /* 2. Transformation du Header en Barre du Bas */
+      /* 2. Transformation du Header en Barre du Haut */
       header {
         width: 100%; 
         height: 70px;           /* Hauteur fixe et fine */
         position: fixed;
-        top: auto;              /* On détache du haut */
-        bottom: 0;              /* On colle en bas */
+        top: 0;                 /* ON COLLE EN HAUT */
         left: 0;
-        flex-direction: row;    /* Alignement horizontal */
+        bottom: auto;           /* On libère le bas */
+        flex-direction: row;    
         align-items: center; 
         padding: 0;
         border-right: none; 
-        border-top: 1px solid rgba(255,255,255,0.2);
-        background: #1e2a38;    /* Fond opaque */
+        border-bottom: 1px solid rgba(255,255,255,0.2); /* Ligne de séparation en BAS */
+        background: #1e2a38;    
         z-index: 9999;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombre pour détacher le menu du contenu */
       }
 
       /* 3. On cache le Titre (Nom) et le Footer sur mobile */
@@ -213,19 +214,19 @@
         width: 100%; 
         height: 100%;
         gap: 0; 
-        justify-content: space-between; /* Répartition équitable */
+        justify-content: space-between; 
       }
 
       /* 5. Style des boutons (Lien) */
       nav a { 
         margin: 0; 
         padding: 5px 0; 
-        font-size: 0.7rem;      /* Texte petit */
+        font-size: 0.7rem;      
         background: transparent; 
         border-radius: 0;
-        flex: 1;                /* Chaque bouton prend la même largeur */
+        flex: 1;                
         display: flex;
-        flex-direction: column; /* Emojis au-dessus du texte */
+        flex-direction: column; 
         align-items: center;
         justify-content: center;
         height: 100%;
@@ -235,7 +236,7 @@
       nav a:hover, nav a:active { 
         background: rgba(51, 156, 255, 0.1); 
         color: #339CFF; 
-        transform: none; /* Pas de décalage sur mobile */
+        transform: none; 
       }
 
       nav a.game-link { 
@@ -246,7 +247,7 @@
 
       /* 6. Ajustement du contenu */
       .container { 
-        flex-direction: column-reverse; /* Image au dessus ou en dessous selon préférence */
+        flex-direction: column-reverse; 
         text-align: center; 
         padding: 1.5rem; 
         gap: 2rem;
