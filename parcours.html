@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parcours — Clément Noël</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #1e1e1e;
+      --text: #f3f4f6;
+      --muted: #a3a3a3;
+      --accent: #8b5cf6; /* Violet électrique */
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      /* Dégradé cohérent avec les autres pages */
+      background-image: radial-gradient(circle at top right, #2e1065, #121212 40%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      max-width: 900px;
+      margin: auto;
+      padding: 2.5rem 2rem 1rem;
+    }
+
+    header a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    header a:hover { color: #fff; }
+
+    /* MAIN */
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    /* TITRES */
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, var(--accent), #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    /* TIMELINE STYLÉE */
+    .timeline {
+      position: relative;
+      margin-top: 2rem;
+      padding-left: 2rem;
+      /* La ligne verticale est maintenant plus subtile */
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .event {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 1.5rem; /* Espace entre la ligne et la carte */
+    }
+
+    /* Le point sur la timeline */
+    .event::before {
+      content: "";
+      position: absolute;
+      left: -2.6rem; /* Ajustement pour centrer sur la ligne */
+      top: 0;
+      width: 16px;
+      height: 16px;
+      background: var(--bg);
+      border: 3px solid var(--accent); /* Cercle vide avec bordure colorée */
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); /* Effet de lueur (Glow) */
+      z-index: 1;
+    }
+
+    /* Carte de contenu */
+    .content {
+      background: rgba(30, 30, 30, 0.6); /* Fond semi-transparent */
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .content:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .date {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .content h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .content p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; }
+      .timeline { padding-left: 1rem; border-left: none; }
+      .event { padding-left: 0; }
+      .event::before { display: none; /* On cache les points sur mobile pour gagner de la place */ }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">← Retour à l'accueil</a>
+</header>
+
+
+<main>
+  <h1>Parcours</h1>
+  <p class="subtitle">Mon parcours académique et technique, présenté de manière chronologique.</p>
+
+  <div class="timeline">
+  
+  
+  
+  
+    <div class="event">
+      <div class="content">
+        <span class="date">2025 – Aujourd’hui</span>
+        <h3>Alternant automaticien — Equans France</h3>
+        <p>
+Un projet stimulant par sa globalité : il s'agit de moderniser un système IHM legacy tout en naviguant entre deux contraintes fortes : garantir un fonctionnel et proposer des optimisations pertinentes.
+        </p>
+      </div>
+    </div>
+    
+    <div class="event">
+      <div class="content">
+        <span class="date">2023 – Aujourd’hui</span>
+        <h3>Etudiant BUT GEII — Bordeaux</h3>
+        <p>
+Actuellement en cursus de 3 ans avec l'option AII, je suis une formation qui conjugue rigueur théorique et mises en situation professionnelle à travers des projets concrets.
+        </p>
+      </div>
+    </div>
+    
+    <div class="event">
+      <div class="content">
+        <span class="date">Avril 2024 – Aout 2024</span>
+        <h3>Stagiaire automaticien — ISP Aquitaine</h3>
+        <p>
+Développement d'une interface de communication OPC UA en langage VBA, interagissant avec l'API Siemens. L'objectif était de capturer l'ensemble des données process, de les structurer (tri) et d'assurer leur mise à disposition automatique pour le client final.
+        </p>
+      </div>
+    </div>
+    
+    <div class="event">
+      <div class="content">
+        <span class="date">2020 - 2023</span>
+        <h3>Etudiant BTS CRSA</h3>
+        <p>
+Ma formation en CRSA s'articule autour de la capacité à être capable de mener un projet industriel mené sur 3 années complète. la dernières années m'a permis de maîtriser le cycle de vie intégral d'un coup, d'un système automatisé (conception, réalisation, tests et intégration). via un projet de création du système de A à Z.
+        </p>
+      </div>
+    </div>
+    
+    <div class="event">
+      <div class="content">
+        <span class="date">Avril 2021 - Juin 2021</span>
+        <h3>Stagiaire électricien/automaticien - lacosse Emballage</h3>
+        <p>
+Projet restauration complète d’une machine de découpe de bois
+        </p>
+      </div>
+    </div>    
+    
+    
+    <div class="event">
+      <div class="content">
+        <span class="date">2017 - 2020</span>
+        <h3>Etudiant BAC PRO MELEC</h3>
+        <p>
+Formation d'electricien du BTP et industriel, base de l'eletricité et de la conception d'une maison connecté
+        </p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="content">
+        <span class="date">Janvier 2020 - Fevrier 2020</span>
+        <h3>Stagiaire vendeur specialité elec</h3>
+        <p>
+   Stagiaire vendeur dans une entreprise de vente d’appareil électrique pour professionnels (YESS ELECTRIC)
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+
+     </div>
+</main>
+
+<footer>
+  © 2025 — Clément Noël
+</footer>
+
+</body>
+</html>

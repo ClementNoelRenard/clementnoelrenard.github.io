@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Error - System Failure</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+        .terminal {
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 4rem;
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 10px #00ff41;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        a {
+            color: #fff;
+            background-color: #00ff41;
+            text-decoration: none;
+            padding: 5px 10px;
+            color: #000;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: #00ff41;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <h1>Error 404</h1>
+        <p>> ANALYZING REQUEST...</p>
+        <p>> URL NOT FOUND IN DATABASE.</p>
+        <p>> CRITICAL SYSTEM FAILURE.</p>
+        <p>> INITIATE RETURN SEQUENCE...<span class="cursor"></span></p>
+        <br>
+        <a href="/">[ EXECUTE: RETURN_HOME ]</a>
+    </div>
+</body>
+</html>

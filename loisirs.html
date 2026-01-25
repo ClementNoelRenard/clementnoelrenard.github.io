@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compétences GEII — Clément Noël</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #1e1e1e;
+      --text: #f3f4f6;
+      --muted: #a3a3a3;
+      --accent: #8b5cf6;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at top right, #2e1065, #121212 40%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 2rem 1rem;
+    }
+
+    header a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    header a:hover { color: #fff; }
+
+    /* MAIN */
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, var(--accent), #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* NAVIGATION STICKY */
+    .project-nav {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 4rem;
+      padding: 0.8rem 1.2rem;
+      background: rgba(30, 30, 30, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .project-nav a {
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .project-nav a:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* SECTION & GRID */
+    section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 100px; /* Important pour le menu sticky */
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    /* CARTE CRITIQUE */
+    .project {
+      background: rgba(30, 30, 30, 0.6);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .project h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .project p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    strong { color: var(--text); }
+
+    ul {
+      margin-left: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-assets {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .pdf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .pdf-link:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 700px) {
+      h1 { font-size: 2.3rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+
+
+
+    /* SECTION LOISIR INDIVIDUELLE */
+    .hobby-section {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 4rem; /* Espace entre les sections */
+      scroll-margin-top: 100px; /* Pour que le titre ne soit pas caché par le haut de page au clic */
+    }
+
+    /* LE CARROUSEL / GALERIE HORIZONTALE */
+    .gallery-scroll {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto; /* Active le scroll horizontal */
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory; /* "Aimante" les images */
+    }
+    
+    /* Pour cacher la barre de défilement moche mais garder la fonction */
+    .gallery-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+    .gallery-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+    }
+    .gallery-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .gallery-item {
+      flex: 0 0 auto; /* Empêche l'image de rétrécir */
+      width: 300px;   /* Largeur fixe des images (ajustable) */
+      height: 200px;  /* Hauteur fixe */
+      scroll-snap-align: start;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* L'image remplit le cadre sans être déformée */
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05); /* Petit zoom au survol */
+
+
+
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">← Retour à l'accueil</a>
+</header>
+
+<main>
+  <h1>Loisirs & Passions</h1>
+  <p class="subtitle">Au-delà de l'ingénierie, je nourris ma curiosité et ma créativité à travers divers projets personnels.</p>
+
+  <nav class="project-nav">
+    <a href="#T">🏔️ Trail & Montagne</a>
+    <a href="#C">🎨 Conception 3D</a>
+    <a href="#J">🎮 Jeux Vidéo</a>
+    <a href="#Ph">📷 Photographie</a>
+  </nav>
+
+  <section id="T" class="hobby-section">
+    <h2>Trail & Montagne</h2>
+    <p>Passionné par l'ultra-trail et l'alpinisme. La montagne est mon terrain de jeu favori pour repousser mes limites.</p>
+    
+    <div class="gallery-scroll">
+      <div class="gallery-item">
+        <img src="./images/Loisirs/Trail/1.png" alt="trail de nuit">
+      </div>
+      <div class="gallery-item">
+        <img src="images/trail_course.jpg" alt="Course Trail">
+      </div>
+      <div class="gallery-item">
+        <img src="images/paysage.jpg" alt="Paysage Pyrénées">
+      </div>
+      </div>
+  </section>
+
+
+  <section id="C" class="hobby-section">
+    <h2>Conception 3D</h2>
+    <p>Modélisation sous Fusion 360 pour le plaisir et l'impression 3D.</p>
+    
+    <div class="gallery-scroll">
+      <div class="gallery-item">
+        <img src="./images/Loisirs/conception/PXL_20260111_163651237.jpg" alt="Pièce d'attache">
+      </div>
+      <div class="gallery-item">
+        <img src="images/trail_course.jpg" alt="Course Trail">
+      </div>
+      <div class="gallery-item">
+        <img src="images/paysage.jpg" alt="Paysage Pyrénées">
+      </div>
+      </div>
+  </section>  
+
+
+
+  
+  </section>
+
+</main>
+
+<footer>
+  © 2026 — Clément Noël
+</footer>
+
+</body>
+</html>

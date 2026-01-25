@@ -1,17 +1,470 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Site déplacé</title>
-    <link rel="canonical" href="https://clementnoelrenard.codeberg.page/">
-    
-    <meta http-equiv="refresh" content="0;url=https://clementnoelrenard.codeberg.page/">
-    
-    <script type="text/javascript">
-        window.location.href = "https://clementnoelrenard.codeberg.page/";
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clément Noël — Portfolio</title>
+  <meta name="description" content="Portfolio de Clément Noël, étudiant BUT GEII à Bordeaux. Spécialisé en génie électrique et informatique industrielle." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="LOGO.png">
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #1e1e1e;
+      --text: #f3f4f6;
+      --muted: #a3a3a3;
+      --accent: #8b5cf6;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: url('./images/25.png') no-repeat center center fixed;
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #fff; }
+
+    header {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2.5rem 2rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header strong {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    /* Menu hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text);
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    header nav a {
+      margin-left: 1.5rem;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    header nav a:hover { color: var(--accent); }
+    header nav a.active { color: var(--text); }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    section { margin-bottom: 5rem; }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      background: linear-gradient(to right, var(--accent), #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    p {
+      color: var(--muted);
+      max-width: 650px;
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap-reverse;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+    }
+
+    .hero-image {
+      flex: 0 0 250px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5%;
+      border: 3px solid rgba(255, 255, 255, 0.26);
+      box-shadow: 0 0 30px rgba(174, 173, 177, 0.212);
+    }
+
+    .buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      border-radius: 99px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-primary:hover { color: #fff; }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .info-card {
+      background: rgba(30, 30, 30, 0.6);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: var(--radius);
+      transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .link-list p {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Popup CV */
+    .cv-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .cv-popup.active {
+      display: flex;
+    }
+
+    .cv-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      height: 90vh;
+      background-color: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+      overflow: hidden;
+    }
+
+    .cv-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: rgba(30, 30, 30, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cv-title {
+      font-size: 1.2rem;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: var(--accent);
+    }
+
+    .cv-frame {
+      width: 100%;
+      height: calc(100% - 50px);
+      border: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        background-color: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 5rem;
+        transition: 0.3s;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      header nav a {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+      }
+      
+      .hero-inner { 
+        justify-content: center; 
+        text-align: center; 
+      }
+      
+      .hero-text { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+      }
+      
+      p { 
+        margin-left: auto; 
+        margin-right: auto; 
+      }
+      
+      .cv-container {
+        width: 95%;
+        height: 95vh;
+      }
+    }
+  </style>
 </head>
 <body>
-    <p>Le site a déménagé. <a href="https://clementnoelrenard.codeberg.page/">Cliquez ici si vous n'êtes pas redirigé automatiquement.</a></p>
+
+  <header>
+    <strong>Clément Noël</strong>
+    
+    <!-- Hamburger Menu -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav id="nav-menu">
+      <a href="projets.html" aria-label="Voir mes projets">Projets</a>
+      <a href="geii_critique.html" aria-label="Voir le projet GEII Critique">GEII Critique</a>
+      <a href="parcours.html" aria-label="Voir mon parcours académique">Parcours</a>
+      <a href="loisirs.html" aria-label="Voir mes centres d'intérêt">Loisirs</a>
+      <a href="#contact" class="active" aria-label="Me contacter">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1>Clément Noël</h1>
+          <p>
+            Spécialisé en génie électrique et informatique industrielle.Passionné par l'automatisme et les concepts spatiaux, Passe la majeur partie de son temps sur Factorio et Kerbal Space Program
+          </p>
+          <div class="buttons">
+            <button class="btn btn-primary" id="cv-button" aria-label="Voir mon CV">Télécharger mon CV</button>
+            <a class="btn btn-secondary" href="projets.html" aria-label="Voir mes projets">Voir mes projets</a>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <img src="images/MOI.png" alt="Portrait de Clément Noël" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>À propos</h2>
+      <div class="info-card">
+        <p>
+          Actuellement étudiant en <strong>BUT GEII à Bordeaux</strong>, je développe des compétences transversales allant de l'électronique de puissance à la programmation de systèmes automatisés.
+        </p>
+        <p>
+          Mon approche est pragmatique : j'aime comprendre comment les choses fonctionnent pour mieux les optimiser. Curieux et rigoureux, je cherche constamment à approfondir mes connaissances à travers des projets pratiques et le monde de l'open-source.
+        </p>
+        <p>
+        Quand je ne fais rien, vous me trouverez sur Wikipédia !
+        </p>
+      </div>
+    </section>
+
+    <section id="links">
+      <h2>Ressources & Liens</h2>
+      <div class="info-card link-list">
+        <p>
+          <span>🔗 <a href="https://european-alternatives.eu/alternatives-to" target="_blank" aria-label="Logiciels alternatifs respectueux des données">Logiciels alternatifs (EU)</a></span>
+          <span>🐧 <a href="https://distrowatch.com/" target="_blank" aria-label="Explorer les distributions Linux">Distributions Linux</a></span>
+          <span>🏔️<a href="https://codeberg.org/ClementNoelRenard/pages.git" target="_blank" aria-label="Explorer les distributions Linux">Depot git codeberg</a></span>
+          <span>🪦<a href="https://github.com/ClementNoelRenard" target="_blank" aria-label="Explorer les distributions Linux">Depot git github</a></span>
+          ---
+          <span>🪦<a href="./pdfs/" target="_blank" aria-label="Index des PDF de mon site">Index des PDF de mon site</a></span>
+          <span>🪦<a href="./images/" target="_blank" aria-label="Index des Images de mon site">Index des Images de mon site</a></span>                  
+        </p>
+      </div>
+    </section>
+    <section id="contact">
+      <h2>Me contacter</h2>
+      <div class="info-card">
+        <p>
+          N'hésitez pas à me contacter pour échanger sur des projets techniques ou des opportunités professionnelles.
+        </p>
+        <p style="font-size: 1.1rem; color: var(--text);">
+          📧 <a href="mailto:clementnoelrenard2001@ik.me" aria-label="Me contacter par email">clementnoelrenard2001@ik.me</a><br />
+          💼 <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a" target="_blank" aria-label="Voir mon profil LinkedIn">Mon Profil LinkedIn</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Popup CV -->
+  <div class="cv-popup" id="cv-popup">
+    <div class="cv-container">
+      <div class="cv-header">
+        <h3 class="cv-title">Curriculum Vitae</h3>
+        <button class="close-btn" id="close-cv">&times;</button>
+      </div>
+      <iframe class="cv-frame" src="./pdfs/CV_Reseaux.pdf" title="Curriculum Vitae"></iframe>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 — Clément Noël • Construit avec passion
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const cvButton = document.getElementById('cv-button');
+    const cvPopup = document.getElementById('cv-popup');
+    const closeCv = document.getElementById('close-cv');
+
+    // Toggle menu
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+
+    // Open CV popup
+    cvButton.addEventListener('click', () => {
+      cvPopup.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when popup is open
+    });
+
+    // Close CV popup
+    closeCv.addEventListener('click', () => {
+      cvPopup.classList.remove('active');
+      document.body.style.overflow = 'auto'; // Re-enable scrolling
+    });
+
+    // Close popup when clicking outside the content
+    cvPopup.addEventListener('click', (e) => {
+      if (e.target === cvPopup) {
+        cvPopup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+
 </body>
 </html>

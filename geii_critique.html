@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compétences GEII — Clément Noël</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #1e1e1e;
+      --text: #f3f4f6;
+      --muted: #a3a3a3;
+      --accent: #8b5cf6;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at top right, #2e1065, #121212 40%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 2rem 1rem;
+    }
+
+    header a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    header a:hover { color: #fff; }
+
+    /* MAIN */
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, var(--accent), #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* NAVIGATION STICKY */
+    .project-nav {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 4rem;
+      padding: 0.8rem 1.2rem;
+      background: rgba(30, 30, 30, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .project-nav a {
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .project-nav a:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* SECTION & GRID */
+    section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 100px;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    /* CARTE CRITIQUE */
+    .project {
+      background: rgba(30, 30, 30, 0.6);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .project h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .project p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    strong { color: var(--text); }
+
+    ul {
+      margin-left: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-assets {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .pdf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .pdf-link:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Popup CV */
+    .pdf-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .pdf-popup.active {
+      display: flex;
+    }
+
+    .pdf-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      height: 90vh;
+      background-color: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+      overflow: hidden;
+    }
+
+    .pdf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: rgba(30, 30, 30, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pdf-title {
+      font-size: 1.2rem;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: var(--accent);
+    }
+
+    .pdf-frame {
+      width: 100%;
+      height: calc(100% - 50px);
+      border: none;
+    }
+
+    @media (max-width: 700px) {
+      h1 { font-size: 2.3rem; }
+      .grid { grid-template-columns: 1fr; }
+      
+      .pdf-container {
+        width: 95%;
+        height: 95vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">← Retour à l'accueil</a>
+</header>
+
+
+<main>
+  <h1>GEII Critique</h1>
+  <p class="subtitle">Validation des apprentissages critiques et compétences du BUT.</p>
+
+  <nav class="project-nav">
+    <a href="#C">Concevoir</a>
+    <a href="#V">Vérifier</a>
+    <a href="#M">Maintenir</a>
+    <a href="#I">Intégrer</a>
+    <a href="#G">Gérer (Manager)</a>
+  </nav>
+  
+  
+<!--------CONCEPTION------->
+  <section id="C">
+    <h2>Concevoir</h2>
+    <div class="grid">
+      
+      <article class="project">
+        <h3>AC C1 : J’identifie les fonctions demandées à la lecture du cahier des charges</h3>
+        <div class="meta">
+          <span class="tag">Niveau 2</span>
+          <span class="tag">Analyse Fonctionnelle</span>
+        </div>
+        <p><strong>Contexte :</strong> SAE d'automatisation d'un système de tri.</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Réalisation de l'analyse fonctionnelle</li>
+          <li>Établissement du Grafcet niveau 1 et 2</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/C1.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>AC C2 : Je propose une solution technique pour répondre à une fonction</h3>
+        <div class="meta">
+          <span class="tag">Niveau 2</span>
+          <span class="tag">Schémas</span>
+        </div>
+        <p><strong>Contexte :</strong> Conception d'une carte électronique.</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Choix des composants</li>
+          <li>Schéma électrique sous KiCad</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/C2.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+      
+      <article class="project">
+        <h3>C.3 – J’affine une solution technique à l’aide d’un maquettage</h3>
+        <div class="meta">
+          <span class="tag">Niveau 2</span>
+          <span class="tag">Schémas</span>
+        </div>
+        <p><strong>Contexte :</strong> Conception d'une carte électronique.</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Choix des composants</li>
+          <li>Schéma électrique sous KiCad</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/C3.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+      
+      <article class="project">
+        <h3>C.4 – Je rédige un dossier de conception et de fabrication</h3>
+        <div class="meta">
+          <span class="tag">Niveau 2</span>
+          <span class="tag">Schémas</span>
+        </div>
+        <p><strong>Contexte :</strong> Conception d'une carte électronique.</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Choix des composants</li>
+          <li>Schéma électrique sous KiCad</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/C4_DDC.pdf">📄 Dossier de conception</span>
+          <span class="pdf-link" data-pdf="./pdfs/C4_DDF.pdf">📄 Dossier de fabrication</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+  
+  
+  
+  
+<!--------VERIFICATION------->
+  <section id="V">
+    <h2>Vérifier</h2>
+    <div class="grid">
+
+      <article class="project">
+        <h3>V.1 – J’élabore une procédure d’essais</h3>
+        <div class="meta">
+          <span class="tag">Mesures</span>
+          <span class="tag">Instrumentation</span>
+        </div>
+        <p><strong>Contexte :</strong> verification de conformité d'une armoire</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Protocole de test</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/V1.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+
+       <article class="project">
+        <h3>V.2 – Je corrige les non-conformités d’un prototype</h3>
+        <div class="meta">
+          <span class="tag">Normes</span>
+        </div>
+        <p><strong>Contexte :</strong> prototypage de pieces 3D et impression laser.</p>
+        <p><strong>Preuves :</strong> plan 3D et pièces</p>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/V2.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+  
+  
+  
+<section id="M">
+    <h2>Maintenir</h2>
+    <div class="grid">
+
+      <article class="project">
+        <h3>M.1 – J’effectue une opération de maintenance</h3>
+        <div class="meta">
+          <span class="tag">Maintenance</span>
+          <span class="tag">Diagnostic</span>
+        </div>
+        <p><strong>Contexte :</strong> Intervention technique sur système automatisé (CRSA 2024).</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Fiche d'intervention</li>
+          <li>Compte-rendu de maintenance</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/M1.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>M.2 – Je rédige une procédure de maintenance</h3>
+        <div class="meta">
+          <span class="tag">Documentation</span>
+          <span class="tag">Méthodologie</span>
+        </div>
+        <p><strong>Contexte :</strong> SAE d'optimisation de maintenance préventive.</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Guide de maintenance utilisateur</li>
+          <li>Logigramme de dépannage</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/M2.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<section id="I">
+    <h2>Intégrer</h2>
+    <div class="grid">
+
+      <article class="project">
+        <h3>I.1.1 – J’installe et mets en service un système</h3>
+        <div class="meta">
+          <span class="tag">Mise en service</span>
+          <span class="tag">Installation</span>
+        </div>
+        <p><strong>Contexte :</strong> Déploiement d'un système industriel.</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>PV de réception</li>
+          <li>Configuration des réseaux</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/I11.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>I.1.2 – Je gère l’installation d’un système</h3>
+        <div class="meta">
+          <span class="tag">Gestion</span>Validation des apprentissages critiques et compétences du BUT.
+          <span class="tag">GEII</span>
+        </div>
+        <p><strong>Contexte :</strong> Pilotage d'une installation technique.</p>
+        <p><strong>Preuves :</strong></p>
+        <p><em>Indisponible pour le moment</em></p>
+        <div class="project-assets">
+          <span class="btn-disabled">🔴 Non disponible</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<section id="G">
+    <h2>Manager</h2>
+    <div class="grid">
+
+      <article class="project">
+        <h3>G.2 – J'effectue des tâches administratives</h3>
+        <div class="meta">
+          <span class="tag">Gestion</span>
+          <span class="tag">Budget</span>
+        </div>
+        <p><strong>Contexte :</strong> Gestion de commandes, devis et suivi budgétaire.</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Tableau de suivi des coûts</li>
+          <li>Exemple de devis technique</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/G2.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>G.3 – Je rédige et archive des documents multilingues</h3>
+        <div class="meta">
+          <span class="tag">Communication</span>
+          <span class="tag">International</span>
+        </div>
+        <p><strong>Contexte :</strong> Rédaction de documentations techniques en plusieurs langues.</p>
+        <p><strong>Preuves :</strong></p>
+        <ul>
+          <li>Fiche technique bilingue</li>
+          <li>Archive de documentation projet</li>
+        </ul>
+        <div class="project-assets">
+          <span class="pdf-link" data-pdf="./pdfs/G1.pdf">📄 Voir la preuve PDF</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<!-- Popup PDF -->
+<div class="pdf-popup" id="pdf-popup">
+  <div class="pdf-container">
+    <div class="pdf-header">
+      <h3 class="pdf-title">Document PDF</h3>
+      <button class="close-btn" id="close-pdf">&times;</button>
+    </div>
+    <iframe class="pdf-frame" id="pdf-frame" title="Document PDF"></iframe>
+  </div>
+</div>
+
+<footer>
+  © 2026 — Clément Noël
+</footer>
+
+<script>
+  // Popup PDF
+  const pdfPopup = document.getElementById('pdf-popup');
+  const closePdf = document.getElementById('close-pdf');
+  const pdfFrame = document.getElementById('pdf-frame');
+  const pdfLinks = document.querySelectorAll('.pdf-link');
+
+  // Ouvrir le popup avec le PDF spécifié
+  pdfLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const pdfUrl = this.getAttribute('data-pdf');
+      pdfFrame.src = pdfUrl;
+      pdfPopup.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Empêche le scroll
+    });
+  });
+
+  // Fermer le popup
+  closePdf.addEventListener('click', () => {
+    pdfPopup.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  });
+
+  // Fermer en cliquant en dehors du contenu
+  pdfPopup.addEventListener('click', (e) => {
+    if (e.target === pdfPopup) {
+      pdfPopup.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+</script>
+
+</body>
+</html>
