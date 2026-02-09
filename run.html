@@ -81,17 +81,20 @@
     <div id="map"></div>
 <script>
         // --- CONFIGURATION DU JEU ---
-        const ZOMBIE_COUNT = 150;     // Nombre de zombies
-        const GAME_RADIUS = 0.015;    // Zone de jeu (~1.5 km autour de toi)
+        const ZOMBIE_COUNT = 200;     // Nombre de zombies
+        const GAME_RADIUS = 0.020;    // Zone de jeu (~1.5 km autour de toi)
         
         // DETECTION (1 degré lat = 111km, donc 0.0001 = ~11 mètres)
         const DETECTION_SILENT = 0.00040; // ~45 mètres (Si tu marches doucement)
-        const DETECTION_LOUD = 0.00150;   // ~150 mètres (Si tu cours > 5km/h)
+        const DETECTION_LOUD = 0.00100;   // ~150 mètres (Si tu cours > 5km/h)
         const SPEED_THRESHOLD = 5.0;      // Limite marche/course
 
         // VITESSES
-        const ZOMBIE_SPEED_WALK = 0.000015; // Balade tranquille
-        const ZOMBIE_SPEED_RUN = 0.000045;  // Course (3x plus vite)
+        // 0.0000005 degrés ≈ 0.5 m/s (2 km/h) -> Très lent
+        const ZOMBIE_SPEED_WALK = 0.0000005; 
+        
+        // 0.0000030 degrés ≈ 3.0 m/s (11 km/h) -> Course soutenue
+        const ZOMBIE_SPEED_RUN = 0.0000030;
 
         // VARIABLES GLOBALES
         let map, playerMarker, pathLine;
