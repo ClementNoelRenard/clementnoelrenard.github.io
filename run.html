@@ -79,20 +79,23 @@
     </div>
 
     <div id="map"></div>
-
 <script>
-        // CONFIGURATION
-        const ZOMBIE_COUNT = 200; // Nombre de zombies
-        const GAME_RADIUS = 0.02; // Rayon de spawn (~2km)
-        const DETECTION_SILENT = 0.00015; // 15m (Invisible)
-        const DETECTION_LOUD = 0.00150; // 150m (Bruyant)
-        const SPEED_THRESHOLD = 5.0; // Seuil de vitesse (km/h)
+        // --- CONFIGURATION DU JEU ---
+        const ZOMBIE_COUNT = 150;     // Nombre de zombies
+        const GAME_RADIUS = 0.015;    // Zone de jeu (~1.5 km autour de toi)
+        
+        // DETECTION (1 degré lat = 111km, donc 0.0001 = ~11 mètres)
+        const DETECTION_SILENT = 0.00040; // ~45 mètres (Si tu marches doucement)
+        const DETECTION_LOUD = 0.00150;   // ~150 mètres (Si tu cours > 5km/h)
+        const SPEED_THRESHOLD = 5.0;      // Limite marche/course
 
-        // VARIABLES
-        let map, playerMarker;
-        let pathLine; // LA LIGNE DU TRACÉ
-        let pathCoords = []; // L'HISTORIQUE DES POSITIONS
+        // VITESSES
+        const ZOMBIE_SPEED_WALK = 0.000015; // Balade tranquille
+        const ZOMBIE_SPEED_RUN = 0.000045;  // Course (3x plus vite)
 
+        // VARIABLES GLOBALES
+        let map, playerMarker, pathLine;
+        let pathCoords = [];
         let zombies = [];
         let objectives = [];
         let gameRunning = false;
@@ -102,83 +105,70 @@
         let playerPos = null;
         let extractionMarker = null;
 
-        // ICONS (Dessins simplifiés)
+        // --- ICONES ---
         const iconZombie = L.divIcon({ html: '<i class="fas fa-circle" style="color:red; font-size:10px; box-shadow:0 0 5px red;"></i>', className: 'dummy' });
         const iconPlayer = L.divIcon({ html: '<i class="fas fa-circle" style="color:cyan; font-size:14px; border: 2px solid white; border-radius: 50%;"></i>', className: 'dummy' });
         const iconBag = L.divIcon({ html: '<i class="fas fa-shopping-bag" style="color:#00ff00; font-size:20px;"></i>', className: 'dummy' });
         const iconExit = L.divIcon({ html: '<i class="fas fa-flag-checkered" style="color:white; font-size:30px;"></i>', className: 'dummy' });
 
-        // 1. INITIALISATION DE LA CARTE
-        function initMap() {
-            // On centre sur Paris par défaut, mais le GPS changera ça tout de suite
-            map = L.map('map', { zoomControl: false }).setView([48.8566, 2.3522], 18);
-            
-            // Fond de carte sombre
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; OSM contributors',
-                maxZoom: 20
-            }).addTo(map);
 
-            // Création de la ligne bleue (vide pour l'instant)
+        // 1. INITIALISATION
+        function initMap() {
+            map = L.map('map', { zoomControl: false }).setView([48.8566, 2.3522], 18);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OSM contributors', maxZoom: 20
+            }).addTo(map);
             pathLine = L.polyline([], {color: 'cyan', weight: 4, opacity: 0.7}).addTo(map);
         }
 
-        // 2. LANCER LE JEU
+        // 2. DEMARRAGE
         function startGame() {
             document.getElementById('start-screen').style.display = 'none';
             document.getElementById('ui-layer').style.display = 'flex';
             
             if (navigator.geolocation) {
-                // Demande le GPS haute précision
                 navigator.geolocation.watchPosition(updatePosition, handleError, {
-                    enableHighAccuracy: true,
-                    maximumAge: 0,
-                    timeout: 5000
+                    enableHighAccuracy: true, maximumAge: 0, timeout: 5000
                 });
-                
                 gameRunning = true;
                 startTime = Date.now();
                 
-                // Boucles de jeu
-                setInterval(gameLoop, 200); // Mise à jour IA (5 fois par seconde)
-                setInterval(updateTimer, 1000); // Chronomètre
+                // On accélère la boucle de jeu pour que les mouvements soient fluides
+                setInterval(gameLoop, 100); 
+                setInterval(updateTimer, 1000);
             } else {
-                alert("Erreur : Ton navigateur ne supporte pas le GPS.");
+                alert("GPS requis !");
             }
         }
 
-        // 3. MISE A JOUR GPS DU JOUEUR
+        // 3. MISE A JOUR GPS JOUEUR
         function updatePosition(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-            // Calcul vitesse (si dispo, sinon 0)
-            const speed = position.coords.speed ? (position.coords.speed * 3.6) : 0; 
+            const speed = position.coords.speed ? (position.coords.speed * 3.6) : 0;
 
             playerPos = { lat, lng };
 
-            // A. Premier lancement : on crée le joueur et les zombies
+            // Premier point GPS reçu ? On lance le spawn !
             if (!playerMarker) {
                 map.setView([lat, lng], 19);
                 playerMarker = L.marker([lat, lng], {icon: iconPlayer}).addTo(map);
                 spawnGameElements(lat, lng);
             } else {
-                // B. Mise à jour position
                 playerMarker.setLatLng([lat, lng]);
-                map.setView([lat, lng]); // La caméra suit le joueur
+                map.setView([lat, lng]);
             }
 
-            // C. Mise à jour du TRACÉ (Path)
             pathCoords.push([lat, lng]);
             pathLine.setLatLngs(pathCoords);
 
-            // D. Mise à jour Interface (Vitesse et Bruit)
+            // Gestion Bruit / Vitesse
             document.getElementById('speed-display').innerText = speed.toFixed(1) + " km/h";
             const noiseLabel = document.getElementById('noise-display');
             
             if (speed > SPEED_THRESHOLD) {
                 noiseLabel.innerText = "BRUYANT !!!";
                 noiseLabel.className = "small-text status-loud";
-                // On stocke le rayon de détection dans l'objet joueur pour que les zombies le lisent
                 playerMarker.detectionRadius = DETECTION_LOUD; 
             } else {
                 noiseLabel.innerText = "SILENCIEUX";
@@ -187,126 +177,147 @@
             }
         }
 
-        // 4. CRÉATION DES ZOMBIES ET OBJECTIFS
+        // 4. CREATION MONDE
         function spawnGameElements(lat, lng) {
-            // Créer les Zombies autour
+            // ZOMBIES
             for(let i=0; i<ZOMBIE_COUNT; i++) {
                 const zLat = lat + (Math.random() - 0.5) * GAME_RADIUS;
                 const zLng = lng + (Math.random() - 0.5) * GAME_RADIUS;
-                
                 const marker = L.marker([zLat, zLng], {icon: iconZombie}).addTo(map);
                 
                 zombies.push({
                     marker: marker,
                     state: 'WANDERING',
-                    // Vitesse très lente de base (en degrés lat/lng)
-                    speed: 0.00003 + Math.random() * 0.00002 
+                    spawnPoint: {lat: zLat, lng: zLng}, // Point de naissance (maison)
+                    wanderTarget: null, // Où il va quand il rôde
+                    speedFactor: 0.8 + Math.random() * 0.4 // Facteur vitesse perso
                 });
             }
 
-            // Créer les 5 sacs
+            // OBJECTIFS
             for(let i=0; i<5; i++) {
-                // Rayon plus court pour les objectifs (~500m)
-                const oLat = lat + (Math.random() - 0.5) * 0.01; 
-                const oLng = lng + (Math.random() - 0.5) * 0.01;
+                const oLat = lat + (Math.random() - 0.5) * 0.008; // Proche (~800m)
+                const oLng = lng + (Math.random() - 0.5) * 0.008;
                 const marker = L.marker([oLat, oLng], {icon: iconBag}).addTo(map);
                 objectives.push(marker);
             }
         }
 
-        // 5. BOUCLE D'INTELLIGENCE ARTIFICIELLE
+        // 5. INTELLIGENCE ARTIFICIELLE (BOUCLE)
         function gameLoop() {
             if (!playerPos || lives <= 0) return;
 
-            // --- ZOMBIES ---
             zombies.forEach(zombie => {
                 const zPos = zombie.marker.getLatLng();
-                // Distance simple (Théorème de Pythagore)
                 const dist = Math.sqrt(Math.pow(zPos.lat - playerPos.lat, 2) + Math.pow(zPos.lng - playerPos.lng, 2));
 
-                // A. Détection
+                // --- LOGIQUE RÔDEUR (WANDERING) ---
                 if (zombie.state === 'WANDERING') {
-                    // Si le joueur est dans le rayon (qui change selon sa vitesse)
+                    
+                    // 1. Détection du joueur
                     if (dist < playerMarker.detectionRadius) {
                         zombie.state = 'CHASING';
+                        zombie.wanderTarget = null; // Il oublie sa balade
+                    } 
+                    // 2. Mouvement aléatoire (C'est ça qu'il manquait !)
+                    else {
+                        // S'il n'a pas de destination, on en crée une autour de sa "maison" (spawnPoint)
+                        if (!zombie.wanderTarget) {
+                            zombie.wanderTarget = {
+                                lat: zombie.spawnPoint.lat + (Math.random() - 0.5) * 0.002, // ~200m autour de chez lui
+                                lng: zombie.spawnPoint.lng + (Math.random() - 0.5) * 0.002
+                            };
+                        }
+
+                        // Aller vers la cible de balade
+                        moveToTarget(zombie, zombie.wanderTarget, ZOMBIE_SPEED_WALK * zombie.speedFactor);
+
+                        // S'il est arrivé à destination (très proche), on supprime la cible pour en refaire une
+                        const distWander = Math.sqrt(Math.pow(zPos.lat - zombie.wanderTarget.lat, 2) + Math.pow(zPos.lng - zombie.wanderTarget.lng, 2));
+                        if (distWander < 0.00005) {
+                            zombie.wanderTarget = null; // Nouvelle destination au prochain tour
+                        }
                     }
                 }
 
-                // B. Mouvement
+                // --- LOGIQUE CHASSEUR (CHASING) ---
                 if (zombie.state === 'CHASING') {
-                    // Si le joueur est parti trop loin (1.5x le rayon bruyant), on abandonne
-                    if (dist > DETECTION_LOUD * 1.5) {
+                    // Abandonne si trop loin
+                    if (dist > DETECTION_LOUD * 1.2) {
                         zombie.state = 'WANDERING';
                     } else {
-                        // On avance vers le joueur
-                        // Calcul de l'angle
-                        const angle = Math.atan2(playerPos.lng - zPos.lng, playerPos.lat - zPos.lat);
-                        
-                        // Si on court, le zombie accélère un peu (x1.5)
-                        let currentSpeed = zombie.speed;
-                        if(playerMarker.detectionRadius === DETECTION_LOUD) currentSpeed *= 1.5;
+                        // Court vers le joueur
+                        // Si le joueur est bruyant, le zombie court encore plus vite !
+                        let runSpeed = ZOMBIE_SPEED_RUN * zombie.speedFactor;
+                        if (playerMarker.detectionRadius === DETECTION_LOUD) runSpeed *= 1.2;
 
-                        const newLat = zPos.lat + Math.cos(angle) * currentSpeed; // Cosinus pour Lat (Axe Y)
-                        const newLng = zPos.lng + Math.sin(angle) * currentSpeed; // Sinus pour Lng (Axe X)
-                        
-                        zombie.marker.setLatLng([newLat, newLng]);
+                        moveToTarget(zombie, playerPos, runSpeed);
 
-                        // C. Collision (Morsure)
-                        if (dist < 0.00008) { // ~8 mètres
+                        // Morsure
+                        if (dist < 0.00008) { // ~8m
                             lives--;
                             updateLives();
-                            // On repousse le zombie en arrière pour pas mourir 2 fois de suite
-                            zombie.marker.setLatLng([zPos.lat - 0.001, zPos.lng - 0.001]);
-                            zombie.state = 'WANDERING';
-                            alert("AIE ! Un zombie t'a mordu !");
+                            // Recul
+                            const retreatAngle = Math.atan2(zPos.lng - playerPos.lng, zPos.lat - playerPos.lat);
+                            const rLat = zPos.lat + Math.cos(retreatAngle) * 0.0005;
+                            const rLng = zPos.lng + Math.sin(retreatAngle) * 0.0005;
+                            zombie.marker.setLatLng([rLat, rLng]);
+                            zombie.state = 'WANDERING'; 
+                            alert("AIE ! Mordu !");
                         }
                     }
                 }
             });
 
-            // --- OBJECTIFS ---
+            checkObjectives();
+            checkExtraction();
+        }
+
+        // FONCTION UTILITAIRE DE MOUVEMENT
+        function moveToTarget(zombie, target, speed) {
+            const zPos = zombie.marker.getLatLng();
+            const angle = Math.atan2(target.lng - zPos.lng, target.lat - zPos.lat);
+            const newLat = zPos.lat + Math.cos(angle) * speed;
+            const newLng = zPos.lng + Math.sin(angle) * speed;
+            zombie.marker.setLatLng([newLat, newLng]);
+        }
+
+        function checkObjectives() {
             for (let i = objectives.length - 1; i >= 0; i--) {
                 const oPos = objectives[i].getLatLng();
                 const dist = Math.sqrt(Math.pow(oPos.lat - playerPos.lat, 2) + Math.pow(oPos.lng - playerPos.lng, 2));
-                
-                if (dist < 0.0002) { // ~20 mètres
+                if (dist < 0.0002) {
                     map.removeLayer(objectives[i]);
                     objectives.splice(i, 1);
                     score++;
                     document.getElementById('score').innerText = score + " / 5";
-                    
                     if (score === 5) spawnExtraction();
                 }
             }
+        }
 
-            // --- EXTRACTION ---
+        function checkExtraction() {
             if (extractionMarker) {
                 const ePos = extractionMarker.getLatLng();
                 const dist = Math.sqrt(Math.pow(ePos.lat - playerPos.lat, 2) + Math.pow(ePos.lng - playerPos.lng, 2));
                 if (dist < 0.0002) {
-                    alert("VICTOIRE ! Tu as survécu en " + document.getElementById('timer').innerText);
-                    gameRunning = false;
+                    alert("VICTOIRE !");
                     location.reload();
                 }
             }
         }
 
         function spawnExtraction() {
-            // Spawn à environ 500m-1km
-            const lat = playerPos.lat + (Math.random() - 0.5) * 0.015;
-            const lng = playerPos.lng + (Math.random() - 0.5) * 0.015;
+            const lat = playerPos.lat + (Math.random() - 0.5) * 0.01;
+            const lng = playerPos.lng + (Math.random() - 0.5) * 0.01;
             extractionMarker = L.marker([lat, lng], {icon: iconExit}).addTo(map);
-            alert("EXTRACTION DISPONIBLE ! Trouve le drapeau blanc !");
+            alert("EXTRACTION !");
         }
 
         function updateLives() {
-            let hearts = "";
-            for(let i=0; i<lives; i++) hearts += "❤";
+            let hearts = ""; for(let i=0; i<lives; i++) hearts += "❤";
             document.getElementById('lives').innerText = hearts;
-            if(lives <= 0) {
-                alert("GAME OVER... Tu es devenu un zombie.");
-                location.reload();
-            }
+            if(lives <= 0) { alert("MORT..."); location.reload(); }
         }
 
         function updateTimer() {
@@ -317,14 +328,9 @@
             document.getElementById('timer').innerText = `${m}:${s}`;
         }
 
-        function handleError(err) {
-            console.warn('Erreur GPS: ' + err.message);
-            alert("Active ton GPS pour jouer !");
-        }
+        function handleError(err) { alert("GPS Erreur: " + err.message); }
 
-        // Démarrage de la carte au chargement de la page
         initMap();
-
     </script>
 </body>
 </html>
