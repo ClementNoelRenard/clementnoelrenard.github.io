@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zombie Run Web</title>
+    <title>Runnning Map : Run for your life !</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -54,10 +54,9 @@
 <body>
 
     <div id="start-screen">
-        <h1 style="color: red; font-size: 40px;">ZOMBIE RUN</h1>
-        <p>Marche doucement (< 5km/h) pour être invisible.</p>
-        <p>Récupère 5 sacs.</p>
-        <button onclick="startGame()">SURVIVRE</button>
+        <h1 style="color: red; font-size: 40px;">Running Map - run for your life :D</h1>
+        <p>Marche doucement si tu veux rester silencieux, recupere les colis et atteint l'extraction.</p>
+        <button onclick="startGame()">GO ! </button>
     </div>
 
     <div id="ui-layer" style="display: none;">
@@ -81,11 +80,11 @@
     <div id="map"></div>
 <script>
         // --- CONFIGURATION DU JEU ---
-        const ZOMBIE_COUNT = 200;     // Nombre de zombies
-        const GAME_RADIUS = 0.020;    // Zone de jeu (~1.5 km autour de toi)
+        const ZOMBIE_COUNT = 400;     // Nombre de zombies
+        const GAME_RADIUS = 0.040;    // Zone de jeu (~4 km autour de toi)
         
         // DETECTION (1 degré lat = 111km, donc 0.0001 = ~11 mètres)
-        const DETECTION_SILENT = 0.00040; // ~45 mètres (Si tu marches doucement)
+        const DETECTION_SILENT = 0.00050; // ~45 mètres (Si tu marches doucement)
         const DETECTION_LOUD = 0.00100;   // ~150 mètres (Si tu cours > 5km/h)
         const SPEED_THRESHOLD = 5.0;      // Limite marche/course
 
