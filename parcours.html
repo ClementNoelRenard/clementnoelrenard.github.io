@@ -12,7 +12,9 @@
       --text: #f3f4f6;
       --muted: #a3a3a3;
       --accent: #8b5cf6; /* Violet électrique */
+      --accent-glow: rgba(139, 92, 246, 0.4);
       --radius: 12px;
+      --card-width: 320px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,11 +22,13 @@
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background-color: var(--bg);
-      /* Dégradé cohérent avec les autres pages */
       background-image: radial-gradient(circle at top right, #2e1065, #121212 40%);
       background-attachment: fixed;
       color: var(--text);
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* HEADER */
@@ -32,6 +36,7 @@
       max-width: 900px;
       margin: auto;
       padding: 2.5rem 2rem 1rem;
+      width: 100%;
     }
 
     header a {
@@ -39,14 +44,20 @@
       text-decoration: none;
       font-weight: 500;
       transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     header a:hover { color: #fff; }
 
     /* MAIN */
     main {
-      max-width: 900px;
+      flex: 1;
+      max-width: 1200px;
       margin: auto;
       padding: 2rem;
+      width: 100%;
+      overflow-x: hidden; /* Empêche le scroll horizontal global */
     }
 
     /* TITRES */
@@ -57,95 +68,182 @@
       background: linear-gradient(to right, var(--accent), #38bdf8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-align: center;
     }
 
     .subtitle {
       color: var(--muted);
       margin-bottom: 3rem;
       font-size: 1.1rem;
+      text-align: center;
     }
 
-    /* TIMELINE STYLÉE */
-    .timeline {
+    /* TIMELINE HORIZONTALE */
+    .timeline-container {
       position: relative;
-      margin-top: 2rem;
-      padding-left: 2rem;
-      /* La ligne verticale est maintenant plus subtile */
-      border-left: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4rem; /* Espace entre les cartes */
     }
 
-    .event {
+    /* La ligne centrale */
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--accent) 10%, 
+        var(--accent) 90%, 
+        transparent 100%);
+      z-index: 0;
+      transform: translateY(-50%);
+    }
+
+    /* Carte de l'expérience */
+    .timeline-item {
       position: relative;
-      margin-bottom: 3rem;
-      padding-left: 1.5rem; /* Espace entre la ligne et la carte */
+      z-index: 1;
+      width: var(--card-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     /* Le point sur la timeline */
-    .event::before {
-      content: "";
-      position: absolute;
-      left: -2.6rem; /* Ajustement pour centrer sur la ligne */
-      top: 0;
-      width: 16px;
-      height: 16px;
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
       background: var(--bg);
-      border: 3px solid var(--accent); /* Cercle vide avec bordure colorée */
+      border: 3px solid var(--accent);
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); /* Effet de lueur (Glow) */
-      z-index: 1;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 15px var(--accent-glow);
+      z-index: 2;
     }
 
-    /* Carte de contenu */
-    .content {
-      background: rgba(30, 30, 30, 0.6); /* Fond semi-transparent */
-      border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Contenu de la carte */
+    .card {
+      background: rgba(30, 30, 30, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius);
       padding: 1.5rem;
-      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 2rem; /* Espace pour le point */
+      margin-bottom: 2rem; /* Espace pour le point */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
 
-    .content:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      border-color: rgba(139, 92, 246, 0.3);
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      border-color: rgba(139, 92, 246, 0.5);
+    }
+
+    /* Image */
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .date {
       display: inline-block;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--accent);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 0.5rem;
+      background: rgba(139, 92, 246, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
     }
 
-    .content h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.3rem;
+    .card h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.1rem;
       color: #fff;
+      line-height: 1.4;
     }
 
-    .content p {
-      font-size: 1rem;
+    .card p {
+      font-size: 0.9rem;
       color: var(--muted);
       margin: 0;
+      line-height: 1.5;
     }
 
+    /* Alternance visuelle (Impair à gauche, Pair à droite) */
+    .timeline-item:nth-child(odd) .card {
+      margin-top: 3rem; /* Carte en bas */
+    }
+    .timeline-item:nth-child(even) .card {
+      margin-bottom: 3rem; /* Carte en haut */
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 3rem;
       color: var(--muted);
       font-size: 0.9rem;
       border-top: 1px solid rgba(255,255,255,0.05);
-      margin-top: 2rem;
+      margin-top: auto;
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2.5rem; }
-      .timeline { padding-left: 1rem; border-left: none; }
-      .event { padding-left: 0; }
-      .event::before { display: none; /* On cache les points sur mobile pour gagner de la place */ }
+    /* RESPONSIVE MOBILE */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .subtitle { font-size: 1rem; margin-bottom: 2rem; }
+      
+      .timeline-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 1rem;
+      }
+
+      .timeline-line {
+        width: 2px;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(180deg, 
+          transparent 0%, 
+          var(--accent) 10%, 
+          var(--accent) 90%, 
+          transparent 100%);
+      }
+
+      .timeline-item {
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .timeline-dot {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .timeline-item:nth-child(odd) .card,
+      .timeline-item:nth-child(even) .card {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     }
   </style>
 </head>
@@ -160,88 +258,102 @@
   <h1>Parcours</h1>
   <p class="subtitle">Mon parcours académique et technique, présenté de manière chronologique.</p>
 
-  <div class="timeline">
-  
-  
-  
-  
-    <div class="event">
-      <div class="content">
+  <div class="timeline-container">
+    <!-- Ligne de fond -->
+    <div class="timeline-line"></div>
+
+    <!-- Expérience 1 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="card">
         <span class="date">2025 – Aujourd’hui</span>
+        <img src="" alt="Interface IHM Legacy">
         <h3>Alternant automaticien — Equans France</h3>
         <p>
-Un projet stimulant par sa globalité : il s'agit de moderniser un système IHM legacy tout en naviguant entre deux contraintes fortes : garantir un fonctionnel et proposer des optimisations pertinentes.
+          Un projet stimulant par sa globalité : il s'agit de moderniser un système IHM legacy tout en naviguant entre deux contraintes fortes : garantir un fonctionnel et proposer des optimisations pertinentes.
         </p>
       </div>
     </div>
     
-    <div class="event">
-      <div class="content">
+    <!-- Expérience 2 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="card">
         <span class="date">2023 – Aujourd’hui</span>
+        <img src="" alt="Étudiant BUT GEII">
         <h3>Etudiant BUT GEII — Bordeaux</h3>
         <p>
-Actuellement en cursus de 3 ans avec l'option AII, je suis une formation qui conjugue rigueur théorique et mises en situation professionnelle à travers des projets concrets.
+          Actuellement en cursus de 3 ans avec l'option AII, je suis une formation qui conjugue rigueur théorique et mises en situation professionnelle à travers des projets concrets.
         </p>
       </div>
     </div>
     
-    <div class="event">
-      <div class="content">
+    <!-- Expérience 3 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="card">
         <span class="date">Avril 2024 – Aout 2024</span>
+        <img src="" alt="Développement VBA">
         <h3>Stagiaire automaticien — ISP Aquitaine</h3>
         <p>
-Développement d'une interface de communication OPC UA en langage VBA, interagissant avec l'API Siemens. L'objectif était de capturer l'ensemble des données process, de les structurer (tri) et d'assurer leur mise à disposition automatique pour le client final.
+          Développement d'une interface de communication OPC UA en langage VBA, interagissant avec l'API Siemens. L'objectif était de capturer l'ensemble des données process, de les structurer (tri) et d'assurer leur mise à disposition automatique pour le client final.
         </p>
       </div>
     </div>
     
-    <div class="event">
-      <div class="content">
+    <!-- Expérience 4 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="card">
         <span class="date">2020 - 2023</span>
+        <img src="" alt="Cycle de vie système">
         <h3>Etudiant BTS CRSA</h3>
         <p>
-Ma formation en CRSA s'articule autour de la capacité à être capable de mener un projet industriel mené sur 3 années complète. la dernières années m'a permis de maîtriser le cycle de vie intégral d'un coup, d'un système automatisé (conception, réalisation, tests et intégration). via un projet de création du système de A à Z.
+          Ma formation en CRSA s'articule autour de la capacité à être capable de mener un projet industriel mené sur 3 années complète. la dernière années m'a permis de maîtriser le cycle de vie intégral d'un coup, d'un système automatisé (conception, réalisation, tests et intégration). via un projet de création du système de A à Z.
         </p>
       </div>
     </div>
     
-    <div class="event">
-      <div class="content">
+    <!-- Expérience 5 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="card">
         <span class="date">Avril 2021 - Juin 2021</span>
+        <img src="" alt="Restauration machine">
         <h3>Stagiaire électricien/automaticien - lacosse Emballage</h3>
         <p>
-Projet restauration complète d’une machine de découpe de bois
+          Projet restauration complète d’une machine de découpe de bois
         </p>
       </div>
     </div>    
     
-    
-    <div class="event">
-      <div class="content">
+    <!-- Expérience 6 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="card">
         <span class="date">2017 - 2020</span>
+        <img src="" alt="Formation MELEC">
         <h3>Etudiant BAC PRO MELEC</h3>
         <p>
-Formation d'electricien du BTP et industriel, base de l'eletricité et de la conception d'une maison connecté
+          Formation d'electricien du BTP et industriel, base de l'eletricité et de la conception d'une maison connecté
         </p>
       </div>
     </div>
 
-    <div class="event">
-      <div class="content">
+    <!-- Expérience 7 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="card">
         <span class="date">Janvier 2020 - Fevrier 2020</span>
-        <h3>Stagiaire vendeur specialité elec</h3>
+        <img src="" alt="Vendeur spécialité">
+        <h3>Stagiaire vendeur spécialité elec</h3>
         <p>
-   Stagiaire vendeur dans une entreprise de vente d’appareil électrique pour professionnels (YESS ELECTRIC)
+          Stagiaire vendeur dans une entreprise de vente d’appareil électrique pour professionnels (YESS ELECTRIC)
         </p>
       </div>
     </div>
 
-
-
-
-
-
-     </div>
+  </div>
 </main>
 
 <footer>
