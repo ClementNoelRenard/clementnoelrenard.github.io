@@ -14,7 +14,6 @@
       --accent: #8b5cf6; /* Violet électrique */
       --accent-glow: rgba(139, 92, 246, 0.4);
       --radius: 12px;
-      --card-width: 320px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +32,7 @@
 
     /* HEADER */
     header {
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
       padding: 2.5rem 2rem 1rem;
       width: 100%;
@@ -53,11 +52,10 @@
     /* MAIN */
     main {
       flex: 1;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: auto;
       padding: 2rem;
       width: 100%;
-      overflow-x: hidden; /* Empêche le scroll horizontal global */
     }
 
     /* TITRES */
@@ -73,46 +71,50 @@
 
     .subtitle {
       color: var(--muted);
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
       font-size: 1.1rem;
       text-align: center;
     }
 
-    /* TIMELINE HORIZONTALE */
+    /* TIMELINE VERTICALE */
     .timeline-container {
       position: relative;
-      padding: 2rem 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 4rem; /* Espace entre les cartes */
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    /* La ligne centrale */
+    /* La ligne centrale (Verticale) */
     .timeline-line {
       position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, 
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(180deg, 
         transparent 0%, 
-        var(--accent) 10%, 
-        var(--accent) 90%, 
+        var(--accent) 5%, 
+        var(--accent) 95%, 
         transparent 100%);
+      transform: translateX(-50%);
       z-index: 0;
-      transform: translateY(-50%);
     }
 
-    /* Carte de l'expérience */
+    /* Carte de l'expérience - Conteneur */
     .timeline-item {
       position: relative;
+      width: 50%;
+      padding: 1rem 3rem;
       z-index: 1;
-      width: var(--card-width);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    }
+
+    /* Alternance Gauche / Droite */
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      text-align: left;
     }
 
     /* Le point sur la timeline */
@@ -123,10 +125,17 @@
       border: 3px solid var(--accent);
       border-radius: 50%;
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 2rem;
       box-shadow: 0 0 15px var(--accent-glow);
       z-index: 2;
+    }
+
+    /* Position du point selon le côté */
+    .timeline-item:nth-child(odd) .timeline-dot {
+      right: -10px; /* Centre sur la ligne */
+    }
+    .timeline-item:nth-child(even) .timeline-dot {
+      left: -10px; /* Centre sur la ligne */
     }
 
     /* Contenu de la carte */
@@ -136,10 +145,10 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius);
       padding: 1.5rem;
-      margin-top: 2rem; /* Espace pour le point */
-      margin-bottom: 2rem; /* Espace pour le point */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: inline-block;
+      width: 100%;
     }
 
     .card:hover {
@@ -148,7 +157,7 @@
       border-color: rgba(139, 92, 246, 0.5);
     }
 
-    /* Image */
+    /* Image - Masquée si la source est vide pour éviter l'icône cassée */
     .card img {
       width: 100%;
       height: 180px;
@@ -156,6 +165,9 @@
       border-radius: 8px;
       margin-bottom: 1rem;
       border: 1px solid rgba(255,255,255,0.1);
+    }
+    .card img[src=""] {
+      display: none;
     }
 
     .date {
@@ -165,32 +177,24 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
       background: rgba(139, 92, 246, 0.1);
-      padding: 2px 8px;
+      padding: 4px 10px;
       border-radius: 4px;
     }
 
     .card h3 {
       margin: 0 0 0.75rem;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #fff;
       line-height: 1.4;
     }
 
     .card p {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--muted);
       margin: 0;
       line-height: 1.5;
-    }
-
-    /* Alternance visuelle (Impair à gauche, Pair à droite) */
-    .timeline-item:nth-child(odd) .card {
-      margin-top: 3rem; /* Carte en bas */
-    }
-    .timeline-item:nth-child(even) .card {
-      margin-bottom: 3rem; /* Carte en haut */
     }
 
     /* Footer */
@@ -208,41 +212,28 @@
       h1 { font-size: 2.2rem; }
       .subtitle { font-size: 1rem; margin-bottom: 2rem; }
       
-      .timeline-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding-top: 1rem;
-      }
-
+      /* La ligne passe à gauche */
       .timeline-line {
-        width: 2px;
-        height: 100%;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        background: linear-gradient(180deg, 
-          transparent 0%, 
-          var(--accent) 10%, 
-          var(--accent) 90%, 
-          transparent 100%);
+        left: 20px;
+        transform: none;
       }
 
+      /* Toutes les cartes prennent toute la largeur et s'alignent à gauche */
       .timeline-item {
         width: 100%;
-        max-width: 500px;
+        padding: 1rem 1rem 1rem 3.5rem;
+      }
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        left: 0;
+        text-align: left;
       }
 
-      .timeline-dot {
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .timeline-item:nth-child(odd) .card,
-      .timeline-item:nth-child(even) .card {
-        margin-top: 0;
-        margin-bottom: 0;
+      /* Tous les points s'alignent sur la ligne à gauche */
+      .timeline-item:nth-child(odd) .timeline-dot,
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: 10px;
+        right: auto;
       }
     }
   </style>
@@ -253,103 +244,80 @@
   <a href="index.html">← Retour à l'accueil</a>
 </header>
 
-
 <main>
   <h1>Parcours</h1>
-  <p class="subtitle">Mon parcours académique et technique, présenté de manière chronologique.</p>
+  <p class="subtitle">Mon parcours académique et professionnel, présenté de manière chronologique.</p>
 
   <div class="timeline-container">
-    <!-- Ligne de fond -->
     <div class="timeline-line"></div>
 
-    <!-- Expérience 1 -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="card">
         <span class="date">2025 – Aujourd’hui</span>
         <img src="" alt="Interface IHM Legacy">
-        <h3>Alternant automaticien — Equans France</h3>
-        <p>
-          Un projet stimulant par sa globalité : il s'agit de moderniser un système IHM legacy tout en naviguant entre deux contraintes fortes : garantir un fonctionnel et proposer des optimisations pertinentes.
-        </p>
+        <h3>Alternant Automaticien — Equans France</h3>
+        <p>Un projet stimulant par sa globalité : moderniser un système IHM legacy tout en naviguant entre deux contraintes fortes : garantir le maintien fonctionnel et proposer des optimisations pertinentes.</p>
       </div>
     </div>
     
-    <!-- Expérience 2 -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="card">
         <span class="date">2023 – Aujourd’hui</span>
         <img src="" alt="Étudiant BUT GEII">
-        <h3>Etudiant BUT GEII — Bordeaux</h3>
-        <p>
-          Actuellement en cursus de 3 ans avec l'option AII, je suis une formation qui conjugue rigueur théorique et mises en situation professionnelle à travers des projets concrets.
-        </p>
+        <h3>Étudiant BUT GEII — Bordeaux</h3>
+        <p>Actuellement en cursus de 3 ans avec l'option AII, je suis une formation qui conjugue rigueur théorique et mises en situation professionnelle à travers des projets concrets.</p>
       </div>
     </div>
     
-    <!-- Expérience 3 -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="card">
-        <span class="date">Avril 2024 – Aout 2024</span>
+        <span class="date">Avril 2024 – Août 2024</span>
         <img src="" alt="Développement VBA">
-        <h3>Stagiaire automaticien — ISP Aquitaine</h3>
-        <p>
-          Développement d'une interface de communication OPC UA en langage VBA, interagissant avec l'API Siemens. L'objectif était de capturer l'ensemble des données process, de les structurer (tri) et d'assurer leur mise à disposition automatique pour le client final.
-        </p>
+        <h3>Stagiaire Automaticien — ISP Aquitaine</h3>
+        <p>Développement d'une interface de communication OPC UA en langage VBA interagissant avec l'API Siemens. L'objectif était de capturer l'ensemble des données process, de les structurer et d'assurer leur mise à disposition automatique pour le client.</p>
       </div>
     </div>
     
-    <!-- Expérience 4 -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="card">
-        <span class="date">2020 - 2023</span>
+        <span class="date">2020 – 2023</span>
         <img src="" alt="Cycle de vie système">
-        <h3>Etudiant BTS CRSA</h3>
-        <p>
-          Ma formation en CRSA s'articule autour de la capacité à être capable de mener un projet industriel mené sur 3 années complète. la dernière années m'a permis de maîtriser le cycle de vie intégral d'un coup, d'un système automatisé (conception, réalisation, tests et intégration). via un projet de création du système de A à Z.
-        </p>
+        <h3>Étudiant BTS CRSA</h3>
+        <p>Ma formation en CRSA s'est articulée autour de la gestion de projets industriels sur 3 ans. La dernière année m'a permis de maîtriser l'intégralité du cycle de vie d'un système automatisé (conception, réalisation, tests et intégration) via sa création de A à Z.</p>
       </div>
     </div>
     
-    <!-- Expérience 5 -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="card">
-        <span class="date">Avril 2021 - Juin 2021</span>
+        <span class="date">Avril 2021 – Juin 2021</span>
         <img src="" alt="Restauration machine">
-        <h3>Stagiaire électricien/automaticien - lacosse Emballage</h3>
-        <p>
-          Projet restauration complète d’une machine de découpe de bois
-        </p>
+        <h3>Stagiaire Électricien/Automaticien — Lacosse Emballage</h3>
+        <p>Projet de restauration complète d’une machine de découpe de bois.</p>
       </div>
     </div>    
     
-    <!-- Expérience 6 -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="card">
-        <span class="date">2017 - 2020</span>
+        <span class="date">2017 – 2020</span>
         <img src="" alt="Formation MELEC">
-        <h3>Etudiant BAC PRO MELEC</h3>
-        <p>
-          Formation d'electricien du BTP et industriel, base de l'eletricité et de la conception d'une maison connecté
-        </p>
+        <h3>Étudiant BAC PRO MELEC</h3>
+        <p>Formation d'électricien du bâtiment et industriel : apprentissage des bases de l'électricité et conception d'une maison connectée.</p>
       </div>
     </div>
 
-    <!-- Expérience 7 -->
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="card">
-        <span class="date">Janvier 2020 - Fevrier 2020</span>
+        <span class="date">Janvier 2020 – Février 2020</span>
         <img src="" alt="Vendeur spécialité">
-        <h3>Stagiaire vendeur spécialité elec</h3>
-        <p>
-          Stagiaire vendeur dans une entreprise de vente d’appareil électrique pour professionnels (YESS ELECTRIC)
-        </p>
+        <h3>Stagiaire Vendeur spécialité élec. — Yess Électrique</h3>
+        <p>Stage de vente et de conseil dans une entreprise distribuant des appareils électriques pour les professionnels du secteur.</p>
       </div>
     </div>
 
@@ -357,7 +325,7 @@
 </main>
 
 <footer>
-  © 2025 — Clément Noël
+  © 2026 — Clément Noël
 </footer>
 
 </body>
