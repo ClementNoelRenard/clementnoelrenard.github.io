@@ -4,464 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projets — Clément Noël</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #121212;
-      --panel: #1e1e1e;
-      --text: #f3f4f6;
-      --muted: #a3a3a3;
-      --accent: #8b5cf6;
-      --radius: 12px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background-color: var(--bg);
-      background-image: radial-gradient(circle at top right, #2e1065, #121212 40%);
-      background-attachment: fixed;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    /* HEADER */
-    header {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2rem 2rem 1rem;
-    }
-
-    header a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      transition: color 0.2s;
-    }
-    header a:hover { color: #fff; }
-
-    /* MAIN LAYOUT */
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      background: linear-gradient(to right, var(--accent), #38bdf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
-      max-width: 600px;
-    }
-
-    /* NAVIGATION PAR ANNÉE (STICKY) */
-    .project-nav {
-      position: sticky;
-      top: 1rem;
-      z-index: 100;
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 3rem;
-      padding: 0.8rem 1.2rem;
-      background: rgba(30, 30, 30, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .project-nav a {
-      font-size: 0.9rem;
-      color: var(--text);
-      text-decoration: none;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .project-nav a:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    /* SECTIONS & GRILLE */
-    section {
-      margin-bottom: 4rem;
-      scroll-margin-top: 100px;
-    }
-
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding-bottom: 0.5rem;
-      display: inline-block;
-      color: #fff;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 2rem;
-    }
-
-    /* CARTE PROJET */
-    .project {
-      background: rgba(30, 30, 30, 0.6);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      border-color: rgba(139, 92, 246, 0.3);
-    }
-
-    .project h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .tag {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-    }
-
-    .project p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    strong { color: var(--text); }
-
-    ul {
-      margin-left: 1.2rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    /* ZONE BASSE DE LA CARTE (PDF + IMG) */
-    .project-assets {
-      margin-top: auto;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .pdf-link {
-      display: inline-block;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      color: var(--accent);
-      font-weight: 500;
-      text-decoration: none;
-    }
-    .pdf-link:hover { text-decoration: underline; }
-
-    .project-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    @media (max-width: 700px) {
-      h1 { font-size: 2.5rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <a href="index.html">← Retour à l'accueil</a>
-</header>
+  <header>
+    <a href="index.html" class="logo-text">Clément Noël</a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <nav class="main-nav" id="nav-menu">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html" class="active">Projets</a>
+      <a href="geii_critique.html">Compétences GEII</a>
+      <a href="parcours.html">Parcours</a>
+      <a href="loisirs.html">Loisirs</a>
+    </nav>
+  </header>
 
-<main>
-  <h1>Projets</h1>
-  <p class="subtitle">Une sélection de projets techniques réalisés dans le cadre de ma formation en BUT GEII.</p>
+  <main>
+    <h1>Projets Techniques</h1>
+    <p class="subtitle">Une sélection de mes travaux réalisés durant mon parcours en GEII et CRSA.</p>
 
-  <nav class="project-nav">
-    <a href="#2026">2026</a>
-    <a href="#2025">2025</a>
-    <a href="#2024">2024</a>
-    <a href="#2023">2023</a>
-  </nav>
-
-  <section id="2026">
-    <h2>Année 2026</h2>
-    <div class="projects-grid">
-      
-      <article class="project">
-        <h3>SAE S5_S6 - Gestion d'un magasin industriel</h3>
-        <div class="meta">
-          <span class="tag">Robotique</span>
-          <span class="tag">TIA PORTAL</span>
-          <span class="tag">Gestion de projet</span>
-        </div>
-        <p><strong>Contexte :</strong> SAE de BUT GEII visant à automatiser un système industriel de gestion de stock via un bras 3 axes, selon un cahier des charges strict.</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Programmation d'un projet sur TIA Portal</li>
-          <li>Gestion de planning et d'équipe</li>
-          <li>Différents rendus de documentation client suivant le cycle en V</li>
-        </ul>
-        <div class="project-assets">
-          <a href="#" class="pdf-link">🟠 Bientôt !</a>
-          <img src="./images/SAE_S5_S6.png" alt="Système industriel" class="project-image">
-        </div>
-      </article>
-
-      <article class="project">
-        <h3>Alternance GEII - Conception d'une supervision d'IHM - Ineo Equans</h3>
-        <div class="meta">
-          <span class="tag">IHM Schneider</span>
-          <span class="tag">Gestion de projet</span>
-          <span class="tag">Rétrofit</span>
-        </div>
-        <p><strong>Contexte :</strong> On continue ! Il s'agit toujours de moderniser un système IHM legacy tout en naviguant entre deux contraintes fortes : garantir un fonctionnel et proposer des optimisations pertinentes.</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Automaticien</li>
-          <li>Lecture des IHM et portage</li>
-          <li>Compte-rendu</li>
-        </ul>
-        <div class="project-assets">
-          <a href="#" class="pdf-link">🟠 Bientôt !</a>
-          <img src="./images/STAGE_INEO.png" alt="Système industriel" class="project-image">
-        </div>
-      </article>
-
+    <div class="filter-nav">
+      <a href="#2026">2026</a>
+      <a href="#2025">2025</a>
+      <a href="#2024">2024</a>
+      <a href="#2023">2023</a>
     </div>
-  </section>
-  
-  <section id="2025">
-    <h2>Année 2025</h2>
-    <div class="projects-grid">
-      
-      <article class="project">
-        <h3>SAE S4 - MUGOCHAUD</h3>
-        <div class="meta">
-          <span class="tag">Automatisme</span>
-          <span class="tag">API</span>
-          <span class="tag">SAE</span>
-        </div>
-        <p><strong>Contexte :</strong> Conception et réalisation d'un système thermique complexe. Gestion de la régulation de température et interface homme-machine.</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Analyse fonctionnelle & Grafcet</li>
-          <li>Programmation API (TIA Portal)</li>
-          <li>Tests et validation sur banc d'essai</li>
-        </ul>
-        <div class="project-assets">
-          <a href="./pdfs/SAE_S4.pdf" target="_blank" class="pdf-link">📄 Voir le rapport PDF</a>
-          <img src="./images/SAE_S4.png" alt="Système industriel" class="project-image">
-        </div>
-      </article>
 
-      <article class="project">
-        <h3>SAE S3 - Robot Sumo</h3>
-        <div class="meta">
-          <span class="tag">Régulation</span>
-          <span class="tag">C++</span>
-          <span class="tag">Électronique</span>
-        </div>
-        <p><strong>Contexte :</strong> Développement complet d'un robot autonome capable de repérer et pousser un adversaire hors d'une zone (Dohyo). Programmation microcontrôleur et capteurs.</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Choix des composants de puissance</li>
-          <li>Programmation du microcontrôleur</li>
-          <li>Mesures et corrections</li>
-        </ul>
-        <div class="project-assets">
-          <a href="./pdfs/RMS-CDC v4.1.pdf" class="pdf-link">📄 Cahier de charges</a>
-          <a href="./pdfs/Groupe43_RMS_DDC.pdf" class="pdf-link">📄 Dossier de conception</a>
-          <a href="./pdfs/RMS_DDF_EQ43.pdf" class="pdf-link">📄 Dossier de fabrication</a>
-          <img src="./images/SAE_S3.png" alt="Système industriel" class="project-image">
-        </div>
-      </article>
-      
-      <article class="project">
-        <h3>PTUT CAVE A VIN</h3>
-        <div class="meta">
-          <span class="tag">Robotique</span>
-          <span class="tag">TIA PORTAL</span>
-          <span class="tag">Gestion de projet</span>
-        </div>
-        <p><strong>Contexte :</strong> Realisation d'une platine de test dans le but de tester un systeme de refroidissement pour une cave à vin, par le biais de module peltier et d'un asservissment</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Programmation d'un projet sur TIA Portal</li>
-          <li>Gestion de planning et d'équipe</li>
-          <li>Cablage et maquettage</li>
-        </ul>
-        <div class="project-assets">
-          <a href="./pdfs/cave_a_vin.pdf" target="_blank" class="pdf-link">📄 Voir le rapport PDF</a>
-          <img src="./images/ptut_cav.png" alt="Système industriel" class="project-image">
-        </div>
-      </article>
+    <section id="2026">
+      <h2>Année 2026</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>SAE S5_S6 - Magasin industriel</h3>
+          <div class="meta">
+            <span class="tag">Robotique</span>
+            <span class="tag">TIA PORTAL</span>
+          </div>
+          <p>Automatisation d'un système de gestion de stock via un bras 3 axes.</p>
+          <div class="card-assets">
+            <img src="./images/SAE_S5_S6.png" alt="Système industriel" class="card-image">
+          </div>
+        </article>
+      </div>
+    </section>
 
-      <article class="project">
-        <h3>Stage GEII - Conception d'une supervision d'IHM - Ineo Equans</h3>
-        <div class="meta">
-          <span class="tag">IHM Schneider</span>
-          <span class="tag">Gestion de projet</span>
-          <span class="tag">Rétrofit</span>
-        </div>
-        <p><strong>Contexte :</strong> Un projet stimulant par sa globalité : il s'agit de moderniser un système IHM legacy tout en naviguant entre deux contraintes fortes : garantir un fonctionnel et proposer des optimisations pertinentes.</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Automaticien</li>
-          <li>Lecture des IHM et portage</li>
-          <li>Compte-rendu</li>
-        </ul>
-        <div class="project-assets">
-          <a href="./pdfs/CN_R_2024.pdf" target="_blank" class="pdf-link">📄 Voir le rapport PDF</a>
-          <a href="./pdfs/CN_P_2024.pdf" target="_blank" class="pdf-link">📄 Voir le support PDF</a>        
-          <img src="./images/STAGE_INEO.png" alt="Système industriel" class="project-image">           
-        </div>
-      </article>
+    <section id="2025">
+      <h2>Année 2025</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>SAE S4 - MUGOCHAUD</h3>
+          <div class="meta"><span class="tag">Automatisme</span><span class="tag">API</span></div>
+          <p>Régulation thermique complexe et interface homme-machine.</p>
+          <div class="card-assets">
+            <button class="btn btn-secondary open-modal" data-url="./pdfs/SAE_S4.pdf" data-title="Rapport MUGOCHAUD">📄 Voir le rapport</button>
+            <img src="./images/SAE_S4.png" alt="SAE S4" class="card-image">
+          </div>
+        </article>
 
+        <article class="card">
+          <h3>SAE S3 - Robot Sumo</h3>
+          <div class="meta"><span class="tag">C++</span><span class="tag">Électronique</span></div>
+          <p>Robot autonome capable de détecter et d'éjecter un adversaire.</p>
+          <div class="card-assets">
+            <button class="btn btn-secondary open-modal" data-url="./pdfs/Groupe43_RMS_DDC.pdf" data-title="Dossier de Conception">📄 Dossier Conception</button>
+            <img src="./images/SAE_S3.png" alt="Robot Sumo" class="card-image">
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Document</h3>
+        <button class="close-btn" id="close-modal">&times;</button>
+      </div>
+      <iframe class="modal-frame" id="modal-frame"></iframe>
     </div>
-  </section>
-  
-  <section id="2024">
-    <h2>Année 2024</h2>
-    <div class="projects-grid">
-      
-      <article class="project">
-        <h3>Projet SSL - Antenne de communication</h3>
-        <div class="meta">
-          <span class="tag">Automatisme</span>
-          <span class="tag">API</span>
-          <span class="tag">SAE</span>
-        </div>
-        <p><strong>Contexte :</strong> Conception et réalisation d'un système thermique complexe. Gestion de la régulation de température et interface homme-machine.</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Analyse fonctionnelle & Grafcet</li>
-          <li>Programmation API (TIA Portal)</li>
-          <li>Tests et validation sur banc d'essai</li>
-        </ul>
-        <div class="project-assets">
-          <a href="./pdfs/SSL_oral.pdf" target="_blank" class="pdf-link">📄 Voir le rapport PDF</a>
-          <img src="./images/SSL.png" alt="Système industriel" class="project-image">
-        </div>
-      </article>
+  </div>
 
-      <article class="project">
-        <h3>STAGE GEII - Serveur OPCUA - INEO Aquitaine</h3>
-        <div class="meta">
-          <span class="tag">VBA</span>
-          <span class="tag">EXCEL</span>
-          <span class="tag">OPCUA TIA PORTAL</span>
-        </div>
-        <p><strong>Contexte :</strong> Développement d'une interface de communication OPC UA en langage VBA, interagissant avec l'API Siemens. L'objectif était de capturer l'ensemble des données process, de les structurer (tri) et d'assurer leur mise à disposition automatique pour le client final.</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Automaticien</li>
-          <li>Programmation de la solution proposé</li>
-          <li>Test et mise en service</li>
-        </ul>
-        <div class="project-assets">
-          <a href="./pdfs/CN_R_2023.pdf" class="pdf-link">📄 Rapport de stage</a>
-          <a href="./pdfs/CN_P_2023.pdf" class="pdf-link">📄 Support de présentation</a>
-          <img src="./images/STAGE_ISP.png" alt="Système industriel" class="project-image">
-        </div>
-      </article>
-
-    </div> 
-  </section>
-
-  <section id="2023">
-    <h2>Année 2023</h2>
-    <div class="projects-grid">
-      
-      <article class="project">
-        <h3>Projet d'1ans BTS CRSA</h3>
-        <div class="meta">
-          <span class="tag">Automatisme</span>
-          <span class="tag">API</span>
-          <span class="tag">SAE</span>
-        </div>
-        <p><strong>Contexte :</strong> Conception et réalisation d'un système thermique complexe. Gestion de la régulation de température et interface homme-machine.</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Analyse fonctionnelle & Grafcet</li>
-          <li>Programmation API (TIA Portal)</li>
-          <li>Tests et validation sur banc d'essai</li>
-        </ul>
-        <div class="project-assets">
-          <a href="./pdfs/CN_P_CRSA.pdf" target="_blank" class="pdf-link">📄 Voir le rapport PDF</a>
-          <img src="./images/oralcrsa.png" alt="Système industriel" class="project-image">
-        </div>
-      </article>
-
-      <article class="project">
-        <h3>STAGE CRSA - Maintenance d'un système de coupe de bois</h3>
-        <div class="meta">
-          <span class="tag">VBA</span>
-          <span class="tag">EXCEL</span>
-          <span class="tag">OPCUA TIA PORTAL</span>
-        </div>
-        <p><strong>Contexte :</strong>Projet restauration complète d’une machine de découpe de
-bois</p>
-        <p><strong>Mon rôle :</strong></p>
-        <ul>
-          <li>Automaticien</li>
-          <li>Programmation de la solution proposé</li>
-          <li>Test et mise en service</li>
-        </ul>
-        <div class="project-assets">
-          <a href="./pdfs/CN_P_lacosse" class="pdf-link">📄 Support de présentation</a>
-          <img src="./images/" alt="*" class="project-image">
-        </div>
-      </article>
-
-</main>
-
-<footer>
-  © 2026 — Clément Noël
-</footer>
-
+  <footer>© 2026 — Clément Noël</footer>
+  <script src="main.js"></script>
 </body>
 </html>
