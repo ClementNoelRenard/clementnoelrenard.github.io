@@ -60,58 +60,104 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+///
 
-
-
-document.getElementById('open-chat').addEventListener('click', async () => {
-  document.getElementById('open-chat').style.display = 'none';
-  document.getElementById('ai-chat').style.display = 'block';
+document.addEventListener('DOMContentLoaded', () => {
+  const openBtn = document.getElementById('open-chat');
+  const closeBtn = document.getElementById('close-chat');
+  const chatWindow = document.getElementById('ai-chat');
   
+  const loadingContainer = document.getElementById('loading-container');
+  const progressBar = document.getElementById('loading-bar');
   const statusEl = document.getElementById('chat-status');
+  const chatInput = document.getElementById('chat-input');
   const historyEl = document.getElementById('chat-history');
-  
-  // Si le modèle est déjà chargé, on ne fait rien
-  if (window.aiEngine) return; 
-  
-  try {
-    // Import de la bibliothèque WebLLM
-    const { CreateMLCEngine } = await import("https://esm.run/@mlc-ai/web-llm");
+
+  // Ouvrir le chat et charger le modèle
+  openBtn.addEventListener('click', async () => {
+    openBtn.style.display = 'none';
+    chatWindow.style.display = 'block';
     
-    // Chargement d'une version distillée de DeepSeek R1 (7 Milliards de paramètres)
-    window.aiEngine = await CreateMLCEngine(
-      "DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC", 
-      {
-        initProgressCallback: (progress) => {
-          statusEl.innerText = `Chargement du modèle en cache... ${Math.round(progress.progress * 100)}%`;
+    // Si le modèle est déjà en cache/chargé, on réactive direct
+    if (window.aiEngine) {
+      loadingContainer.style.display = 'none';
+      chatInput.disabled = false;
+      chatInput.style.opacity = '1';
+      chatInput.placeholder = "Posez une question...";
+      return; 
+    }
+    
+    try {
+      const { CreateMLCEngine } = await import("https://esm.run/@mlc-ai/web-llm");
+      
+      window.aiEngine = await CreateMLCEngine(
+        "DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC", 
+        {
+          initProgressCallback: (progress) => {
+            // progress.progress est un chiffre entre 0 et 1
+            const percent = Math.round(progress.progress * 100);
+            progressBar.style.width = percent + '%';
+            // Affiche le texte exact renvoyé par WebLLM (ex: "Fetching params... 45%")
+            statusEl.innerText = progress.text; 
+          }
         }
+      );
+      
+      // Une fois le chargement terminé
+      statusEl.innerText = "✅ IA prête et connectée !";
+      setTimeout(() => { loadingContainer.style.display = 'none'; }, 2000);
+      
+      // On débloque l'input
+      chatInput.disabled = false;
+      chatInput.style.opacity = '1';
+      chatInput.placeholder = "Posez une question...";
+      chatInput.focus();
+
+    } catch (err) {
+      statusEl.innerText = "❌ Erreur : WebGPU n'est pas supporté sur ce navigateur.";
+      progressBar.style.backgroundColor = "#ef4444"; // Rouge
+      console.error(err);
+    }
+  });
+
+  // Fermer le chat (sans décharger le modèle)
+  closeBtn.addEventListener('click', () => {
+    chatWindow.style.display = 'none';
+    openBtn.style.display = 'block';
+  });
+
+  // Envoi des messages
+  chatInput.addEventListener('keypress', async (e) => {
+    if (e.key === 'Enter' && window.aiEngine && e.target.value.trim() !== '') {
+      const userText = e.target.value;
+      e.target.value = '';
+      
+      // Afficher le message utilisateur
+      historyEl.innerHTML += `<div style="text-align: right; color: var(--accent); margin-bottom: 10px;">${userText}</div>`;
+      historyEl.innerHTML += `<div id="ai-loading" style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 10px;"><i>Génération en cours...</i></div>`;
+      historyEl.scrollTop = historyEl.scrollHeight;
+
+      // Désactiver l'input pendant la génération
+      chatInput.disabled = true;
+
+      try {
+        const reply = await window.aiEngine.chat.completions.create({
+          messages: [{ role: "user", content: userText }]
+        });
+
+        document.getElementById('ai-loading').remove();
+        
+        // Nettoyer les balises <think> typiques de DeepSeek R1
+        const cleanReply = reply.choices[0].message.content.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+        
+        historyEl.innerHTML += `<div style="text-align: left; background: rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; margin-bottom: 10px;">${cleanReply}</div>`;
+      } catch (err) {
+        document.getElementById('ai-loading').innerText = "❌ Erreur de génération.";
       }
-    );
-    statusEl.innerText = "✅ Modèle prêt (exécuté sur votre GPU)";
-  } catch (err) {
-    statusEl.innerText = "❌ Erreur WebGPU : Navigateur non compatible.";
-    console.error(err);
-  }
-});
 
-// Logique d'envoi des messages
-document.getElementById('chat-input').addEventListener('keypress', async (e) => {
-  if (e.key === 'Enter' && window.aiEngine && e.target.value.trim() !== '') {
-    const userText = e.target.value;
-    e.target.value = '';
-    
-    historyEl.innerHTML += `<div style="text-align: right; color: var(--accent);">${userText}</div>`;
-    historyEl.innerHTML += `<div id="ai-loading" style="color: var(--text-muted);"><i><think>Réflexion en cours...</think></i></div>`;
-    historyEl.scrollTop = historyEl.scrollHeight;
-
-    // Envoi de la requête au modèle local
-    const reply = await window.aiEngine.chat.completions.create({
-      messages: [{ role: "user", content: userText }]
-    });
-
-    document.getElementById('ai-loading').remove();
-    // Affichage de la réponse (DeepSeek R1 inclut souvent ses réflexions entre balises <think>)
-    const cleanReply = reply.choices[0].message.content.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-    historyEl.innerHTML += `<div style="text-align: left;">${cleanReply}</div>`;
-    historyEl.scrollTop = historyEl.scrollHeight;
-  }
+      chatInput.disabled = false;
+      chatInput.focus();
+      historyEl.scrollTop = historyEl.scrollHeight;
+    }
+  });
 });
