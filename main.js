@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const { CreateMLCEngine } = await import("https://esm.run/@mlc-ai/web-llm");
       
       window.aiEngine = await CreateMLCEngine(
-        "DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC", 
+        "DeepSeek-R1-Distill-Qwen-1.5B-q4f16_1-MLC", 
         {
           initProgressCallback: (progress) => {
             // progress.progress est un chiffre entre 0 et 1
