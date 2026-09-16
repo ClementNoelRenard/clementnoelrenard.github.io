@@ -121,39 +121,5 @@
       <iframe class="modal-frame" id="modal-frame"></iframe>
     </div>
   </div>
-
-  <footer>© 2026 — Clément Noël • Construit avec passion - v1.2</footer>
+  <footer>© 2026 — <a href="snake.html">Clément Noël</a> • Construit avec passion - v1.3</footer>
   <script src="main.js"></script>
-
-
-
-
-///
-<!-- Bouton d'ouverture -->
-<button id="open-chat" class="btn btn-primary" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; border-radius: 50px; padding: 1rem 1.5rem;">
-  💬 Discuter avec mon IA
-</button>
-
-<!-- Fenêtre de chat -->
-<div id="ai-chat" class="card" style="position: fixed; bottom: 20px; right: 20px; width: 350px; display: none; z-index: 1000; padding: 1.5rem;">
-  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 10px;">
-    <h3 style="font-size: 1.1rem; margin: 0;">🤖 DeepSeek R1</h3>
-    <button id="close-chat" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;">&times;</button>
-  </div>
-  
-  <div id="chat-history" style="height: 250px; overflow-y: auto; margin-bottom: 1rem; font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.8rem;">
-    <div style="text-align: left; color: var(--text-muted);">Bonjour ! Posez-moi une question sur le parcours de Clément.</div>
-  </div>
-  
-  <!-- Zone de chargement -->
-  <div id="loading-container" style="margin-bottom: 10px;">
-    <div style="width: 100%; background-color: rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; height: 8px; margin-bottom: 5px;">
-      <div id="loading-bar" style="width: 0%; height: 100%; background-color: var(--accent); transition: width 0.2s ease;"></div>
-    </div>
-    <p id="chat-status" style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin: 0;">Initialisation de WebGPU...</p>
-  </div>
-
-  <input type="text" id="chat-input" placeholder="L'IA charge..." disabled style="width: 100%; padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-family: inherit; opacity: 0.5;">
-</div>
-</body>
-</html>
