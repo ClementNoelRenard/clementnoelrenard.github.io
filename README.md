@@ -1,5 +1,10 @@
-Lien du Portfolio  : https://clementnoelrenard.github.io/
+Arborescence de mon portfolio
 
-Lien Mirroir       :  https://clementnoelrenard.codeberg.page/
-
-Clément Noël - Etudiant GEII AII - 2024-2026
+portfolio
+│
+├── index.html
+├── archive.html
+│
+└── documentspdf ...
+    ├── cv.pdf
+    ├── ...
