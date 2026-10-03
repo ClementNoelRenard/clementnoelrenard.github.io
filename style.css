@@ -34,7 +34,7 @@
     --couleur-bordure-liste:   #222;   /* séparateurs de la liste */
 
     /* Image de fond (chemin relatif à ce fichier CSS) */
-    --image-fond: url("fond.png");
+    --image-fond: url("./images/fond.png");
     --position-fond: center;   /* partie de l'image visible : center, left, right... */
 
     /* Typographie */
