@@ -12,8 +12,7 @@
    7. Sections
    8. Liste de documents (page « Parcours & documents »)
    9. Pied de page
-   10. Photo de profil
-   11. Petits et moyens écrans (responsive)
+   10. Petits écrans (responsive)
 
    CONVENTION DE NOMMAGE : français, en minuscules, mots séparés par des
    tirets. Une variante d'un élément s'écrit « element--variante ».
@@ -54,10 +53,6 @@
     --marge-sous-navigation:   90px;
     --marge-entre-sections:    64px;
     --marge-entre-blocs:       16px;
-
-    /* Photo de profil (page d'accueil) */
-    --largeur-photo:           250px;
-    --ecart-photo:             40px;   /* distance entre le texte et la photo */
 }
 
 
@@ -215,43 +210,8 @@ body {
 
 
 /* ==========================================================================
-   10. PHOTO DE PROFIL (index.html)
-   Sur grand écran, la photo est placée dans la marge à droite du texte,
-   à hauteur du premier paragraphe. Sur écran moyen ou petit, elle passe
-   dans le flux de la page (voir section 11).
+   10. PETITS ÉCRANS (largeur ≤ 600px)
    ========================================================================== */
-
-/* L'en-tête sert de repère pour positionner la photo */
-.en-tete {
-    position: relative;
-}
-
-.photo-profil {
-    position: absolute;
-    top: 60px;                                   /* sous le titre principal */
-    left: calc(100% + var(--ecart-photo));       /* à droite de la colonne de texte */
-    width: var(--largeur-photo);
-    height: auto;                                /* la hauteur suit la largeur : rapport d'aspect d'origine conservé, aucun recadrage */
-    border: 1px solid var(--couleur-bordure);
-    border-radius: 4px;
-}
-
-
-/* ==========================================================================
-   11. PETITS ET MOYENS ÉCRANS
-   ========================================================================== */
-/* Écrans moyens (≤ 1520px) : plus assez de place à droite du texte.
-   La photo passe sous le nom, dans le flux de la page. */
-@media (max-width: 1520px) {
-    .photo-profil {
-        position: static;
-        width: 100%;
-        max-width: 260px;
-        margin-bottom: var(--marge-entre-blocs);
-    }
-}
-
-/* Petits écrans (≤ 600px) */
 @media (max-width: 600px) {
     :root {
         --marge-verticale-page:  40px;
