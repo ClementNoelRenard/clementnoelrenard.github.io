@@ -3,32 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clément Noël</title>
+    <title>Loisirs — Clément Noël</title>
     <link rel="icon" type="image/png" href="./images/LOGO.png">
+
     <!-- Feuille de style commune à toutes les pages -->
     <link rel="stylesheet" href="style.css">
+
+    <script src="js/donnees.js" defer></script>
+    <script src="js/composants.js" defer></script>
 </head>
 
-<body>
+<body data-page="loisirs">
 <main class="contenu-principal">
 
-    <!-- ========== NAVIGATION ========== -->
-    <nav class="navigation">
-        <a class="lien" href="index.html" aria-current="page">Accueil</a>
-        <a class="lien" href="archive.html">Parcours &amp; documents</a>
-        <a class="lien" href="loisir.html">Loisir</a>
-        <a class="lien" href="mailto:clementnoelrenard2001@ik.me">Contact</a>
-    </nav>
+    <!-- ========== NAVIGATION (générée par composants.js) ========== -->
+    <nav id="navigation"></nav>
 
-     </a>
-Pour attendre mes rajouts sur cette pages :
-     </a>
-        <a class="lien" href="snake.html">snake.html</a>
+    <header>
+        <h1 class="titre-principal">Loisirs</h1>
+        <p class="texte texte--introduction">
+            Page en construction : de nouveaux contenus arriveront prochainement.
+        </p>
+    </header>
 
-    <!-- ========== PIED DE PAGE ========== -->
-    <footer class="pied-de-page">
-        © 2026 - Clément Noël - v2.4
-    </footer>
+    <section class="section">
+        <h2 class="titre-section">Mini-jeux</h2>
+        <ul class="liste-documents">
+            <li class="liste-documents__element"><a class="lien" href="snake.html">Snake</a></li>
+        </ul>
+    </section>
+
+    <!-- ========== PIED DE PAGE (généré par composants.js) ========== -->
+    <footer id="pied-de-page" data-retour></footer>
 
 </main>
 </body>

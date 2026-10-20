@@ -3,105 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Parcours — Clément Noël</title>
+    <title>Documents — Clément Noël</title>
+    <meta name="description" content="Rapports de stage, dossiers de projets et preuves de compétences de Clément Noël (PDF).">
     <link rel="icon" type="image/png" href="./images/LOGO.png">
+
     <!-- Feuille de style commune à toutes les pages -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Les listes de documents sont générées depuis DOCUMENTS et CATEGORIES (js/donnees.js) -->
+    <script src="js/donnees.js" defer></script>
+    <script src="js/composants.js" defer></script>
 </head>
 
-<body>
+<body data-page="documents">
 <main class="contenu-principal">
 
-    <!-- ========== NAVIGATION ========== -->
-    <nav class="navigation">
-        <a class="lien" href="index.html" aria-current="page">Accueil</a>
-        <a class="lien" href="archive.html">Parcours &amp; documents</a>
-        <a class="lien" href="loisir.html">Loisir</a>
-        <a class="lien" href="mailto:clementnoelrenard2001@ik.me">Contact</a>
-    </nav>
+    <!-- ========== NAVIGATION (générée par composants.js) ========== -->
+    <nav id="navigation"></nav>
 
     <!-- ========== EN-TÊTE ========== -->
     <header>
-        <h1 class="titre-principal">Parcours &amp; documents</h1>
+        <h1 class="titre-principal">Documents</h1>
 
         <p class="texte texte--introduction">
-            Archives de mes expériences professionnelles, projets académiques
-            et compétences techniques. Documents disponibles au format PDF.
+            Archives de mes expériences professionnelles, projets académiques et compétences
+            techniques. Tous les documents sont au format PDF. Pour une vue chronologique,
+            consultez mon <a class="lien" href="parcours.html">parcours</a>.
         </p>
     </header>
 
-    <!-- ========== 01 : STAGES ET EXPÉRIENCES ========== -->
-    <section class="section">
-        <h2 class="titre-section">01 — Stages &amp; expériences professionnelles</h2>
+    <!-- ========== CATÉGORIES DE DOCUMENTS (générées par composants.js) ========== -->
+    <div data-composant="documents"></div>
 
-        <ul class="liste-documents">
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/CN_R_2026.pdf">Compte rendu d'alternance 2026 — INEO Aquitaine</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/CN_P_2026.pdf">Support rapport d'alternance 2026 — INEO Aquitaine</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/CN_P_2024.pdf">Support rapport de stage 2025 — INEO Aquitaine</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/CN_R_2024.pdf">Compte rendu de stage 2025 — INEO Aquitaine</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/CN_P_2023.pdf">Support rapport de stage 2024 — ISP Aquitaine</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/CN_R_2023.pdf">Compte rendu de stage 2023 — ISP Aquitaine</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/CN_P_lacosse.pdf">Support rapport de stage 2022 — Lacose Emballage</a></li>
-        </ul>
-    </section>
-
-    <!-- ========== 02 : PROJETS ET RÉALISATIONS ========== -->
-    <section class="section">
-        <h2 class="titre-section">02 — Projets &amp; réalisations</h2>
-
-        <ul class="liste-documents">
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/CN_P_CRSA.pdf">Projet BTS CRSA — Support de rapport 2023</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/cave_a_vin.pdf">PTUT — Cave à vin</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/SSL_oral.pdf">PTUT — SSL, Antenne LoRa</a></li>
-        </ul>
-    </section>
-
-    <!-- ========== 03 : SAE S4 — MUGOCHAUD ========== -->
-    <section class="section">
-        <h2 class="titre-section">03 — SAE S4 — MUGOCHAUD</h2>
-
-        <ul class="liste-documents">
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/SAE_S4.pdf">Rapport — MUGOCHAUD</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/C4_DDDC.pdf">Dossier de conception</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/C4_DDF.pdf">Dossier de fabrication</a></li>
-        </ul>
-    </section>
-
-    <!-- ========== 04 : SAE S3 — ROBOT SUMO ========== -->
-    <section class="section">
-        <h2 class="titre-section">04 — SAE S3 — Robot SUMO</h2>
-
-        <ul class="liste-documents">
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/RMS_CDC_v4.1.pdf">Cahier des charges</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/Groupe43_RMS_DDC.pdf">Dossier de conception détaillée</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/RMS_DDF_EQ43.pdf">Dossier de fabrication</a></li>
-        </ul>
-    </section>
-
-    <!-- ========== 05 : COMPÉTENCES GEII ========== -->
-    <section class="section">
-        <h2 class="titre-section">05 — Preuve via rapport d'activitée des competences obtenu en BUT GEII</h2>
-
-        <ul class="liste-documents">
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/C1.pdf">Compétence Concevoir C1</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/C2.pdf">Compétence Concevoir C2</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/C3.pdf">Compétence Concevoir C3</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/G1.pdf">Compétence Manager G1</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/G2.pdf">Compétence Manager G2</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/I11.pdf">Compétence Integrer I11</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/M1.pdf">Compétence Maintenance M1</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/M2.pdf">Compétence Maintenance M2</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/V1.pdf">Compétence Verifier V1</a></li>
-            <li class="liste-documents__element"><a class="lien" href="./pdfs/V2.pdf">Compétence Verifier V2</a></li>
-        </ul>
-    </section>
-
-    <!-- ========== PIED DE PAGE ========== -->
-    <footer class="pied-de-page">
-        <a class="lien" href="index.html">← Retour à l'accueil</a>
-        <div class="pied-de-page__espace"></div>
-        © 2026 - Clément Noël - v2.4
-    </footer>
+    <!-- ========== PIED DE PAGE (généré par composants.js) ========== -->
+    <footer id="pied-de-page" data-retour></footer>
 
 </main>
 </body>

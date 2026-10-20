@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parcours — Clément Noël</title>
+    <meta name="description" content="CV en ligne de Clément Noël : expériences en automatisme industriel, formations (BTS CRSA, BUT GEII) et projets techniques.">
+    <link rel="icon" type="image/png" href="./images/LOGO.png">
+
+    <!-- Feuille de style commune à toutes les pages -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Contenu (donnees.js), éléments communs (composants.js), puis construction de la page -->
+    <script src="js/donnees.js" defer></script>
+    <script src="js/composants.js" defer></script>
+    <script src="js/parcours.js" defer></script>
+</head>
+
+<body data-page="parcours">
+<main class="contenu-principal contenu-principal--large">
+
+    <!-- ========== NAVIGATION (générée par composants.js) ========== -->
+    <nav id="navigation"></nav>
+
+    <!-- ========== PROFIL (généré par parcours.js depuis PROFIL) ========== -->
+    <header id="cv-profil" class="cv-profil"></header>
+
+    <!-- ========== CHIFFRES CLÉS (calculés depuis les données) ========== -->
+    <section class="section" aria-label="Chiffres clés">
+        <div id="cv-chiffres" class="chiffres"></div>
+    </section>
+
+    <!-- ========== FRISE CHRONOLOGIQUE ========== -->
+    <section class="section">
+        <div class="section__entete">
+            <h2 class="titre-section">Parcours</h2>
+            <div id="cv-filtres" class="filtres" role="group" aria-label="Filtrer le parcours"></div>
+        </div>
+        <ol id="cv-frise" class="frise"></ol>
+    </section>
+
+    <!-- ========== COMPÉTENCES ========== -->
+    <section class="section">
+        <h2 class="titre-section">Compétences techniques</h2>
+        <div id="cv-competences" class="competences"></div>
+    </section>
+
+    <!-- ========== CENTRES D'INTÉRÊT ========== -->
+    <section class="section">
+        <h2 class="titre-section">Centres d'intérêt</h2>
+        <ul id="cv-interets" class="tags"></ul>
+    </section>
+
+    <!-- ========== ACTIONS ========== -->
+    <section class="section masquer-impression">
+        <button id="cv-imprimer" class="bouton" type="button">Imprimer cette page / enregistrer en PDF</button>
+    </section>
+
+    <!-- Message affiché uniquement si JavaScript est désactivé -->
+    <noscript>
+        <p class="texte">Cette page nécessite JavaScript. Vous pouvez
+            <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf">télécharger le CV au format PDF</a>.</p>
+    </noscript>
+
+    <!-- ========== PIED DE PAGE (généré par composants.js) ========== -->
+    <footer id="pied-de-page" data-retour></footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,235 @@
+% ==========================================================================
+%  CV — Clément Noël
+% --------------------------------------------------------------------------
+%  Compilation : pdflatex cv_clement_noel.tex   (ou Overleaf, compilateur pdfLaTeX)
+%  Paquets utilisés : tous inclus dans TeX Live, MiKTeX et Overleaf.
+%
+%  ORGANISATION
+%   1. Réglages (couleurs, coordonnées)   ← à modifier en premier
+%   2. Mise en page et commandes du modèle
+%   3. Contenu du CV
+%
+%  COMMANDES DU MODÈLE
+%   \rubrique{Titre}                          titre de section
+%   \experience{période}{poste}{entreprise}{détails}
+%   \formation{période}{diplôme}{établissement}{détails}
+%   \competence{nom}{niveau de 0 à 5}
+% ==========================================================================
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[default]{sourcesanspro}   % police sans empattement
+\usepackage[a4paper,margin=1.3cm,top=1.1cm,bottom=1.1cm]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+
+
+% ==========================================================================
+%  1. RÉGLAGES
+% ==========================================================================
+\definecolor{accent}{HTML}{1F3A5F}     % bleu nuit : titres et jauges
+\definecolor{texte}{HTML}{222222}
+\definecolor{discret}{HTML}{6B6B6B}    % dates, lieux
+\definecolor{clair}{HTML}{D5DAE1}      % segments vides des jauges
+
+\newcommand{\nom}{Clément Noël}
+\newcommand{\poste}{Automaticien — Automatisme \& systèmes embarqués}
+\newcommand{\ville}{33160 Pessac}
+\newcommand{\email}{clementnoelrenard2001@ik.me}
+\newcommand{\linkedin}{clement-noel-renard}
+\newcommand{\siteweb}{clementnoelrenard.github.io}
+\newcommand{\photo}{../images/MOI3.jpg}   % laisser tel quel si pas de photo
+
+\hypersetup{
+    pdftitle    = {Curriculum vitæ — Clément Noël},
+    pdfauthor   = {Clément Noël},
+    pdfsubject  = {Curriculum vitæ},
+    pdfkeywords = {automatisme, informatique industrielle, BUT GEII, BTS CRSA}
+}
+
+
+% ==========================================================================
+%  2. MISE EN PAGE ET COMMANDES DU MODÈLE
+% ==========================================================================
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\color{texte}
+\setlist[itemize]{leftmargin=1em, label={\color{accent}\textbullet}, nosep, topsep=1pt}
+
+% Titre de section : petites capitales espacées, filet en dessous
+\newcommand{\rubrique}[1]{%
+    \vspace{7pt}%
+    {\color{accent}\large\bfseries\MakeUppercase{#1}}\par
+    \vspace{-3pt}{\color{accent}\rule{\linewidth}{0.6pt}}\par
+    \vspace{3pt}%
+}
+
+% Bloc générique : période à droite, titre en gras, organisme en italique
+\newcommand{\bloc}[4]{%
+    \begin{tabularx}{\linewidth}{@{}X r@{}}
+        \textbf{#2} & {\color{discret}\small #1} \\
+    \end{tabularx}\par
+    {\color{accent}\itshape #3}\par
+    \ifx\relax#4\relax\else{\small #4}\fi
+    \vspace{5pt}%
+}
+\newcommand{\experience}[4]{\bloc{#1}{#2}{#3}{#4}}
+\newcommand{\formation}[4]{\bloc{#1}{#2}{#3}{#4}}
+
+% Jauge de compétence sur 5 segments
+\newcommand{\plein}{{\color{accent}\rule{8pt}{3.2pt}}\hspace{1.5pt}}
+\newcommand{\vide}{{\color{clair}\rule{8pt}{3.2pt}}\hspace{1.5pt}}
+\newcommand{\jauge}[1]{%
+    \ifcase#1 \vide\vide\vide\vide\vide
+    \or \plein\vide\vide\vide\vide
+    \or \plein\plein\vide\vide\vide
+    \or \plein\plein\plein\vide\vide
+    \or \plein\plein\plein\plein\vide
+    \else \plein\plein\plein\plein\plein
+    \fi
+}
+\newcommand{\competence}[2]{\small #1 \hfill \jauge{#2}\par\vspace{1.5pt}}
+\newcommand{\domaine}[1]{\vspace{3pt}{\bfseries\small #1}\par\vspace{1pt}}
+
+% Élément de coordonnées : icône + texte
+\newcommand{\coord}[2]{{\color{accent}#1}\,\,#2}
+
+
+% ==========================================================================
+%  3. CONTENU DU CV
+% ==========================================================================
+\begin{document}
+
+% ---------------------------------------------------------------- En-tête --
+\begin{minipage}[c]{0.80\linewidth}
+    {\fontsize{26}{28}\selectfont\bfseries\color{accent}\nom}\par
+    \vspace{4pt}
+    {\Large \poste}\par
+    \vspace{8pt}
+    \small
+    \coord{\faMapMarker*}{\ville}\quad
+    \coord{\faEnvelope}{\href{mailto:\email}{\email}}\quad
+    \coord{\faLinkedin}{\href{https://www.linkedin.com/in/\linkedin/}{\linkedin}}\quad
+    \coord{\faGlobe}{\href{https://\siteweb/}{\siteweb}}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.17\linewidth}
+    \raggedleft
+    \IfFileExists{\photo}{\includegraphics[width=\linewidth]{\photo}}{}
+\end{minipage}
+
+\vspace{10pt}
+{\small Double diplômé BTS CRSA et BUT GEII (parcours Automatisme et Informatique Industrielle),
+je conçois, programme et mets en service des systèmes automatisés, de l'armoire électrique à la
+supervision. Passionné par la protection de la vie privée et l'autonomie numérique, je contribue
+à Wikipédia, OpenStreetMap et à la documentation francophone de Debian.\par}
+\vspace{4pt}
+{\small\bfseries\color{accent} En recherche d'une alternance 2026 – 2029 pour le cycle ingénieur
+industriel de l'ESTIA (Bidart).\par}
+
+% ------------------------------------------------------- Colonne gauche --
+\vspace{2pt}
+\begin{minipage}[t]{0.62\linewidth}
+
+\rubrique{Expérience professionnelle}
+
+\experience{mars 2025 – juil. 2026}{Alternant automaticien}{INEO Aquitaine (Equans) — conception industrielle}{%
+\begin{itemize}
+    \item Co-conception du rétrofit d'interfaces opérateur Schneider Electric
+    \item Installation d'une baie industrielle avec KVM et automate Siemens
+    \item Rigueur, gestion de la charge de travail et travail en équipe
+\end{itemize}}
+
+\experience{avr. 2024 – juil. 2024}{Stagiaire automaticien — bureau d'études}{ISP Aquitaine — conception industrielle}{%
+\begin{itemize}
+    \item Conception et mise en œuvre d'une supervision OPC UA
+    \item Intégration d'une cellule robotique ABB
+\end{itemize}}
+
+\experience{avr. 2021 – juil. 2021}{Stagiaire électricien de maintenance}{Lacosse Emballage — scierie}{%
+\begin{itemize}
+    \item Restauration complète et mise aux normes d'une machine de découpe de bois
+    \item Projet complet : électricité, mécanique, pneumatique, programmation
+\end{itemize}}
+
+\experience{janv. 2020 – févr. 2020}{Stagiaire vendeur conseil}{Yess Électrique — matériel électrique pour professionnels}{%
+Conseil technique à partir d'un cahier des charges, relation client.}
+
+\rubrique{Formation}
+
+\formation{2023 – 2026}{BUT GEII — Automatisme et Informatique Industrielle}{IUT de Bordeaux, Gradignan}{%
+Programmation, électronique, informatique, énergie, automatisme. Trois projets en conditions d'entreprise.}
+
+\formation{2020 – 2023}{BTS CRSA — Conception et Réalisation de Systèmes Automatiques}{Lycée Val de Garonne, Marmande}{%
+Mécanique, informatique, automatisme. Projet d'un an : conception complète d'un process et programmation robotique (Roboguide).}
+
+\rubrique{Projets}
+
+\begin{itemize}
+    \item \textbf{SAE S4 MugOchaud} — maintien en température d'un mug : armoire, automate (LADDER), maintenance
+    \item \textbf{SAE S3 Robot Mini-Sumo} — robot autonome, détection d'adversaire par capteurs VL53L0X
+    \item \textbf{Projet tuteuré Cave à vin} — régulation PID température/humidité sous TIA Portal
+    \item \textbf{BTS CRSA} — pupitre opérateur d'une machine de tri de ronds de serviette
+\end{itemize}
+
+\end{minipage}%
+\hfill
+% ------------------------------------------------------- Colonne droite --
+\begin{minipage}[t]{0.33\linewidth}
+
+\rubrique{Compétences}
+
+\domaine{Programmation industrielle}
+\competence{EcoStruxure / Vijeo Designer}{5}
+\competence{Unity Pro XL}{5}
+\competence{TIA Portal V21}{4}
+
+\domaine{Électricité \& électronique}
+\competence{Mise aux normes, entretien}{5}
+\competence{Schémas XRelais, SEE Electrical}{4}
+\competence{Dépannage de cartes}{4}
+\competence{Schémas EasyEDA, KiCad}{3}
+
+\domaine{Conception \& fabrication}
+\competence{Impression 3D, découpe laser}{5}
+\competence{Inventor, Fusion 360}{4}
+\competence{Statique, cinématique}{3}
+\competence{SolidWorks}{2}
+
+\domaine{Informatique}
+\competence{Windows, Linux, VMware}{5}
+\competence{LLM, protection des données}{5}
+\competence{Docker, VLAN, VPN}{3}
+\competence{C++, Python, HTML}{2}
+\competence{MATLAB, GNU Octave}{1}
+
+\rubrique{Diplômes}
+
+{\small
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+    BUT GEII                 & 2026 \\
+    DUT GEII                 & 2025 \\
+    BTS CRSA                 & 2023 \\
+    Bac Pro MELEC            & 2020 \\
+    BEP Électrotechnique     & 2019 \\
+    Brevet d'Initiation Aéronautique & 2019 \\
+\end{tabularx}\par}
+
+\rubrique{Centres d'intérêt}
+
+{\small
+Électronique, aéronautique et spatial (Kerbal Space Program), automatisation sur Factorio,
+serveur auto-hébergé, conception 3D, trail dans les Pyrénées. Participation à une olympiade
+de robotique.\par}
+
+\end{minipage}
+
+\end{document}
