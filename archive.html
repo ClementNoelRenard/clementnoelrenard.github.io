@@ -4,40 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Documents — Clément Noël</title>
-    <meta name="description" content="Rapports de stage, dossiers de projets et preuves de compétences de Clément Noël (PDF).">
-    <link rel="icon" type="image/png" href="./images/LOGO.png">
+    <meta name="description" content="Rapports de stage et d'alternance, dossiers de projets et preuves de compétences de Clément Noël, au format PDF.">
+    <meta name="theme-color" content="#0b0b0a">
+    <link rel="icon" type="image/png" href="images/LOGO.png">
 
-    <!-- Feuille de style commune à toutes les pages -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="style.css">
 
-    <!-- Les listes de documents sont générées depuis DOCUMENTS et CATEGORIES (js/donnees.js) -->
+    <script>document.documentElement.classList.add("js");</script>
     <script src="js/donnees.js" defer></script>
     <script src="js/composants.js" defer></script>
+    <script src="js/documents.js" defer></script>
 </head>
 
 <body data-page="documents">
-<main class="contenu-principal">
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
-    <!-- ========== NAVIGATION (générée par composants.js) ========== -->
-    <nav id="navigation"></nav>
+<header id="en-tete"></header>
 
-    <!-- ========== EN-TÊTE ========== -->
-    <header>
-        <h1 class="titre-principal">Documents</h1>
+<main id="contenu">
 
-        <p class="texte texte--introduction">
-            Archives de mes expériences professionnelles, projets académiques et compétences
-            techniques. Tous les documents sont au format PDF. Pour une vue chronologique,
-            consultez mon <a class="lien" href="parcours.html">parcours</a>.
+    <!-- ========== EN-TÊTE DE PAGE ========== -->
+    <section class="page-entete conteneur">
+        <p class="page-entete__fil etiquette-mono">
+            <a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Documents</span>
         </p>
-    </header>
+        <h1 class="page-entete__titre apparition" data-decodage>Documents</h1>
+        <p class="page-entete__intro apparition" style="--delai: 0.15s">
+            Nomenclature des rapports de stage et d'alternance, dossiers de conception et de
+            fabrication, preuves de compétences. Tapez <kbd>/</kbd> pour rechercher. Pour la vue
+            chronologique, ouvrez le <a class="lien" href="parcours.html">parcours</a>.
+        </p>
+    </section>
+    <div class="hachures" aria-hidden="true"></div>
 
-    <!-- ========== CATÉGORIES DE DOCUMENTS (générées par composants.js) ========== -->
-    <div data-composant="documents"></div>
+    <!-- ========== § 01 NOMENCLATURE (générée par documents.js) ========== -->
+    <section class="section conteneur" aria-labelledby="nomenclature-titre">
+        <div class="section__entete">
+            <span class="section__numero">§ 01</span>
+            <h2 id="nomenclature-titre" class="section__titre apparition" data-decodage>Nomenclature</h2>
+            <span class="section__ref etiquette-mono">Réf. CN-DOC-01</span>
+        </div>
 
-    <!-- ========== PIED DE PAGE (généré par composants.js) ========== -->
-    <footer id="pied-de-page" data-retour></footer>
+        <div class="outils">
+            <label class="recherche">
+                <span class="etiquette-mono">Rechercher une pièce</span>
+                <span class="recherche__champ">
+                    <input id="doc-recherche" class="recherche__entree" type="search"
+                           placeholder="INEO, rapport, C2, robot…" autocomplete="off">
+                </span>
+            </label>
+            <p id="doc-compte" class="compte etiquette-mono" aria-live="polite"></p>
+            <div id="doc-filtres" class="filtres" role="group" aria-label="Filtrer par catégorie"></div>
+        </div>
+
+        <table class="nomenclature">
+            <caption class="sr">Liste des documents PDF</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Rep.</th>
+                    <th scope="col">Référence</th>
+                    <th scope="col">Désignation</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Taille</th>
+                    <th scope="col"><span class="sr">Action</span></th>
+                </tr>
+            </thead>
+            <tbody id="doc-lignes"></tbody>
+        </table>
+        <p id="doc-vide" class="nomenclature-vide" hidden>Aucune pièce ne correspond à cette recherche.</p>
+    </section>
 
 </main>
+
+<footer id="pied-de-page"></footer>
 </body>
 </html>

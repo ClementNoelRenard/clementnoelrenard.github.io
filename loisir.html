@@ -3,39 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Loisirs — Clément Noël</title>
-    <link rel="icon" type="image/png" href="./images/LOGO.png">
+    <title>Atelier — Clément Noël</title>
+    <meta name="description" content="L'atelier de Clément Noël : impression 3D, trail, Factorio, auto-hébergement, ressources et un Snake.">
+    <meta name="theme-color" content="#0b0b0a">
+    <link rel="icon" type="image/png" href="images/LOGO.png">
 
-    <!-- Feuille de style commune à toutes les pages -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="style.css">
 
+    <script>document.documentElement.classList.add("js");</script>
     <script src="js/donnees.js" defer></script>
     <script src="js/composants.js" defer></script>
+    <script src="js/atelier.js" defer></script>
 </head>
 
-<body data-page="loisirs">
-<main class="contenu-principal">
+<body data-page="atelier">
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
-    <!-- ========== NAVIGATION (générée par composants.js) ========== -->
-    <nav id="navigation"></nav>
+<header id="en-tete"></header>
 
-    <header>
-        <h1 class="titre-principal">Loisirs</h1>
-        <p class="texte texte--introduction">
-            Page en construction : de nouveaux contenus arriveront prochainement.
+<main id="contenu">
+
+    <!-- ========== EN-TÊTE DE PAGE ========== -->
+    <section class="page-entete conteneur">
+        <p class="page-entete__fil etiquette-mono">
+            <a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Atelier</span>
         </p>
-    </header>
+        <h1 class="page-entete__titre apparition" data-decodage>Atelier</h1>
+        <p class="page-entete__intro apparition" style="--delai: 0.15s">
+            Ce qui tourne quand l'automate est à l'arrêt : conception, impression 3D, montagne,
+            serveurs maison… et un Snake pour la pause café.
+        </p>
+    </section>
+    <div class="hachures" aria-hidden="true"></div>
 
-    <section class="section">
-        <h2 class="titre-section">Mini-jeux</h2>
-        <ul class="liste-documents">
-            <li class="liste-documents__element"><a class="lien" href="snake.html">Snake</a></li>
-        </ul>
+    <!-- ========== § 01 CENTRES D'INTÉRÊT (INTERETS) ========== -->
+    <section class="section conteneur" aria-labelledby="ateliers-titre">
+        <div class="section__entete">
+            <span class="section__numero">§ 01</span>
+            <h2 id="ateliers-titre" class="section__titre apparition" data-decodage>Hors service</h2>
+            <span class="section__ref etiquette-mono">Réf. CN-ATL-01</span>
+        </div>
+        <div id="ateliers" class="ateliers"></div>
     </section>
 
-    <!-- ========== PIED DE PAGE (généré par composants.js) ========== -->
-    <footer id="pied-de-page" data-retour></footer>
+    <!-- ========== § 02 MINI-JEU ========== -->
+    <section class="section conteneur" aria-labelledby="jeu-titre">
+        <div class="section__entete">
+            <span class="section__numero">§ 02</span>
+            <span class="etiquette-mono">Mini-jeu</span>
+            <span class="section__ref etiquette-mono">Réf. CN-ATL-02</span>
+        </div>
+        <div class="lanceur apparition">
+            <div>
+                <h2 id="jeu-titre" class="lanceur__titre">Snake.exe</h2>
+                <p class="lanceur__texte">Le classique, recâblé en jaune sécurité. Clavier ou écran tactile,
+                    meilleurs scores enregistrés dans votre navigateur.</p>
+                <a class="bouton bouton--plein" href="snake.html">Lancer le jeu <span class="bouton__fleche" aria-hidden="true">→</span></a>
+            </div>
+            <div class="lanceur__ecran" aria-hidden="true">
+                <span class="lanceur__serpent"></span>
+                <span class="lanceur__pomme"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== § 03 RESSOURCES (SITE.ressources) ========== -->
+    <section class="section conteneur" aria-labelledby="ressources-titre">
+        <div class="section__entete">
+            <span class="section__numero">§ 03</span>
+            <h2 id="ressources-titre" class="section__titre apparition" data-decodage>Ressources</h2>
+            <span class="section__ref etiquette-mono">Réf. CN-ATL-03</span>
+        </div>
+        <nav id="ressources" class="ressources apparition" aria-label="Ressources externes"></nav>
+    </section>
 
 </main>
+
+<footer id="pied-de-page"></footer>
 </body>
 </html>

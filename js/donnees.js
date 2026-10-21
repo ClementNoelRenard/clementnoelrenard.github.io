@@ -1,26 +1,25 @@
 /* ==========================================================================
-   DONNÉES DU SITE — Clément Noël
+   DONNÉES DU SITE — Clément Noël · v4
    --------------------------------------------------------------------------
-   C'est le SEUL fichier à modifier pour mettre à jour le contenu du site :
-   les pages (accueil, parcours, documents) sont construites automatiquement
-   à partir des objets ci-dessous par js/composants.js et js/parcours.js.
+   C'est le SEUL fichier à modifier pour mettre à jour le contenu du site.
+   Les pages sont construites automatiquement à partir des objets ci-dessous
+   (js/composants.js, js/accueil.js, js/parcours.js, js/documents.js).
 
    SOMMAIRE
-   1. SITE         : informations générales, navigation, liens
-   2. DOCUMENTS    : tous les PDF du site (une entrée = un fichier)
-   3. CATEGORIES   : regroupement des documents sur la page « Documents »
-   4. PROFIL       : présentation utilisée par la page « Parcours »
-   5. PARCOURS     : expériences, formations et projets (frise chronologique)
-   6. COMPETENCES  : compétences techniques notées sur 5
-   7. INTERETS     : centres d'intérêt
+   1. SITE         : informations générales, menu, liens
+   2. ACCUEIL      : séquence de démarrage, modules, fiche technique
+   3. DOCUMENTS    : tous les PDF du site (une entrée = un fichier)
+   4. CATEGORIES   : regroupement des documents (page « Documents »)
+   5. PROFIL       : présentation (page « Parcours »)
+   6. PARCOURS     : expériences, formations et projets (frise)
+   7. COMPETENCES  : compétences techniques notées sur 5
+   8. INTERETS     : centres d'intérêt (page « Atelier »)
 
    AJOUTER UN DOCUMENT
    1. Déposer le PDF dans pdfs/<categorie>/ (nommage : Annee_Organisme_Type.pdf)
-   2. Ajouter une entrée dans DOCUMENTS ci-dessous :
-        "identifiant-unique": { titre: "...", fichier: "pdfs/..." },
-   3. Citer son identifiant dans CATEGORIES et/ou dans PARCOURS
-   4. (optionnel) python outils/preparer_pdfs.py  → ajoute titre et auteur
-      dans les propriétés du PDF et vérifie qu'aucun lien n'est cassé.
+   2. Ajouter une ligne dans DOCUMENTS :  "id-unique": { titre: "...", fichier: "pdfs/..." },
+   3. Citer son identifiant dans CATEGORIES et/ou dans une entrée de PARCOURS
+   Sa référence (STG-08, PRJ-10...) et sa taille sont calculées automatiquement.
    ========================================================================== */
 
 
@@ -29,39 +28,99 @@
    ========================================================================== */
 const SITE = {
     auteur:  "Clément Noël",
-    version: "v3.0",
+    version: "v4.0",
     annee:   2026,
     email:   "clementnoelrenard2001@ik.me",
     cv:      "pdfs/cv/CV_Clement-Noel.pdf",
+    statut:  "Recherche alternance 2026 – 2029",
 
-    /* Menu principal : « id » doit correspondre à <body data-page="..."> */
+    /* Menu hamburger : « id » doit correspondre à <body data-page="..."> */
     navigation: [
-        { id: "accueil",   libelle: "Accueil",   lien: "index.html" },
-        { id: "parcours",  libelle: "Parcours",  lien: "parcours.html" },
-        { id: "documents", libelle: "Documents", lien: "archive.html" },
-        { id: "loisirs",   libelle: "Loisirs",   lien: "loisir.html" },
-        { id: "contact",   libelle: "Contact",   lien: "mailto:clementnoelrenard2001@ik.me" }
+        { id: "accueil",   libelle: "Accueil",   lien: "index.html",    description: "Poste de commande" },
+        { id: "parcours",  libelle: "Parcours",  lien: "parcours.html", description: "CV dynamique, frise et compétences" },
+        { id: "documents", libelle: "Documents", lien: "archive.html",  description: "Rapports et dossiers PDF" },
+        { id: "atelier",   libelle: "Atelier",   lien: "loisir.html",   description: "Loisirs, ressources et mini-jeu" },
+        { id: "contact",   libelle: "Contact",   lien: "mailto:clementnoelrenard2001@ik.me", description: "Écrire un e-mail" }
     ],
 
-    /* Liens externes (page d'accueil et page parcours) */
+    /* Profils en ligne */
     liens: [
         { libelle: "LinkedIn", lien: "https://www.linkedin.com/in/clement-noel-renard/" },
         { libelle: "Codeberg", lien: "https://codeberg.org/ClementNoelRenard" },
         { libelle: "GitHub",   lien: "https://github.com/ClementNoelRenard" }
     ],
 
-    /* Ressources partagées sur la page d'accueil */
+    /* Ressources partagées (page « Atelier ») */
     ressources: [
         { libelle: "Logiciels alternatifs européens", lien: "https://european-alternatives.eu/alternatives-to" },
-        { libelle: "Distributions Linux (DistroWatch)", lien: "https://distrowatch.com/" }
+        { libelle: "Distributions Linux — DistroWatch", lien: "https://distrowatch.com/" }
     ]
 };
 
 
 /* ==========================================================================
-   2. DOCUMENTS
-   Chaque entrée s'écrit sur une ligne :  "id": { titre: "...", fichier: "..." },
-   (format lu aussi par outils/preparer_pdfs.py : garder les guillemets doubles)
+   2. ACCUEIL
+   ========================================================================== */
+const ACCUEIL = {
+    /* Journal affiché ligne par ligne au chargement de la page d'accueil */
+    demarrage: [
+        { texte: "Initialisation du système",   etat: "OK" },
+        { texte: "Chargement profil opérateur", etat: "OK" },
+        { texte: "BTS CRSA",                    etat: "Validé" },
+        { texte: "BUT GEII — parcours AII",     etat: "Validé" },
+        { texte: "Alternance ESTIA 2026-2029",  etat: "En cours", actif: true }
+    ],
+
+    /* Grandes cartes de navigation. {documents} = nombre de PDF, calculé */
+    modules: [
+        { code: "MOD-01", titre: "Parcours",  lien: "parcours.html", action: "Ouvrir",
+          description: "CV dynamique : expériences, formations et projets sur une frise interactive." },
+        { code: "MOD-02", titre: "Documents", lien: "archive.html",  action: "Consulter",
+          description: "{documents} rapports et dossiers techniques classés en nomenclature." },
+        { code: "MOD-03", titre: "CV papier", lien: "pdfs/cv/CV_Clement-Noel.pdf", action: "Télécharger",
+          description: "La version PDF d'une page, prête à imprimer ou à transmettre." },
+        { code: "MOD-04", titre: "Atelier",   lien: "loisir.html",   action: "Entrer",
+          description: "Impression 3D, trail, Factorio… et un Snake pour la pause." }
+    ],
+
+    /* Bandeau défilant */
+    bandeau: ["Automatisme", "Siemens TIA Portal", "Schneider EcoStruxure", "Vijeo Designer", "Unity Pro XL",
+              "OPC UA", "Robotique ABB", "Grafcet", "LADDER", "Régulation PID", "KiCad", "Fusion 360",
+              "Impression 3D", "Docker", "Linux"],
+
+    /* Plaque signalétique (sous la photo) */
+    plaque: [
+        { cle: "Opérateur", valeur: "C. Noël" },
+        { cle: "Fonction",  valeur: "Automaticien" },
+        { cle: "Millésime", valeur: "2001" },
+        { cle: "Zone",      valeur: "Pessac 33" }
+    ],
+
+    /* Fiche technique */
+    fiche: [
+        { cle: "Spécialité",    valeur: "Automatisme et informatique industrielle" },
+        { cle: "Diplômes",      valeur: "BTS CRSA (2023) · DUT GEII (2025) · BUT GEII (2026)" },
+        { cle: "Dernier poste", valeur: "Alternant automaticien — INEO Aquitaine" },
+        { cle: "Objectif",      valeur: "Cycle ingénieur industriel ESTIA (Bidart), en alternance 2026 – 2029" },
+        { cle: "Atelier",       valeur: "Conception mécanique, impression 3D FDM, auto-hébergement" }
+    ],
+
+    citation: "Apprendre et faire apprendre : l'information est mieux traitée quand on est plusieurs sur le sujet.",
+
+    apropos: [
+        "Double diplômé de cursus industriels à forte valeur ajoutée, je m'intéresse à tout ce qui touche, "
+        + "de près ou de loin, à ces domaines : automatisme, électricité, informatique industrielle, "
+        + "électronique, conception 3D.",
+        "Je reste avant tout un automaticien, qui doit savoir dialoguer avec tous les métiers d'un projet. "
+        + "Curieux et rigoureux, j'entretiens mes compétences par la veille technologique et en contribuant "
+        + "à des projets open source qui me poussent à progresser."
+    ]
+};
+
+
+/* ==========================================================================
+   3. DOCUMENTS
+   Une ligne par document :  "id": { titre: "...", fichier: "..." },
    ========================================================================== */
 const DOCUMENTS = {
     /* --- CV --- */
@@ -103,43 +162,46 @@ const DOCUMENTS = {
 
 
 /* ==========================================================================
-   3. CATÉGORIES DE LA PAGE « DOCUMENTS » (archive.html)
-   L'ordre des catégories et des documents est celui de l'affichage.
+   4. CATÉGORIES (page « Documents »)
+   court : libellé du bouton de filtre
    ========================================================================== */
 const CATEGORIES = [
     {
-        titre: "Stages & expériences professionnelles",
+        titre: "Stages & alternance", court: "Stages",
         documents: ["ineo-rapport-2026", "ineo-soutenance-2026", "ineo-rapport-2025", "ineo-soutenance-2025",
                     "isp-rapport-2024", "isp-soutenance-2024", "lacosse-rapport-2021"]
     },
     {
-        titre: "Projets & réalisations",
-        documents: ["crsa-soutenance", "ptut-cave-a-vin", "aop-liaison-sans-fil"]
-    },
-    {
-        titre: "SAE S4 — MugOchaud",
+        titre: "SAE S4 — MugOchaud", court: "SAE S4",
         documents: ["mugochaud-rapport", "mugochaud-ddc", "mugochaud-ddf"]
     },
     {
-        titre: "SAE S3 — Robot Mini-Sumo",
+        titre: "SAE S3 — Robot Mini-Sumo", court: "SAE S3",
         documents: ["rms-cdc", "rms-ddc", "rms-ddf"]
     },
     {
-        titre: "Preuves de compétences — BUT GEII",
-        description: "Rapports d'activité démontrant l'acquisition des compétences du référentiel GEII.",
+        titre: "Autres projets", court: "Projets",
+        documents: ["ptut-cave-a-vin", "aop-liaison-sans-fil", "crsa-soutenance"]
+    },
+    {
+        titre: "Preuves de compétences — BUT GEII", court: "Compétences",
         documents: ["competences-referentiel", "competence-c1", "competence-c2", "competence-c3",
-                    "mugochaud-ddc", "mugochaud-ddf", "competence-v1", "competence-v2",
-                    "competence-m1", "competence-m2", "competence-i1", "competence-g1", "competence-g2"]
+                    "competence-v1", "competence-v2", "competence-m1", "competence-m2",
+                    "competence-i1", "competence-g1", "competence-g2"]
+    },
+    {
+        titre: "Curriculum vitæ", court: "CV",
+        documents: ["cv"]
     }
 ];
 
 
 /* ==========================================================================
-   4. PROFIL (page « Parcours »)
+   5. PROFIL (page « Parcours »)
    ========================================================================== */
 const PROFIL = {
     nom:          "Clément Noël",
-    titre:        "Automaticien — Automatisme & systèmes embarqués",
+    titre:        "Automaticien — électronique & informatique industrielle",
     localisation: "Pessac (33)",
     photo:        "images/MOI3.jpg",
     accroche:     "Double diplômé BTS CRSA et BUT GEII (parcours Automatisme et Informatique Industrielle), "
@@ -150,14 +212,15 @@ const PROFIL = {
 
 
 /* ==========================================================================
-   5. PARCOURS (frise chronologique de la page « Parcours »)
+   6. PARCOURS (frise chronologique)
    type       : "experience" | "formation" | "projet"  (sert aux filtres)
    debut, fin : "AAAA-MM" ; fin: null = en cours
-   points     : liste des réalisations (affichée en puces)
-   tags       : outils ou technologies (étiquettes)
-   documents  : identifiants de DOCUMENTS (liens PDF)
+   points     : réalisations (puces)
+   tags       : outils ou technologies
+   documents  : identifiants de DOCUMENTS
    image      : illustration facultative
-   Les entrées sont triées automatiquement de la plus récente à la plus ancienne.
+   aVenir     : true pour une étape future
+   Les entrées sont triées automatiquement, de la plus récente à la plus ancienne.
    ========================================================================== */
 const PARCOURS = [
     /* ---------- Expériences professionnelles ---------- */
@@ -172,14 +235,14 @@ const PARCOURS = [
             "Installation d'une baie industrielle avec commutateur KVM et automate Siemens",
             "Organisation du travail en autonomie, gestion de la charge et travail en équipe"
         ],
-        tags: ["Schneider Vijeo Designer", "EcoStruxure", "Siemens TIA Portal", "KVM"],
+        tags: ["Vijeo Designer", "EcoStruxure", "TIA Portal", "KVM"],
         documents: ["ineo-rapport-2026", "ineo-soutenance-2026", "ineo-rapport-2025", "ineo-soutenance-2025"],
         image: "images/STAGE_INEO.png"
     },
     {
         type: "experience",
         debut: "2024-04", fin: "2024-07",
-        titre: "Stagiaire automaticien en bureau d'études",
+        titre: "Stagiaire automaticien — bureau d'études",
         organisme: "ISP Aquitaine",
         lieu: "Conception industrielle",
         points: [
@@ -196,7 +259,7 @@ const PARCOURS = [
         debut: "2021-04", fin: "2021-07",
         titre: "Stagiaire électricien de maintenance",
         organisme: "Lacosse Emballage",
-        lieu: "Scierie — maintenance industrielle",
+        lieu: "Scierie",
         points: [
             "Restauration complète d'une machine de découpe de bois",
             "Mise aux normes et réintégration dans le process de production",
@@ -232,7 +295,7 @@ const PARCOURS = [
     {
         type: "formation",
         debut: "2023-09", fin: "2026-07",
-        titre: "BUT GEII — parcours Automatisme et Informatique Industrielle",
+        titre: "BUT GEII — Automatisme et Informatique Industrielle",
         organisme: "IUT de Bordeaux",
         lieu: "Gradignan",
         points: [
@@ -335,7 +398,7 @@ const PARCOURS = [
 
 
 /* ==========================================================================
-   6. COMPÉTENCES (niveau de 1 à 5)
+   7. COMPÉTENCES (niveau de 1 à 5)
    ========================================================================== */
 const COMPETENCES = [
     {
@@ -349,7 +412,7 @@ const COMPETENCES = [
     {
         domaine: "Électricité",
         elements: [
-            { nom: "Mise aux normes, entretien",      niveau: 5 },
+            { nom: "Mise aux normes, entretien",        niveau: 5 },
             { nom: "Schémas (XRelais, SEE Electrical)", niveau: 4 }
         ]
     },
@@ -373,25 +436,32 @@ const COMPETENCES = [
     {
         domaine: "Informatique",
         elements: [
-            { nom: "Windows, Linux, VMware, Office 365",          niveau: 5 },
-            { nom: "Intégration de LLM, protection des données",  niveau: 5 },
-            { nom: "Serveurs Docker, VLAN, VPN",                  niveau: 3 },
-            { nom: "Bases de données, vidéosurveillance",         niveau: 2 },
-            { nom: "C++, Python, HTML",                           niveau: 2 },
-            { nom: "MATLAB, GNU Octave",                          niveau: 1 }
+            { nom: "Windows, Linux, VMware, Office 365",         niveau: 5 },
+            { nom: "Intégration de LLM, protection des données", niveau: 5 },
+            { nom: "Serveurs Docker, VLAN, VPN",                 niveau: 3 },
+            { nom: "Bases de données, vidéosurveillance",        niveau: 2 },
+            { nom: "C++, Python, HTML",                          niveau: 2 },
+            { nom: "MATLAB, GNU Octave",                         niveau: 1 }
         ]
     }
 ];
 
 
 /* ==========================================================================
-   7. CENTRES D'INTÉRÊT
+   8. CENTRES D'INTÉRÊT (page « Atelier » ; les titres servent aussi
+      d'étiquettes sur la page « Parcours »)
    ========================================================================== */
 const INTERETS = [
-    "Conception 3D et impression FDM",
-    "Auto-hébergement et vie privée numérique",
-    "Contributions Wikipédia, OpenStreetMap et documentation Debian",
-    "Aéronautique et spatial (BIA, Kerbal Space Program)",
-    "Optimisation de réseaux d'automatisation sur Factorio",
-    "Trail en solitaire dans les Pyrénées"
+    { titre: "Conception & impression 3D",
+      texte: "Conception mécanique sous Fusion 360 et Inventor, impression FDM et découpe laser." },
+    { titre: "Trail",
+      texte: "Sur un coup de tête, du trail en solitaire dans nos belles montagnes pyrénéennes." },
+    { titre: "Factorio",
+      texte: "Quand il est trop tard pour allumer l'imprimante (ou pour prendre un train), j'optimise mes réseaux d'automatisation." },
+    { titre: "Auto-hébergement",
+      texte: "Serveur maison, Docker, VLAN et VPN : autonomie numérique et respect de la vie privée." },
+    { titre: "Communs numériques",
+      texte: "Contributions à Wikipédia, à OpenStreetMap et à la documentation francophone de Debian." },
+    { titre: "Aéronautique & spatial",
+      texte: "Brevet d'Initiation Aéronautique, fusées sur Kerbal Space Program et olympiade de robotique." }
 ];

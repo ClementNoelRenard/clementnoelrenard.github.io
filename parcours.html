@@ -4,67 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Parcours — Clément Noël</title>
-    <meta name="description" content="CV en ligne de Clément Noël : expériences en automatisme industriel, formations (BTS CRSA, BUT GEII) et projets techniques.">
-    <link rel="icon" type="image/png" href="./images/LOGO.png">
+    <meta name="description" content="CV dynamique de Clément Noël : expériences en automatisme industriel, formations (BTS CRSA, BUT GEII), projets et compétences.">
+    <meta name="theme-color" content="#0b0b0a">
+    <link rel="icon" type="image/png" href="images/LOGO.png">
 
-    <!-- Feuille de style commune à toutes les pages -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="style.css">
 
-    <!-- Contenu (donnees.js), éléments communs (composants.js), puis construction de la page -->
+    <script>document.documentElement.classList.add("js");</script>
     <script src="js/donnees.js" defer></script>
     <script src="js/composants.js" defer></script>
     <script src="js/parcours.js" defer></script>
 </head>
 
 <body data-page="parcours">
-<main class="contenu-principal contenu-principal--large">
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
-    <!-- ========== NAVIGATION (générée par composants.js) ========== -->
-    <nav id="navigation"></nav>
+<header id="en-tete"></header>
 
-    <!-- ========== PROFIL (généré par parcours.js depuis PROFIL) ========== -->
-    <header id="cv-profil" class="cv-profil"></header>
+<main id="contenu">
 
-    <!-- ========== CHIFFRES CLÉS (calculés depuis les données) ========== -->
-    <section class="section" aria-label="Chiffres clés">
-        <div id="cv-chiffres" class="chiffres"></div>
+    <!-- ========== EN-TÊTE DE PAGE ========== -->
+    <section class="page-entete conteneur">
+        <p class="page-entete__fil etiquette-mono">
+            <a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Parcours</span>
+        </p>
+        <h1 class="page-entete__titre apparition" data-decodage>Parcours</h1>
+        <p class="page-entete__intro apparition" style="--delai: 0.15s">
+            CV dynamique : expériences, formations et projets sur une frise qui s'allume au
+            défilement. Filtrez par type, ouvrez les rapports liés, ou imprimez la page.
+        </p>
     </section>
+    <div class="hachures" aria-hidden="true"></div>
 
-    <!-- ========== FRISE CHRONOLOGIQUE ========== -->
-    <section class="section">
+    <!-- ========== § 01 PROFIL (PROFIL) ========== -->
+    <section class="section conteneur" aria-labelledby="profil-titre">
         <div class="section__entete">
-            <h2 class="titre-section">Parcours</h2>
-            <div id="cv-filtres" class="filtres" role="group" aria-label="Filtrer le parcours"></div>
+            <span class="section__numero">§ 01</span>
+            <h2 id="profil-titre" class="section__titre apparition" data-decodage>Profil</h2>
+            <span class="section__ref etiquette-mono">Réf. CN-PAR-01</span>
         </div>
-        <ol id="cv-frise" class="frise"></ol>
+        <div id="cv-profil"></div>
+        <div data-composant="chiffres"></div>
     </section>
 
-    <!-- ========== COMPÉTENCES ========== -->
-    <section class="section">
-        <h2 class="titre-section">Compétences techniques</h2>
+    <!-- ========== § 02 CHRONOLOGIE (PARCOURS) ========== -->
+    <section class="section conteneur" aria-labelledby="frise-titre">
+        <div class="section__entete">
+            <span class="section__numero">§ 02</span>
+            <h2 id="frise-titre" class="section__titre apparition" data-decodage>Chronologie</h2>
+            <span class="section__ref etiquette-mono">Réf. CN-PAR-02</span>
+        </div>
+        <div class="barre-filtres">
+            <div id="cv-filtres" class="filtres" role="group" aria-label="Filtrer la chronologie"></div>
+        </div>
+        <div id="cv-frise" class="frise"></div>
+    </section>
+
+    <!-- ========== § 03 COMPÉTENCES (COMPETENCES) ========== -->
+    <section class="section conteneur" aria-labelledby="competences-titre">
+        <div class="section__entete">
+            <span class="section__numero">§ 03</span>
+            <h2 id="competences-titre" class="section__titre apparition" data-decodage>Compétences</h2>
+            <span class="section__ref etiquette-mono">Réf. CN-PAR-03</span>
+        </div>
+        <p class="section__intro">Auto-évaluation sur 5, de la découverte (1) à la maîtrise en autonomie (5).</p>
         <div id="cv-competences" class="competences"></div>
     </section>
 
-    <!-- ========== CENTRES D'INTÉRÊT ========== -->
-    <section class="section">
-        <h2 class="titre-section">Centres d'intérêt</h2>
-        <ul id="cv-interets" class="tags"></ul>
+    <!-- ========== § 04 CENTRES D'INTÉRÊT (INTERETS) ========== -->
+    <section class="section conteneur" aria-labelledby="interets-titre">
+        <div class="section__entete">
+            <span class="section__numero">§ 04</span>
+            <h2 id="interets-titre" class="section__titre apparition" data-decodage>Hors service</h2>
+            <span class="section__ref etiquette-mono">Réf. CN-PAR-04</span>
+        </div>
+        <ul data-composant="interets" class="apparition"></ul>
+        <p class="masquer-impression" style="margin-top: 32px">
+            <a class="bouton" href="loisir.html">Entrer dans l'atelier <span class="bouton__fleche" aria-hidden="true">→</span></a>
+        </p>
     </section>
 
-    <!-- ========== ACTIONS ========== -->
-    <section class="section masquer-impression">
-        <button id="cv-imprimer" class="bouton" type="button">Imprimer cette page / enregistrer en PDF</button>
-    </section>
-
-    <!-- Message affiché uniquement si JavaScript est désactivé -->
     <noscript>
-        <p class="texte">Cette page nécessite JavaScript. Vous pouvez
-            <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf">télécharger le CV au format PDF</a>.</p>
+        <p class="conteneur">Cette page nécessite JavaScript.
+            <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf">Télécharger le CV au format PDF</a>.</p>
     </noscript>
 
-    <!-- ========== PIED DE PAGE (généré par composants.js) ========== -->
-    <footer id="pied-de-page" data-retour></footer>
-
 </main>
+
+<footer id="pied-de-page"></footer>
 </body>
 </html>
