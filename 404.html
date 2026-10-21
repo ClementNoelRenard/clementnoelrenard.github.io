@@ -3,48 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Défaut 404 — Clément Noël</title>
+    <title>Page introuvable — Clément Noël</title>
     <meta name="robots" content="noindex">
-    <meta name="theme-color" content="#0b0b0a">
 
-    <!-- GitHub Pages sert cette page pour toute adresse introuvable, même dans
+    <!-- GitHub Pages affiche cette page pour toute adresse introuvable, même dans
          un sous-dossier : <base> fait partir tous les liens de la racine du site. -->
     <base href="/">
 
     <link rel="icon" type="image/png" href="images/LOGO.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="style.css">
-
-    <script>document.documentElement.classList.add("js");</script>
-    <script src="js/donnees.js" defer></script>
-    <script src="js/composants.js" defer></script>
 </head>
 
-<body data-page="defaut" data-titre="Défaut 404">
+<body>
+<main class="contenu-principal">
 
-<header id="en-tete"></header>
+    <div class="barre">
+        <a class="barre__nom" href="index.html">Clément Noël</a>
+    </div>
 
-<main id="contenu">
-    <section class="defaut conteneur">
-        <p class="defaut__code apparition" aria-hidden="true">404</p>
-        <h1 class="defaut__titre apparition" style="--delai: 0.1s">
-            <span class="led led--rouge led--clignote" aria-hidden="true"></span>
-            Défaut : adresse introuvable
-        </h1>
-        <pre class="defaut__journal apparition" style="--delai: 0.2s">&gt; Requête ............... reçue
-&gt; Recherche du module ... échec
-&gt; Code défaut ........... 404
-&gt; Action ................ retour au poste de commande</pre>
-        <div class="groupe-boutons apparition" style="--delai: 0.3s">
-            <a class="bouton bouton--plein" href="index.html">Réarmer → accueil</a>
-            <a class="bouton" href="parcours.html">Parcours</a>
-            <a class="bouton" href="archive.html">Documents</a>
+    <header>
+        <p class="code-erreur">404</p>
+        <h1 class="titre-principal">Page introuvable</h1>
+        <p class="texte texte--introduction">
+            Cette adresse ne mène nulle part. Le document a peut-être été déplacé.
+        </p>
+    </header>
+
+    <section class="section">
+        <div class="liste-liens">
+            <a class="lien" href="index.html">← Retour à l'accueil</a>
+            <a class="lien" href="parcours.html">Parcours</a>
+            <a class="lien" href="archive.html">Documents</a>
         </div>
     </section>
-</main>
 
-<footer id="pied-de-page"></footer>
+    <footer class="pied-de-page">
+        © 2026 — Clément Noël — v5.0
+    </footer>
+
+</main>
 </body>
 </html>

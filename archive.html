@@ -5,80 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Documents — Clément Noël</title>
     <meta name="description" content="Rapports de stage et d'alternance, dossiers de projets et preuves de compétences de Clément Noël, au format PDF.">
-    <meta name="theme-color" content="#0b0b0a">
     <link rel="icon" type="image/png" href="images/LOGO.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+    <!-- Feuille de style commune à toutes les pages -->
     <link rel="stylesheet" href="style.css">
-
-    <script>document.documentElement.classList.add("js");</script>
-    <script src="js/donnees.js" defer></script>
-    <script src="js/composants.js" defer></script>
-    <script src="js/documents.js" defer></script>
 </head>
 
-<body data-page="documents">
-<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<body>
+<main class="contenu-principal">
 
-<header id="en-tete"></header>
+    <!-- ========== BARRE DU HAUT + MENU HAMBURGER (bloc commun) ========== -->
+    <div class="barre">
+        <a class="barre__nom" href="index.html">Clément Noël</a>
+    </div>
+    <details class="menu">
+        <summary class="menu__bouton" aria-label="Menu">
+            <span class="menu__icone" aria-hidden="true"><span></span><span></span><span></span></span>
+        </summary>
+        <nav class="menu__panneau" aria-label="Navigation principale">
+            <ol class="menu__liste">
+                <li class="menu__element" style="--i: 0"><a class="menu__lien" href="index.html"><span class="menu__numero">01</span><span class="menu__libelle">Accueil</span><span class="menu__description">Présentation</span></a></li>
+                <li class="menu__element" style="--i: 1"><a class="menu__lien" href="parcours.html"><span class="menu__numero">02</span><span class="menu__libelle">Parcours</span><span class="menu__description">CV, frise et compétences</span></a></li>
+                <li class="menu__element" style="--i: 2"><a class="menu__lien" href="archive.html" aria-current="page"><span class="menu__numero">03</span><span class="menu__libelle">Documents</span><span class="menu__description">Rapports et dossiers PDF</span></a></li>
+                <li class="menu__element" style="--i: 3"><a class="menu__lien" href="loisir.html"><span class="menu__numero">04</span><span class="menu__libelle">Atelier</span><span class="menu__description">Loisirs et mini-jeu</span></a></li>
+                <li class="menu__element" style="--i: 4"><a class="menu__lien" href="mailto:clementnoelrenard2001@ik.me"><span class="menu__numero">05</span><span class="menu__libelle">Contact</span><span class="menu__description">Écrire un e-mail</span></a></li>
+            </ol>
+            <p class="menu__pied texte--discret">
+                <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+                <a class="lien" href="https://www.linkedin.com/in/clement-noel-renard/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="lien" href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">Codeberg</a>
+                <a class="lien" href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">GitHub</a>
+            </p>
+        </nav>
+    </details>
 
-<main id="contenu">
+    <!-- ========== EN-TÊTE ========== -->
+    <header>
+        <h1 class="titre-principal">Documents</h1>
 
-    <!-- ========== EN-TÊTE DE PAGE ========== -->
-    <section class="page-entete conteneur">
-        <p class="page-entete__fil etiquette-mono">
-            <a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Documents</span>
+        <p class="texte texte--introduction">
+            Archives de mes expériences professionnelles, projets académiques et compétences
+            techniques, au format PDF. Choisissez une catégorie pour trier la liste. Pour la vue
+            chronologique, consultez mon <a class="lien" href="parcours.html">parcours</a>.
         </p>
-        <h1 class="page-entete__titre apparition" data-decodage>Documents</h1>
-        <p class="page-entete__intro apparition" style="--delai: 0.15s">
-            Nomenclature des rapports de stage et d'alternance, dossiers de conception et de
-            fabrication, preuves de compétences. Tapez <kbd>/</kbd> pour rechercher. Pour la vue
-            chronologique, ouvrez le <a class="lien" href="parcours.html">parcours</a>.
-        </p>
-    </section>
-    <div class="hachures" aria-hidden="true"></div>
+    </header>
 
-    <!-- ========== § 01 NOMENCLATURE (générée par documents.js) ========== -->
-    <section class="section conteneur" aria-labelledby="nomenclature-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 01</span>
-            <h2 id="nomenclature-titre" class="section__titre apparition" data-decodage>Nomenclature</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-DOC-01</span>
-        </div>
+    <!-- ========== DOCUMENTS TRIÉS PAR CATÉGORIE ==========
+         Tri sans JavaScript (style.css § 8) : le bouton n°N affiche
+         uniquement les sections « groupe-N ».
+         AJOUTER UN DOCUMENT : déposer le PDF dans pdfs/<categorie>/, puis
+         copier une ligne <li class="liste-documents__element"> dans la bonne
+         section (référence, titre, taille) et mettre à jour les compteurs. -->
+    <div class="tri">
 
-        <div class="outils">
-            <label class="recherche">
-                <span class="etiquette-mono">Rechercher une pièce</span>
-                <span class="recherche__champ">
-                    <input id="doc-recherche" class="recherche__entree" type="search"
-                           placeholder="INEO, rapport, C2, robot…" autocomplete="off">
-                </span>
-            </label>
-            <p id="doc-compte" class="compte etiquette-mono" aria-live="polite"></p>
-            <div id="doc-filtres" class="filtres" role="group" aria-label="Filtrer par catégorie"></div>
-        </div>
+        <fieldset class="tri__boutons">
+            <legend class="sr">Catégorie affichée</legend>
+            <label class="tri__bouton tri__bouton--0"><input class="tri__choix tri__choix--0 sr" type="radio" name="tri-documents" checked> Tout (28)</label>
+            <label class="tri__bouton tri__bouton--1"><input class="tri__choix tri__choix--1 sr" type="radio" name="tri-documents"> Stages (7)</label>
+            <label class="tri__bouton tri__bouton--2"><input class="tri__choix tri__choix--2 sr" type="radio" name="tri-documents"> SAE S4 (3)</label>
+            <label class="tri__bouton tri__bouton--3"><input class="tri__choix tri__choix--3 sr" type="radio" name="tri-documents"> SAE S3 (3)</label>
+            <label class="tri__bouton tri__bouton--4"><input class="tri__choix tri__choix--4 sr" type="radio" name="tri-documents"> Projets (3)</label>
+            <label class="tri__bouton tri__bouton--5"><input class="tri__choix tri__choix--5 sr" type="radio" name="tri-documents"> Compétences (11)</label>
+            <label class="tri__bouton tri__bouton--6"><input class="tri__choix tri__choix--6 sr" type="radio" name="tri-documents"> CV (1)</label>
+        </fieldset>
 
-        <table class="nomenclature">
-            <caption class="sr">Liste des documents PDF</caption>
-            <thead>
-                <tr>
-                    <th scope="col">Rep.</th>
-                    <th scope="col">Référence</th>
-                    <th scope="col">Désignation</th>
-                    <th scope="col">Catégorie</th>
-                    <th scope="col">Taille</th>
-                    <th scope="col"><span class="sr">Action</span></th>
-                </tr>
-            </thead>
-            <tbody id="doc-lignes"></tbody>
-        </table>
-        <p id="doc-vide" class="nomenclature-vide" hidden>Aucune pièce ne correspond à cette recherche.</p>
-    </section>
+        <!-- ===== 01 : STAGES ET ALTERNANCE ===== -->
+        <section class="section tri__element groupe-1">
+            <h2 class="titre-section">01 — Stages &amp; alternance</h2>
+            <ul class="liste-documents">
+                <li class="liste-documents__element"><a class="document" href="pdfs/stages/2026_INEO-Aquitaine_Rapport-alternance.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-01</span><span class="document__titre">Rapport d'alternance 2026 — INEO Aquitaine</span><span class="document__taille">9,8 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/stages/2026_INEO-Aquitaine_Soutenance-alternance.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-02</span><span class="document__titre">Support de soutenance d'alternance 2026 — INEO Aquitaine</span><span class="document__taille">2,1 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/stages/2025_INEO-Aquitaine_Rapport-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-03</span><span class="document__titre">Rapport de stage 2025 — INEO Aquitaine</span><span class="document__taille">16,4 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/stages/2025_INEO-Aquitaine_Soutenance-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-04</span><span class="document__titre">Support de soutenance de stage 2025 — INEO Aquitaine</span><span class="document__taille">5,8 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/stages/2024_ISP-Aquitaine_Rapport-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-05</span><span class="document__titre">Rapport de stage 2024 — ISP Aquitaine</span><span class="document__taille">2,7 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/stages/2024_ISP-Aquitaine_Soutenance-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-06</span><span class="document__titre">Support de soutenance de stage 2024 — ISP Aquitaine</span><span class="document__taille">4,3 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/stages/2021_Lacosse-Emballage_Rapport-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-07</span><span class="document__titre">Rapport de stage BTS CRSA — Lacosse Emballage</span><span class="document__taille">4,5 Mo</span></a></li>
+            </ul>
+        </section>
+
+        <!-- ===== 02 : SAE S4 — MUGOCHAUD ===== -->
+        <section class="section tri__element groupe-2">
+            <h2 class="titre-section">02 — SAE S4 — MugOchaud</h2>
+            <ul class="liste-documents">
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S4_MugOchaud_Rapport.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-04</span><span class="document__titre">Rapport de projet</span><span class="document__taille">613 ko</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S4_MugOchaud_Dossier-de-conception.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-05</span><span class="document__titre">Dossier de conception</span><span class="document__taille">2,2 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S4_MugOchaud_Dossier-de-fabrication.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-06</span><span class="document__titre">Dossier de fabrication</span><span class="document__taille">3,0 Mo</span></a></li>
+            </ul>
+        </section>
+
+        <!-- ===== 03 : SAE S3 — ROBOT MINI-SUMO ===== -->
+        <section class="section tri__element groupe-3">
+            <h2 class="titre-section">03 — SAE S3 — Robot Mini-Sumo</h2>
+            <ul class="liste-documents">
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S3_Robot-Mini-Sumo_Cahier-des-charges.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-07</span><span class="document__titre">Cahier des charges</span><span class="document__taille">1,7 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S3_Robot-Mini-Sumo_Dossier-de-conception.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-08</span><span class="document__titre">Dossier de conception détaillée</span><span class="document__taille">1,3 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S3_Robot-Mini-Sumo_Dossier-de-fabrication.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-09</span><span class="document__titre">Dossier de fabrication</span><span class="document__taille">584 ko</span></a></li>
+            </ul>
+        </section>
+
+        <!-- ===== 04 : AUTRES PROJETS ===== -->
+        <section class="section tri__element groupe-4">
+            <h2 class="titre-section">04 — Autres projets</h2>
+            <ul class="liste-documents">
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/PTUT_Cave-a-vin_Rapport.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-02</span><span class="document__titre">Projet tuteuré — Cave à vin</span><span class="document__taille">1,3 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/AOP-S4_Liaison-sans-fil_Soutenance.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-03</span><span class="document__titre">AOP S4 — Liaison sans fil (module NRF24L01)</span><span class="document__taille">2,0 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/projets/BTS-CRSA_Tri-ronds-de-serviette_Soutenance.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-01</span><span class="document__titre">Projet BTS CRSA — Machine de tri de ronds de serviette</span><span class="document__taille">4,5 Mo</span></a></li>
+            </ul>
+        </section>
+
+        <!-- ===== 05 : PREUVES DE COMPÉTENCES — BUT GEII ===== -->
+        <section class="section tri__element groupe-5">
+            <h2 class="titre-section">05 — Preuves de compétences — BUT GEII</h2>
+            <p class="texte texte--discret">Rapports d'activité démontrant l'acquisition des compétences du référentiel GEII.</p>
+            <ul class="liste-documents">
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_Referentiel-competences.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-01</span><span class="document__titre">Référentiel des compétences du BUT GEII</span><span class="document__taille">259 ko</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_C1_Analyse-fonctionnelle.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-02</span><span class="document__titre">C1 — J'identifie les fonctions demandées à la lecture du cahier des charges</span><span class="document__taille">188 ko</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_C2_Solution-technique.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-03</span><span class="document__titre">C2 — Je propose une solution technique pour répondre à une fonction</span><span class="document__taille">344 ko</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_C3_Maquettage.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-04</span><span class="document__titre">C3 — J'affine une solution technique par un maquettage numérique ou matériel</span><span class="document__taille">1,6 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_V1_Procedure-essais.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-05</span><span class="document__titre">V1 — J'applique, j'élabore et je rédige une procédure d'essais</span><span class="document__taille">1,9 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_V2_Non-conformites.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-06</span><span class="document__titre">V2 — J'identifie et je corrige les non-conformités d'un prototype</span><span class="document__taille">3,4 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_M1_Operation-maintenance.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-07</span><span class="document__titre">M1 — J'applique une opération de maintenance à un système</span><span class="document__taille">1013 ko</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_M2_Procedure-maintenance.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-08</span><span class="document__titre">M2 — Je rédige la procédure de maintenance d'un système</span><span class="document__taille">2,3 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_I1_Installation-mise-en-service.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-09</span><span class="document__titre">I1.1 &amp; I1.2 — J'installe, je mets en service et je gère l'installation d'un système</span><span class="document__taille">360 ko</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_G1_Documents-professionnels.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-10</span><span class="document__titre">G1 — Je rédige et j'archive des documents professionnels</span><span class="document__taille">4,8 Mo</span></a></li>
+                <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_G2_Taches-administratives.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-11</span><span class="document__titre">G2 — J'effectue des tâches administratives</span><span class="document__taille">379 ko</span></a></li>
+            </ul>
+        </section>
+
+        <!-- ===== 06 : CURRICULUM VITÆ ===== -->
+        <section class="section tri__element groupe-6">
+            <h2 class="titre-section">06 — Curriculum vitæ</h2>
+            <ul class="liste-documents">
+                <li class="liste-documents__element"><a class="document" href="pdfs/cv/CV_Clement-Noel.pdf" target="_blank" rel="noopener"><span class="document__ref">CV-01</span><span class="document__titre">Curriculum vitæ — Clément Noël</span><span class="document__taille">833 ko</span></a></li>
+            </ul>
+        </section>
+
+    </div>
+
+    <!-- ========== PIED DE PAGE ========== -->
+    <footer class="pied-de-page">
+        <a class="lien" href="index.html">← Retour à l'accueil</a>
+        <div class="pied-de-page__espace"></div>
+        © 2026 — Clément Noël — v5.0
+    </footer>
 
 </main>
-
-<footer id="pied-de-page"></footer>
 </body>
 </html>

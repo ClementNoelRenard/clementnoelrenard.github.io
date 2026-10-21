@@ -4,123 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Clément Noël — Automaticien</title>
-    <meta name="description" content="Clément Noël, automaticien diplômé BTS CRSA et BUT GEII : parcours, projets, rapports techniques. En recherche d'alternance ingénieur 2026 – 2029.">
-    <meta name="theme-color" content="#0b0b0a">
+    <meta name="description" content="Clément Noël, automaticien diplômé BTS CRSA et BUT GEII : parcours, projets et rapports techniques.">
     <link rel="icon" type="image/png" href="images/LOGO.png">
 
-    <!-- Polices : Big Shoulders (titres, pochoir) et JetBrains Mono (texte) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+    <!-- Feuille de style commune à toutes les pages -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Active les animations d'apparition (sans JavaScript, tout reste visible) -->
-    <script>document.documentElement.classList.add("js");</script>
-    <script src="js/donnees.js" defer></script>
-    <script src="js/composants.js" defer></script>
-    <script src="js/oscilloscope.js" defer></script>
-    <script src="js/accueil.js" defer></script>
 </head>
 
-<body data-page="accueil">
-<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<body>
+<main class="contenu-principal">
 
-<!-- ========== EN-TÊTE + MENU HAMBURGER (générés par composants.js) ========== -->
-<header id="en-tete"></header>
+    <!-- ========== BARRE DU HAUT + MENU HAMBURGER ==========
+         Bloc identique sur toutes les pages : seul aria-current="page"
+         change de lien. Pour ajouter une page : copier une ligne <li>. -->
+    <div class="barre">
+        <a class="barre__nom" href="index.html">Clément Noël</a>
+    </div>
+    <details class="menu">
+        <summary class="menu__bouton" aria-label="Menu">
+            <span class="menu__icone" aria-hidden="true"><span></span><span></span><span></span></span>
+        </summary>
+        <nav class="menu__panneau" aria-label="Navigation principale">
+            <ol class="menu__liste">
+                <li class="menu__element" style="--i: 0"><a class="menu__lien" href="index.html" aria-current="page"><span class="menu__numero">01</span><span class="menu__libelle">Accueil</span><span class="menu__description">Présentation</span></a></li>
+                <li class="menu__element" style="--i: 1"><a class="menu__lien" href="parcours.html"><span class="menu__numero">02</span><span class="menu__libelle">Parcours</span><span class="menu__description">CV, frise et compétences</span></a></li>
+                <li class="menu__element" style="--i: 2"><a class="menu__lien" href="archive.html"><span class="menu__numero">03</span><span class="menu__libelle">Documents</span><span class="menu__description">Rapports et dossiers PDF</span></a></li>
+                <li class="menu__element" style="--i: 3"><a class="menu__lien" href="loisir.html"><span class="menu__numero">04</span><span class="menu__libelle">Atelier</span><span class="menu__description">Loisirs et mini-jeu</span></a></li>
+                <li class="menu__element" style="--i: 4"><a class="menu__lien" href="mailto:clementnoelrenard2001@ik.me"><span class="menu__numero">05</span><span class="menu__libelle">Contact</span><span class="menu__description">Écrire un e-mail</span></a></li>
+            </ol>
+            <p class="menu__pied texte--discret">
+                <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+                <a class="lien" href="https://www.linkedin.com/in/clement-noel-renard/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="lien" href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">Codeberg</a>
+                <a class="lien" href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">GitHub</a>
+            </p>
+        </nav>
+    </details>
 
-<main id="contenu">
+    <!-- ========== EN-TÊTE : présentation ========== -->
+    <header class="en-tete">
+        <h1 class="titre-principal">Clément Noël</h1>
 
-    <!-- ========== HÉROS : démarrage, nom, oscilloscope ========== -->
-    <section class="heros">
-        <div class="conteneur heros__grille">
-            <div>
-                <ol id="demarrage" class="demarrage" aria-label="Séquence de démarrage"></ol>
+        <!-- Photo de profil (à droite du texte sur grand écran, sous le nom sinon) -->
+        <img class="photo-profil" src="images/MOI3.jpg" alt="Photo de Clément Noël">
 
-                <h1 class="heros__nom">
-                    <span class="apparition" data-decodage>Clément</span>
-                    <span class="apparition heros__nom-contour" style="--delai: 0.12s" data-decodage>Noël</span>
-                </h1>
+        <p class="texte texte--justifie">
+            Je suis spécialisé dans la conception et l'informatique industrielles. Grâce à mes
+            expériences professionnelles et à mes diplômes (BTS CRSA et BUT GEII parcours AII),
+            je suis capable d'appréhender l'ensemble des métiers impliqués dans un même projet.
+            Mon domaine d'expertise principal reste l'automatisme.
+        </p>
 
-                <p class="heros__titre apparition" style="--delai: 0.25s">
-                    Automaticien <b>//</b> électronique &amp; informatique industrielle.
-                    BTS CRSA + BUT GEII, en route vers le titre d'ingénieur.
-                </p>
+        <p class="texte texte--justifie texte--accent">
+            En recherche d'une alternance 2026 – 2029 pour mon cursus d'ingénieur industriel
+            à l'ESTIA (Bidart).
+        </p>
 
-                <div class="groupe-boutons apparition" style="--delai: 0.35s">
-                    <a class="bouton bouton--plein" href="parcours.html">Ouvrir le parcours <span class="bouton__fleche" aria-hidden="true">→</span></a>
-                    <a class="bouton" href="archive.html">Rapports PDF</a>
-                    <a class="bouton bouton--discret" data-composant="cv">CV.pdf <span class="bouton__fleche" aria-hidden="true">↓</span></a>
-                </div>
-            </div>
+        <p class="texte">
+            <a class="lien" href="parcours.html">Voir mon parcours</a>
+            &nbsp;·&nbsp;
+            <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf" target="_blank" rel="noopener">Télécharger mon CV (PDF)</a>
+        </p>
+    </header>
 
-            <!-- Oscilloscope (js/oscilloscope.js) -->
-            <figure class="instrument apparition" style="--delai: 0.2s" data-oscilloscope>
-                <div class="instrument__entete etiquette-mono">
-                    <span class="instrument__modele">OSC-01</span>
-                    <span class="voie voie--1">CH1</span>
-                    <span class="voie voie--2">CH2</span>
-                    <span class="led led--vert led--clignote" aria-hidden="true"></span>
-                </div>
-                <canvas class="instrument__ecran" role="img"
-                        aria-label="Oscilloscope animé : une sinusoïde jaune et un signal carré vert"></canvas>
-                <dl class="instrument__mesures">
-                    <div class="instrument__mesure"><dt class="etiquette-mono">Fréquence</dt><dd data-mesure="frequence">—</dd></div>
-                    <div class="instrument__mesure"><dt class="etiquette-mono">CH1 crête</dt><dd data-mesure="amplitude">—</dd></div>
-                    <div class="instrument__mesure"><dt class="etiquette-mono">CH2 rapport</dt><dd data-mesure="rapport">—</dd></div>
-                </dl>
-                <figcaption class="instrument__legende etiquette-mono">↔ fréquence · ↕ amplitude — survolez l'écran</figcaption>
-            </figure>
-        </div>
+    <!-- ========== SECTION : à propos ========== -->
+    <section class="section">
+        <h2 class="titre-section">À propos</h2>
 
-        <a class="heros__defiler etiquette-mono" href="#modules-titre">Défiler</a>
+        <p class="texte texte--justifie">
+            Double diplômé de cursus industriels à forte valeur ajoutée, j'ai envie d'apprendre
+            tout ce qui touche, de près ou de loin, à ces domaines. Mes compétences sont variées
+            — automatisme, électricité, informatique industrielle, électronique, conception 3D —
+            mais je reste avant tout un automaticien, qui doit savoir communiquer de façon fluide
+            avec tous les métiers qui dialoguent avec le sien.
+        </p>
+
+        <p class="texte texte--justifie">
+            Mon approche est simple : apprendre et faire apprendre. L'information est mieux
+            traitée quand on est plusieurs sur le sujet.
+        </p>
+
+        <p class="texte texte--justifie">
+            Curieux et rigoureux, j'approfondis mes compétences par la veille technologique et
+            en contribuant à des projets open source qui me poussent à progresser.
+        </p>
     </section>
 
-    <!-- ========== BANDEAU DÉFILANT (ACCUEIL.bandeau) ========== -->
-    <div data-composant="bandeau" aria-label="Technologies"></div>
+    <!-- ========== SECTION : parcours ========== -->
+    <section class="section">
+        <h2 class="titre-section">Parcours</h2>
 
-    <!-- ========== § 01 MODULES : accès au parcours, aux rapports, au CV ========== -->
-    <section class="section conteneur" aria-labelledby="modules-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 01</span>
-            <h2 id="modules-titre" class="section__titre apparition" data-decodage>Modules</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-ACC-01</span>
-        </div>
-        <p class="section__intro">Sélectionnez un module : le parcours complet, les rapports techniques, le CV papier ou l'atelier.</p>
-        <div id="modules" class="modules"></div>
+        <p class="texte texte--justifie">
+            Expériences en entreprise, formations, projets et compétences, sur une frise
+            chronologique que l'on peut trier.
+        </p>
+        <a class="lien" href="parcours.html">Consulter mon parcours →</a>
     </section>
 
-    <!-- ========== § 02 FICHE TECHNIQUE ========== -->
-    <section class="section conteneur" aria-labelledby="fiche-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 02</span>
-            <h2 id="fiche-titre" class="section__titre apparition" data-decodage>Fiche technique</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-ACC-02</span>
-        </div>
-        <div id="fiche" class="fiche"></div>
-        <div data-composant="chiffres"></div>
+    <!-- ========== SECTION : documents ========== -->
+    <section class="section">
+        <h2 class="titre-section">Documents</h2>
+
+        <p class="texte texte--justifie">
+            Rapports de stage et d'alternance, dossiers de projets et preuves de compétences
+            au format PDF, classés par catégorie.
+        </p>
+        <a class="lien" href="archive.html">Consulter les documents →</a>
     </section>
 
-    <!-- ========== § 03 CONTACT ========== -->
-    <section class="section conteneur contact" aria-labelledby="contact-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 03</span>
-            <span class="etiquette-mono">Liaison</span>
-            <span class="section__ref etiquette-mono">Réf. CN-ACC-03</span>
-        </div>
-        <h2 id="contact-titre" class="contact__accroche apparition">Parlons<br><span>automatisme.</span></h2>
-        <a class="contact__email apparition" data-composant="email"></a>
-        <div data-composant="liens"></div>
+    <!-- ========== SECTION : centres d'intérêt ========== -->
+    <section class="section">
+        <h2 class="titre-section">Centres d'intérêt</h2>
+
+        <p class="texte texte--justifie">
+            Sur mon temps libre, je fais de la conception et de l'impression 3D ou, sur un coup
+            de tête, je pars en trail en solitaire dans nos belles montagnes pyrénéennes. Quand il
+            est trop tard pour allumer l'imprimante (ou pour prendre un billet de train ^^),
+            j'optimise mes réseaux sur Factorio !
+        </p>
+        <a class="lien" href="loisir.html">Entrer dans l'atelier →</a>
     </section>
+
+    <!-- ========== SECTION : ressources et liens ========== -->
+    <section class="section">
+        <h2 class="titre-section">Ressources &amp; liens</h2>
+        <div class="liste-liens">
+            <a class="lien" href="https://www.linkedin.com/in/clement-noel-renard/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="lien" href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">Dépôt Codeberg</a>
+            <a class="lien" href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">GitHub</a>
+            <a class="lien" href="https://european-alternatives.eu/alternatives-to" target="_blank" rel="noopener">Logiciels alternatifs européens</a>
+            <a class="lien" href="https://distrowatch.com/" target="_blank" rel="noopener">Distributions Linux</a>
+        </div>
+    </section>
+
+    <!-- ========== SECTION : contact ========== -->
+    <section class="section">
+        <h2 class="titre-section">Contact</h2>
+        <p class="texte">
+            <a class="lien" href="mailto:clementnoelrenard2001@ik.me">clementnoelrenard2001@ik.me</a>
+        </p>
+    </section>
+
+    <!-- ========== PIED DE PAGE ========== -->
+    <footer class="pied-de-page">
+        © 2026 — Clément Noël — v5.0
+    </footer>
 
 </main>
-
-<!-- ========== PIED DE PAGE : CARTOUCHE (généré par composants.js) ========== -->
-<footer id="pied-de-page"></footer>
-
-<noscript>
-    <p class="conteneur">Ce site utilise JavaScript pour sa navigation.
-        <a class="lien" href="parcours.html">Parcours</a> · <a class="lien" href="archive.html">Documents</a> ·
-        <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf">CV PDF</a></p>
-</noscript>
 </body>
 </html>

@@ -4,96 +4,374 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Parcours — Clément Noël</title>
-    <meta name="description" content="CV dynamique de Clément Noël : expériences en automatisme industriel, formations (BTS CRSA, BUT GEII), projets et compétences.">
-    <meta name="theme-color" content="#0b0b0a">
+    <meta name="description" content="Parcours de Clément Noël : expériences en automatisme industriel, formations (BTS CRSA, BUT GEII), projets et compétences.">
     <link rel="icon" type="image/png" href="images/LOGO.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+    <!-- Feuille de style commune à toutes les pages -->
     <link rel="stylesheet" href="style.css">
-
-    <script>document.documentElement.classList.add("js");</script>
-    <script src="js/donnees.js" defer></script>
-    <script src="js/composants.js" defer></script>
-    <script src="js/parcours.js" defer></script>
 </head>
 
-<body data-page="parcours">
-<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<body>
+<main class="contenu-principal">
 
-<header id="en-tete"></header>
+    <!-- ========== BARRE DU HAUT + MENU HAMBURGER (bloc commun) ========== -->
+    <div class="barre">
+        <a class="barre__nom" href="index.html">Clément Noël</a>
+    </div>
+    <details class="menu">
+        <summary class="menu__bouton" aria-label="Menu">
+            <span class="menu__icone" aria-hidden="true"><span></span><span></span><span></span></span>
+        </summary>
+        <nav class="menu__panneau" aria-label="Navigation principale">
+            <ol class="menu__liste">
+                <li class="menu__element" style="--i: 0"><a class="menu__lien" href="index.html"><span class="menu__numero">01</span><span class="menu__libelle">Accueil</span><span class="menu__description">Présentation</span></a></li>
+                <li class="menu__element" style="--i: 1"><a class="menu__lien" href="parcours.html" aria-current="page"><span class="menu__numero">02</span><span class="menu__libelle">Parcours</span><span class="menu__description">CV, frise et compétences</span></a></li>
+                <li class="menu__element" style="--i: 2"><a class="menu__lien" href="archive.html"><span class="menu__numero">03</span><span class="menu__libelle">Documents</span><span class="menu__description">Rapports et dossiers PDF</span></a></li>
+                <li class="menu__element" style="--i: 3"><a class="menu__lien" href="loisir.html"><span class="menu__numero">04</span><span class="menu__libelle">Atelier</span><span class="menu__description">Loisirs et mini-jeu</span></a></li>
+                <li class="menu__element" style="--i: 4"><a class="menu__lien" href="mailto:clementnoelrenard2001@ik.me"><span class="menu__numero">05</span><span class="menu__libelle">Contact</span><span class="menu__description">Écrire un e-mail</span></a></li>
+            </ol>
+            <p class="menu__pied texte--discret">
+                <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+                <a class="lien" href="https://www.linkedin.com/in/clement-noel-renard/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="lien" href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">Codeberg</a>
+                <a class="lien" href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">GitHub</a>
+            </p>
+        </nav>
+    </details>
 
-<main id="contenu">
+    <!-- ========== EN-TÊTE ========== -->
+    <header>
+        <h1 class="titre-principal">Parcours</h1>
 
-    <!-- ========== EN-TÊTE DE PAGE ========== -->
-    <section class="page-entete conteneur">
-        <p class="page-entete__fil etiquette-mono">
-            <a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Parcours</span>
+        <p class="texte texte--justifie">
+            Double diplômé BTS CRSA et BUT GEII (parcours Automatisme et Informatique
+            Industrielle), je conçois, programme et mets en service des systèmes automatisés,
+            de l'armoire électrique à la supervision.
         </p>
-        <h1 class="page-entete__titre apparition" data-decodage>Parcours</h1>
-        <p class="page-entete__intro apparition" style="--delai: 0.15s">
-            CV dynamique : expériences, formations et projets sur une frise qui s'allume au
-            défilement. Filtrez par type, ouvrez les rapports liés, ou imprimez la page.
+
+        <p class="texte texte--accent">
+            En recherche d'une alternance 2026 – 2029 pour le cycle ingénieur industriel de
+            l'ESTIA (Bidart).
+        </p>
+
+        <p class="texte texte--introduction">
+            <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf" target="_blank" rel="noopener">Télécharger le CV (PDF)</a>
+            &nbsp;·&nbsp;
+            <a class="lien" href="mailto:clementnoelrenard2001@ik.me">Me contacter</a>
+        </p>
+    </header>
+
+    <!-- ========== CHRONOLOGIE ==========
+         Tri sans JavaScript (style.css § 8) : groupe-1 = expérience,
+         groupe-2 = formation, groupe-3 = projet.
+         AJOUTER UNE ÉTAPE : copier un bloc <li class="etape ..."> à sa place
+         dans l'ordre chronologique (du plus récent au plus ancien). -->
+    <section class="section tri" aria-labelledby="chronologie-titre">
+        <h2 id="chronologie-titre" class="titre-section">Chronologie</h2>
+
+        <fieldset class="tri__boutons">
+            <legend class="sr">Afficher</legend>
+            <label class="tri__bouton tri__bouton--0"><input class="tri__choix tri__choix--0 sr" type="radio" name="tri-parcours" checked> Tout (13)</label>
+            <label class="tri__bouton tri__bouton--1"><input class="tri__choix tri__choix--1 sr" type="radio" name="tri-parcours"> Expériences (4)</label>
+            <label class="tri__bouton tri__bouton--2"><input class="tri__choix tri__choix--2 sr" type="radio" name="tri-parcours"> Formations (4)</label>
+            <label class="tri__bouton tri__bouton--3"><input class="tri__choix tri__choix--3 sr" type="radio" name="tri-parcours"> Projets (5)</label>
+        </fieldset>
+
+        <ol class="frise">
+
+            <li class="etape etape--a-venir tri__element groupe-2">
+                <p class="etape__date">Formation · sept. 2026 – juil. 2029 · à venir</p>
+                <h3 class="titre-bloc">Cycle ingénieur industriel (alternance)</h3>
+                <p class="etape__organisme">ESTIA · Bidart</p>
+                <ul class="etape__points">
+                    <li>Objectif : intégrer le cycle ingénieur par la voie de l'alternance — recherche d'entreprise en cours</li>
+                </ul>
+            </li>
+
+            <li class="etape tri__element groupe-1">
+                <p class="etape__date">Expérience · mars 2025 – juil. 2026 · 1 an 5 mois</p>
+                <h3 class="titre-bloc">Alternant automaticien</h3>
+                <p class="etape__organisme">INEO Aquitaine (Equans) · Conception industrielle</p>
+                <ul class="etape__points">
+                    <li>Co-conception du rétrofit d'interfaces opérateur (IHM) de gamme Schneider Electric</li>
+                    <li>Installation d'une baie industrielle avec commutateur KVM et automate Siemens</li>
+                    <li>Organisation du travail en autonomie, gestion de la charge et travail en équipe</li>
+                </ul>
+                <ul class="etiquettes">
+                    <li class="etiquette">Vijeo Designer</li><li class="etiquette">EcoStruxure</li><li class="etiquette">TIA Portal</li><li class="etiquette">KVM</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (4)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/stages/2026_INEO-Aquitaine_Rapport-alternance.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-01</span><span class="document__titre">Rapport d'alternance 2026</span><span class="document__taille">9,8 Mo</span></a></li>
+                        <li class="liste-documents__element"><a class="document" href="pdfs/stages/2026_INEO-Aquitaine_Soutenance-alternance.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-02</span><span class="document__titre">Support de soutenance d'alternance 2026</span><span class="document__taille">2,1 Mo</span></a></li>
+                        <li class="liste-documents__element"><a class="document" href="pdfs/stages/2025_INEO-Aquitaine_Rapport-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-03</span><span class="document__titre">Rapport de stage 2025</span><span class="document__taille">16,4 Mo</span></a></li>
+                        <li class="liste-documents__element"><a class="document" href="pdfs/stages/2025_INEO-Aquitaine_Soutenance-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-04</span><span class="document__titre">Support de soutenance de stage 2025</span><span class="document__taille">5,8 Mo</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-3">
+                <p class="etape__date">Projet · janv. 2025 – avr. 2025 · 4 mois</p>
+                <h3 class="titre-bloc">SAE S4 — MugOchaud</h3>
+                <p class="etape__organisme">IUT de Bordeaux · BUT GEII</p>
+                <ul class="etape__points">
+                    <li>Système chauffant un mug et maintenant son contenu à une température de consigne (projet de 30 h en binôme)</li>
+                    <li>Rédaction du dossier de conception, câblage de l'armoire et programmation de l'automate (LADDER)</li>
+                    <li>Tests, validation des exigences et rédaction de la procédure de maintenance</li>
+                </ul>
+                <ul class="etiquettes">
+                    <li class="etiquette">Automate Siemens</li><li class="etiquette">LADDER</li><li class="etiquette">Grafcet</li><li class="etiquette">Câblage d'armoire</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (3)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S4_MugOchaud_Rapport.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-04</span><span class="document__titre">Rapport de projet</span><span class="document__taille">613 ko</span></a></li>
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S4_MugOchaud_Dossier-de-conception.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-05</span><span class="document__titre">Dossier de conception</span><span class="document__taille">2,2 Mo</span></a></li>
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S4_MugOchaud_Dossier-de-fabrication.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-06</span><span class="document__titre">Dossier de fabrication</span><span class="document__taille">3,0 Mo</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-3">
+                <p class="etape__date">Projet · sept. 2024 – juin 2025 · 10 mois</p>
+                <h3 class="titre-bloc">Projet tuteuré — Cave à vin</h3>
+                <p class="etape__organisme">IUT de Bordeaux · BUT GEII</p>
+                <ul class="etape__points">
+                    <li>Régulation de la température (jusqu'à 5 °C) et de l'humidité (70 %) d'une enceinte climatique</li>
+                    <li>Mise à jour du programme TIA Portal, ajout de deux sondes PT1000 et mise au point du PID</li>
+                    <li>Transfert de la platine de test dans une nouvelle armoire — projet à trois étudiants</li>
+                </ul>
+                <ul class="etiquettes">
+                    <li class="etiquette">TIA Portal</li><li class="etiquette">Régulation PID</li><li class="etiquette">PT1000</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (1)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/PTUT_Cave-a-vin_Rapport.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-02</span><span class="document__titre">Rapport de projet</span><span class="document__taille">1,3 Mo</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-3">
+                <p class="etape__date">Projet · sept. 2024 – janv. 2025 · 5 mois</p>
+                <h3 class="titre-bloc">SAE S3 — Robot Mini-Sumo</h3>
+                <p class="etape__organisme">IUT de Bordeaux · BUT GEII</p>
+                <ul class="etape__points">
+                    <li>Conception d'un robot autonome pour un tournoi de mini-sumo</li>
+                    <li>Choix et implantation des capteurs de détection d'adversaire (VL53L0X)</li>
+                </ul>
+                <ul class="etiquettes">
+                    <li class="etiquette">Robotique</li><li class="etiquette">Capteurs</li><li class="etiquette">Électronique</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (3)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S3_Robot-Mini-Sumo_Cahier-des-charges.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-07</span><span class="document__titre">Cahier des charges</span><span class="document__taille">1,7 Mo</span></a></li>
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S3_Robot-Mini-Sumo_Dossier-de-conception.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-08</span><span class="document__titre">Dossier de conception détaillée</span><span class="document__taille">1,3 Mo</span></a></li>
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/SAE-S3_Robot-Mini-Sumo_Dossier-de-fabrication.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-09</span><span class="document__titre">Dossier de fabrication</span><span class="document__taille">584 ko</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-1">
+                <p class="etape__date">Expérience · avr. 2024 – juil. 2024 · 4 mois</p>
+                <h3 class="titre-bloc">Stagiaire automaticien — bureau d'études</h3>
+                <p class="etape__organisme">ISP Aquitaine · Conception industrielle</p>
+                <ul class="etape__points">
+                    <li>Conception et mise en œuvre d'une supervision basée sur un serveur OPC UA</li>
+                    <li>Intégration d'une cellule robotique ABB</li>
+                    <li>Découverte des protocoles réseau et des contraintes propres à la robotique</li>
+                </ul>
+                <ul class="etiquettes">
+                    <li class="etiquette">OPC UA</li><li class="etiquette">Robotique ABB</li><li class="etiquette">Réseaux industriels</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (2)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/stages/2024_ISP-Aquitaine_Rapport-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-05</span><span class="document__titre">Rapport de stage 2024</span><span class="document__taille">2,7 Mo</span></a></li>
+                        <li class="liste-documents__element"><a class="document" href="pdfs/stages/2024_ISP-Aquitaine_Soutenance-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-06</span><span class="document__titre">Support de soutenance de stage 2024</span><span class="document__taille">4,3 Mo</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-3">
+                <p class="etape__date">Projet · janv. 2024 – juin 2024 · 6 mois</p>
+                <h3 class="titre-bloc">AOP S4 — Liaison sans fil</h3>
+                <p class="etape__organisme">IUT de Bordeaux · BUT GEII</p>
+                <ul class="etape__points">
+                    <li>Étude d'une liaison radio (module NRF24L01), schémas électroniques et programmation Arduino</li>
+                </ul>
+                <ul class="etiquettes">
+                    <li class="etiquette">Arduino</li><li class="etiquette">Radio</li><li class="etiquette">Électronique</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (1)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/AOP-S4_Liaison-sans-fil_Soutenance.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-03</span><span class="document__titre">Support de soutenance</span><span class="document__taille">2,0 Mo</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-2">
+                <p class="etape__date">Formation · 2023 – 2026</p>
+                <h3 class="titre-bloc">BUT GEII — Automatisme et Informatique Industrielle</h3>
+                <p class="etape__organisme">IUT de Bordeaux · Gradignan</p>
+                <ul class="etape__points">
+                    <li>Programmation, électronique, informatique, énergie et automatisme</li>
+                    <li>Trois projets menés en conditions d'entreprise (SAE)</li>
+                    <li>DUT GEII obtenu en 2025, BUT GEII en 2026</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (1)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/competences/BUT-GEII_Referentiel-competences.pdf" target="_blank" rel="noopener"><span class="document__ref">CMP-01</span><span class="document__titre">Référentiel des compétences</span><span class="document__taille">259 ko</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-3">
+                <p class="etape__date">Projet · sept. 2021 – juin 2022 · 10 mois</p>
+                <h3 class="titre-bloc">Projet BTS — Machine de tri de ronds de serviette</h3>
+                <p class="etape__organisme">Lycée Val de Garonne · BTS CRSA</p>
+                <ul class="etape__points">
+                    <li>Responsable de la conception du pupitre opérateur (IHM) de la machine</li>
+                </ul>
+                <ul class="etiquettes">
+                    <li class="etiquette">IHM</li><li class="etiquette">Conception mécanique</li><li class="etiquette">Automatisme</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (1)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/projets/BTS-CRSA_Tri-ronds-de-serviette_Soutenance.pdf" target="_blank" rel="noopener"><span class="document__ref">PRJ-01</span><span class="document__titre">Support de soutenance</span><span class="document__taille">4,5 Mo</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-1">
+                <p class="etape__date">Expérience · avr. 2021 – juil. 2021 · 4 mois</p>
+                <h3 class="titre-bloc">Stagiaire électricien de maintenance</h3>
+                <p class="etape__organisme">Lacosse Emballage · Scierie</p>
+                <ul class="etape__points">
+                    <li>Restauration complète d'une machine de découpe de bois</li>
+                    <li>Mise aux normes et réintégration dans le process de production</li>
+                    <li>Gestion de projet de bout en bout : électricité, mécanique, pneumatique, programmation</li>
+                </ul>
+                <ul class="etiquettes">
+                    <li class="etiquette">Maintenance</li><li class="etiquette">Mise aux normes</li><li class="etiquette">Pneumatique</li>
+                </ul>
+                <details class="etape__documents">
+                    <summary>Documents liés (1)</summary>
+                    <ul class="liste-documents">
+                        <li class="liste-documents__element"><a class="document" href="pdfs/stages/2021_Lacosse-Emballage_Rapport-stage.pdf" target="_blank" rel="noopener"><span class="document__ref">STG-07</span><span class="document__titre">Rapport de stage</span><span class="document__taille">4,5 Mo</span></a></li>
+                    </ul>
+                </details>
+            </li>
+
+            <li class="etape tri__element groupe-2">
+                <p class="etape__date">Formation · 2020 – 2023</p>
+                <h3 class="titre-bloc">BTS CRSA — Conception et Réalisation de Systèmes Automatiques</h3>
+                <p class="etape__organisme">Lycée Val de Garonne · Marmande</p>
+                <ul class="etape__points">
+                    <li>Construction mécanique, informatique et automatisme</li>
+                    <li>Projet majeur d'un an : conception de A à Z d'un process et programmation robotique (Roboguide)</li>
+                </ul>
+            </li>
+
+            <li class="etape tri__element groupe-1">
+                <p class="etape__date">Expérience · janv. 2020 – févr. 2020 · 2 mois</p>
+                <h3 class="titre-bloc">Stagiaire vendeur conseil</h3>
+                <p class="etape__organisme">Yess Électrique · Distribution de matériel électrique</p>
+                <ul class="etape__points">
+                    <li>Conseil technique aux professionnels à partir d'un cahier des charges</li>
+                    <li>Relation client</li>
+                </ul>
+            </li>
+
+            <li class="etape tri__element groupe-2">
+                <p class="etape__date">Formation · 2018 – 2020</p>
+                <h3 class="titre-bloc">Bac Pro MELEC, BEP Électrotechnique et BIA</h3>
+                <p class="etape__organisme">Métiers de l'électricité et de ses environnements connectés</p>
+                <ul class="etape__points">
+                    <li>Bac Pro MELEC (2020), BEP Électrotechnique (2019)</li>
+                    <li>Brevet d'Initiation Aéronautique (2019)</li>
+                </ul>
+            </li>
+
+        </ol>
+    </section>
+
+    <!-- ========== COMPÉTENCES ==========
+         Niveau de 1 à 5 : modifier --niveau, aria-label et le texte « n/5 ». -->
+    <section class="section" aria-labelledby="competences-titre">
+        <h2 id="competences-titre" class="titre-section">Compétences</h2>
+        <p class="texte texte--discret">Auto-évaluation sur 5, de la découverte (1) à la maîtrise en autonomie (5).</p>
+
+        <div class="competences">
+            <div>
+                <h3 class="titre-bloc">Programmation industrielle</h3>
+                <ul class="competences__liste">
+                    <li class="competence"><span>EcoStruxure / Vijeo Designer</span><span class="jauge" style="--niveau: 5" role="img" aria-label="5 sur 5"></span><span class="competence__valeur" aria-hidden="true">5/5</span></li>
+                    <li class="competence"><span>Unity Pro XL</span><span class="jauge" style="--niveau: 5" role="img" aria-label="5 sur 5"></span><span class="competence__valeur" aria-hidden="true">5/5</span></li>
+                    <li class="competence"><span>TIA Portal V21</span><span class="jauge" style="--niveau: 4" role="img" aria-label="4 sur 5"></span><span class="competence__valeur" aria-hidden="true">4/5</span></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="titre-bloc">Électricité &amp; électronique</h3>
+                <ul class="competences__liste">
+                    <li class="competence"><span>Mise aux normes, entretien</span><span class="jauge" style="--niveau: 5" role="img" aria-label="5 sur 5"></span><span class="competence__valeur" aria-hidden="true">5/5</span></li>
+                    <li class="competence"><span>Schémas (XRelais, SEE Electrical)</span><span class="jauge" style="--niveau: 4" role="img" aria-label="4 sur 5"></span><span class="competence__valeur" aria-hidden="true">4/5</span></li>
+                    <li class="competence"><span>Dépannage de cartes électroniques</span><span class="jauge" style="--niveau: 4" role="img" aria-label="4 sur 5"></span><span class="competence__valeur" aria-hidden="true">4/5</span></li>
+                    <li class="competence"><span>Schémas (EasyEDA, KiCad)</span><span class="jauge" style="--niveau: 3" role="img" aria-label="3 sur 5"></span><span class="competence__valeur" aria-hidden="true">3/5</span></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="titre-bloc">Conception &amp; fabrication</h3>
+                <ul class="competences__liste">
+                    <li class="competence"><span>Impression 3D FDM, découpe laser</span><span class="jauge" style="--niveau: 5" role="img" aria-label="5 sur 5"></span><span class="competence__valeur" aria-hidden="true">5/5</span></li>
+                    <li class="competence"><span>Inventor, Fusion 360</span><span class="jauge" style="--niveau: 4" role="img" aria-label="4 sur 5"></span><span class="competence__valeur" aria-hidden="true">4/5</span></li>
+                    <li class="competence"><span>Statique, cinématique</span><span class="jauge" style="--niveau: 3" role="img" aria-label="3 sur 5"></span><span class="competence__valeur" aria-hidden="true">3/5</span></li>
+                    <li class="competence"><span>SolidWorks</span><span class="jauge" style="--niveau: 2" role="img" aria-label="2 sur 5"></span><span class="competence__valeur" aria-hidden="true">2/5</span></li>
+                    <li class="competence"><span>Résistance des matériaux</span><span class="jauge" style="--niveau: 2" role="img" aria-label="2 sur 5"></span><span class="competence__valeur" aria-hidden="true">2/5</span></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="titre-bloc">Informatique</h3>
+                <ul class="competences__liste">
+                    <li class="competence"><span>Windows, Linux, VMware, Office 365</span><span class="jauge" style="--niveau: 5" role="img" aria-label="5 sur 5"></span><span class="competence__valeur" aria-hidden="true">5/5</span></li>
+                    <li class="competence"><span>Intégration de LLM, protection des données</span><span class="jauge" style="--niveau: 5" role="img" aria-label="5 sur 5"></span><span class="competence__valeur" aria-hidden="true">5/5</span></li>
+                    <li class="competence"><span>Serveurs Docker, VLAN, VPN</span><span class="jauge" style="--niveau: 3" role="img" aria-label="3 sur 5"></span><span class="competence__valeur" aria-hidden="true">3/5</span></li>
+                    <li class="competence"><span>Bases de données, vidéosurveillance</span><span class="jauge" style="--niveau: 2" role="img" aria-label="2 sur 5"></span><span class="competence__valeur" aria-hidden="true">2/5</span></li>
+                    <li class="competence"><span>C++, Python, HTML</span><span class="jauge" style="--niveau: 2" role="img" aria-label="2 sur 5"></span><span class="competence__valeur" aria-hidden="true">2/5</span></li>
+                    <li class="competence"><span>MATLAB, GNU Octave</span><span class="jauge" style="--niveau: 1" role="img" aria-label="1 sur 5"></span><span class="competence__valeur" aria-hidden="true">1/5</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CENTRES D'INTÉRÊT ========== -->
+    <section class="section">
+        <h2 class="titre-section">Centres d'intérêt</h2>
+        <ul class="etiquettes">
+            <li class="etiquette">Conception &amp; impression 3D</li>
+            <li class="etiquette">Trail</li>
+            <li class="etiquette">Factorio</li>
+            <li class="etiquette">Auto-hébergement</li>
+            <li class="etiquette">Communs numériques</li>
+            <li class="etiquette">Aéronautique &amp; spatial</li>
+        </ul>
+        <p class="texte" style="margin-top: 16px">
+            <a class="lien" href="loisir.html">Entrer dans l'atelier →</a>
         </p>
     </section>
-    <div class="hachures" aria-hidden="true"></div>
 
-    <!-- ========== § 01 PROFIL (PROFIL) ========== -->
-    <section class="section conteneur" aria-labelledby="profil-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 01</span>
-            <h2 id="profil-titre" class="section__titre apparition" data-decodage>Profil</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-PAR-01</span>
-        </div>
-        <div id="cv-profil"></div>
-        <div data-composant="chiffres"></div>
-    </section>
-
-    <!-- ========== § 02 CHRONOLOGIE (PARCOURS) ========== -->
-    <section class="section conteneur" aria-labelledby="frise-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 02</span>
-            <h2 id="frise-titre" class="section__titre apparition" data-decodage>Chronologie</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-PAR-02</span>
-        </div>
-        <div class="barre-filtres">
-            <div id="cv-filtres" class="filtres" role="group" aria-label="Filtrer la chronologie"></div>
-        </div>
-        <div id="cv-frise" class="frise"></div>
-    </section>
-
-    <!-- ========== § 03 COMPÉTENCES (COMPETENCES) ========== -->
-    <section class="section conteneur" aria-labelledby="competences-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 03</span>
-            <h2 id="competences-titre" class="section__titre apparition" data-decodage>Compétences</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-PAR-03</span>
-        </div>
-        <p class="section__intro">Auto-évaluation sur 5, de la découverte (1) à la maîtrise en autonomie (5).</p>
-        <div id="cv-competences" class="competences"></div>
-    </section>
-
-    <!-- ========== § 04 CENTRES D'INTÉRÊT (INTERETS) ========== -->
-    <section class="section conteneur" aria-labelledby="interets-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 04</span>
-            <h2 id="interets-titre" class="section__titre apparition" data-decodage>Hors service</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-PAR-04</span>
-        </div>
-        <ul data-composant="interets" class="apparition"></ul>
-        <p class="masquer-impression" style="margin-top: 32px">
-            <a class="bouton" href="loisir.html">Entrer dans l'atelier <span class="bouton__fleche" aria-hidden="true">→</span></a>
-        </p>
-    </section>
-
-    <noscript>
-        <p class="conteneur">Cette page nécessite JavaScript.
-            <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf">Télécharger le CV au format PDF</a>.</p>
-    </noscript>
+    <!-- ========== PIED DE PAGE ========== -->
+    <footer class="pied-de-page">
+        <a class="lien" href="index.html">← Retour à l'accueil</a>
+        <div class="pied-de-page__espace"></div>
+        © 2026 — Clément Noël — v5.0
+    </footer>
 
 </main>
-
-<footer id="pied-de-page"></footer>
 </body>
 </html>

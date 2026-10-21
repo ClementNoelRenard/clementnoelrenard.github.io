@@ -5,83 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Atelier — Clément Noël</title>
     <meta name="description" content="L'atelier de Clément Noël : impression 3D, trail, Factorio, auto-hébergement, ressources et un Snake.">
-    <meta name="theme-color" content="#0b0b0a">
     <link rel="icon" type="image/png" href="images/LOGO.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+    <!-- Feuille de style commune à toutes les pages -->
     <link rel="stylesheet" href="style.css">
-
-    <script>document.documentElement.classList.add("js");</script>
-    <script src="js/donnees.js" defer></script>
-    <script src="js/composants.js" defer></script>
-    <script src="js/atelier.js" defer></script>
 </head>
 
-<body data-page="atelier">
-<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<body>
+<main class="contenu-principal contenu-principal--large">
 
-<header id="en-tete"></header>
+    <!-- ========== BARRE DU HAUT + MENU HAMBURGER (bloc commun) ========== -->
+    <div class="barre">
+        <a class="barre__nom" href="index.html">Clément Noël</a>
+    </div>
+    <details class="menu">
+        <summary class="menu__bouton" aria-label="Menu">
+            <span class="menu__icone" aria-hidden="true"><span></span><span></span><span></span></span>
+        </summary>
+        <nav class="menu__panneau" aria-label="Navigation principale">
+            <ol class="menu__liste">
+                <li class="menu__element" style="--i: 0"><a class="menu__lien" href="index.html"><span class="menu__numero">01</span><span class="menu__libelle">Accueil</span><span class="menu__description">Présentation</span></a></li>
+                <li class="menu__element" style="--i: 1"><a class="menu__lien" href="parcours.html"><span class="menu__numero">02</span><span class="menu__libelle">Parcours</span><span class="menu__description">CV, frise et compétences</span></a></li>
+                <li class="menu__element" style="--i: 2"><a class="menu__lien" href="archive.html"><span class="menu__numero">03</span><span class="menu__libelle">Documents</span><span class="menu__description">Rapports et dossiers PDF</span></a></li>
+                <li class="menu__element" style="--i: 3"><a class="menu__lien" href="loisir.html" aria-current="page"><span class="menu__numero">04</span><span class="menu__libelle">Atelier</span><span class="menu__description">Loisirs et mini-jeu</span></a></li>
+                <li class="menu__element" style="--i: 4"><a class="menu__lien" href="mailto:clementnoelrenard2001@ik.me"><span class="menu__numero">05</span><span class="menu__libelle">Contact</span><span class="menu__description">Écrire un e-mail</span></a></li>
+            </ol>
+            <p class="menu__pied texte--discret">
+                <a class="lien" href="pdfs/cv/CV_Clement-Noel.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+                <a class="lien" href="https://www.linkedin.com/in/clement-noel-renard/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="lien" href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">Codeberg</a>
+                <a class="lien" href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">GitHub</a>
+            </p>
+        </nav>
+    </details>
 
-<main id="contenu">
-
-    <!-- ========== EN-TÊTE DE PAGE ========== -->
-    <section class="page-entete conteneur">
-        <p class="page-entete__fil etiquette-mono">
-            <a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Atelier</span>
-        </p>
-        <h1 class="page-entete__titre apparition" data-decodage>Atelier</h1>
-        <p class="page-entete__intro apparition" style="--delai: 0.15s">
-            Ce qui tourne quand l'automate est à l'arrêt : conception, impression 3D, montagne,
+    <!-- ========== EN-TÊTE ========== -->
+    <header>
+        <h1 class="titre-principal">Atelier</h1>
+        <p class="texte texte--introduction">
+            Ce qui m'occupe quand l'automate est à l'arrêt : conception, impression 3D, montagne,
             serveurs maison… et un Snake pour la pause café.
         </p>
-    </section>
-    <div class="hachures" aria-hidden="true"></div>
+    </header>
 
-    <!-- ========== § 01 CENTRES D'INTÉRÊT (INTERETS) ========== -->
-    <section class="section conteneur" aria-labelledby="ateliers-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 01</span>
-            <h2 id="ateliers-titre" class="section__titre apparition" data-decodage>Hors service</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-ATL-01</span>
+    <!-- ========== CENTRES D'INTÉRÊT : BOÎTES ==========
+         AJOUTER UNE BOÎTE : copier un bloc <article class="boite"> et
+         changer son numéro, son titre et son texte. -->
+    <section class="section" aria-labelledby="interets-titre">
+        <h2 id="interets-titre" class="titre-section">Centres d'intérêt</h2>
+
+        <div class="boites">
+            <article class="boite">
+                <p class="boite__code"><span>ATL-01</span><span aria-hidden="true">◆</span></p>
+                <h3 class="boite__titre">Conception &amp; impression 3D</h3>
+                <p class="boite__texte">Conception mécanique sous Fusion 360 et Inventor, impression FDM et découpe laser.</p>
+            </article>
+            <article class="boite">
+                <p class="boite__code"><span>ATL-02</span><span aria-hidden="true">◆</span></p>
+                <h3 class="boite__titre">Trail</h3>
+                <p class="boite__texte">Sur un coup de tête, du trail en solitaire dans nos belles montagnes pyrénéennes.</p>
+            </article>
+            <article class="boite">
+                <p class="boite__code"><span>ATL-03</span><span aria-hidden="true">◆</span></p>
+                <h3 class="boite__titre">Factorio</h3>
+                <p class="boite__texte">Quand il est trop tard pour allumer l'imprimante (ou pour prendre un train), j'optimise mes réseaux d'automatisation.</p>
+            </article>
+            <article class="boite">
+                <p class="boite__code"><span>ATL-04</span><span aria-hidden="true">◆</span></p>
+                <h3 class="boite__titre">Auto-hébergement</h3>
+                <p class="boite__texte">Serveur maison, Docker, VLAN et VPN : autonomie numérique et respect de la vie privée.</p>
+            </article>
+            <article class="boite">
+                <p class="boite__code"><span>ATL-05</span><span aria-hidden="true">◆</span></p>
+                <h3 class="boite__titre">Communs numériques</h3>
+                <p class="boite__texte">Contributions à Wikipédia, à OpenStreetMap et à la documentation francophone de Debian.</p>
+            </article>
+            <article class="boite">
+                <p class="boite__code"><span>ATL-06</span><span aria-hidden="true">◆</span></p>
+                <h3 class="boite__titre">Aéronautique &amp; spatial</h3>
+                <p class="boite__texte">Brevet d'Initiation Aéronautique, fusées sur Kerbal Space Program et olympiade de robotique.</p>
+            </article>
         </div>
-        <div id="ateliers" class="ateliers"></div>
     </section>
 
-    <!-- ========== § 02 MINI-JEU ========== -->
-    <section class="section conteneur" aria-labelledby="jeu-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 02</span>
-            <span class="etiquette-mono">Mini-jeu</span>
-            <span class="section__ref etiquette-mono">Réf. CN-ATL-02</span>
-        </div>
-        <div class="lanceur apparition">
-            <div>
-                <h2 id="jeu-titre" class="lanceur__titre">Snake.exe</h2>
-                <p class="lanceur__texte">Le classique, recâblé en jaune sécurité. Clavier ou écran tactile,
-                    meilleurs scores enregistrés dans votre navigateur.</p>
-                <a class="bouton bouton--plein" href="snake.html">Lancer le jeu <span class="bouton__fleche" aria-hidden="true">→</span></a>
-            </div>
-            <div class="lanceur__ecran" aria-hidden="true">
-                <span class="lanceur__serpent"></span>
-                <span class="lanceur__pomme"></span>
-            </div>
+    <!-- ========== MINI-JEU ========== -->
+    <section class="section" aria-labelledby="jeu-titre">
+        <h2 id="jeu-titre" class="titre-section">Mini-jeu</h2>
+        <div class="boites">
+            <a class="boite" href="snake.html">
+                <p class="boite__code"><span>JEU-01</span><span aria-hidden="true">→</span></p>
+                <h3 class="boite__titre">Snake</h3>
+                <p class="boite__texte">Le classique, au clavier ou au doigt. Meilleurs scores gardés dans votre navigateur.</p>
+            </a>
         </div>
     </section>
 
-    <!-- ========== § 03 RESSOURCES (SITE.ressources) ========== -->
-    <section class="section conteneur" aria-labelledby="ressources-titre">
-        <div class="section__entete">
-            <span class="section__numero">§ 03</span>
-            <h2 id="ressources-titre" class="section__titre apparition" data-decodage>Ressources</h2>
-            <span class="section__ref etiquette-mono">Réf. CN-ATL-03</span>
+    <!-- ========== RESSOURCES ========== -->
+    <section class="section">
+        <h2 class="titre-section">Ressources</h2>
+        <div class="liste-liens">
+            <a class="lien" href="https://european-alternatives.eu/alternatives-to" target="_blank" rel="noopener">Logiciels alternatifs européens</a>
+            <a class="lien" href="https://distrowatch.com/" target="_blank" rel="noopener">Distributions Linux — DistroWatch</a>
         </div>
-        <nav id="ressources" class="ressources apparition" aria-label="Ressources externes"></nav>
     </section>
+
+    <!-- ========== PIED DE PAGE ========== -->
+    <footer class="pied-de-page">
+        <a class="lien" href="index.html">← Retour à l'accueil</a>
+        <div class="pied-de-page__espace"></div>
+        © 2026 — Clément Noël — v5.0
+    </footer>
 
 </main>
-
-<footer id="pied-de-page"></footer>
 </body>
 </html>

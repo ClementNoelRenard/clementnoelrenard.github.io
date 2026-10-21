@@ -1,65 +1,44 @@
-# Site personnel — Clément Noël · v4 « Brut industriel »
+# Site personnel — Clément Noël · v5
 
 En ligne : https://clementnoelrenard.github.io/
 
-Panneau de commande et plan technique : noir carbone, jaune sécurité, typographie
-pochoir, oscilloscope interactif, menu hamburger plein écran, frise qui s'allume
-au défilement, nomenclature des rapports, cartouche de plan en pied de page.
+Site en **HTML + CSS uniquement** : pas de bibliothèque, pas de police externe,
+pas de JavaScript (sauf le jeu Snake, qui ne peut pas s'en passer).
 
 ## Arborescence
 
 ```
-index.html          Accueil : démarrage, oscilloscope, modules, fiche technique, contact
-parcours.html       CV dynamique : profil, frise filtrable, compétences
-archive.html        Documents : nomenclature des PDF avec recherche
-loisir.html         Atelier : centres d'intérêt, mini-jeu, ressources
-snake.html          Jeu Snake (clavier + tactile)
-404.html            Page « défaut » pour les adresses introuvables
-style.css           Toute la mise en forme (variables en tête de fichier)
+index.html      Accueil : présentation, liens vers le parcours, les documents, l'atelier
+parcours.html   Parcours : frise triable (expériences, formations, projets), compétences
+archive.html    Documents : PDF triables par catégorie
+loisir.html     Atelier : boîtes des centres d'intérêt, mini-jeu, ressources
+snake.html      Jeu Snake (+ js/snake.js, seul script du site)
+404.html        Page affichée pour une adresse introuvable
+style.css       Toute la mise en forme (variables en tête de fichier)
 
-js/donnees.js       ← TOUT LE CONTENU : profil, parcours, compétences, documents, menu
-js/composants.js    Fonctions communes : en-tête, menu, cartouche, animations, transitions
-js/accueil.js       Séquence de démarrage, modules, fiche technique
-js/oscilloscope.js  Écran d'oscilloscope animé (canvas)
-js/parcours.js      Frise, filtres, bargraphes de compétences
-js/documents.js     Nomenclature, recherche, tailles des fichiers
-js/atelier.js       Cartes de l'atelier, ressources
-js/snake.js         Jeu Snake
-
-pdfs/               cv/, stages/, projets/, competences/
-cv/cv_clement_noel.tex   CV au format LaTeX
+images/         Photos et fond
+pdfs/           cv/, stages/, projets/, competences/
+cv/             CV au format LaTeX
 ```
+
+## Comment ça marche sans JavaScript
+
+- **Menu hamburger** : un élément `<details>` ; cliquer sur le bouton l'ouvre ou
+  le ferme. Le bloc du menu est identique dans chaque page : seul
+  `aria-current="page"` change de lien.
+- **Tri des documents et du parcours** : des boutons radio cachés dans des
+  `<label>`. Le bouton n°N affiche uniquement les éléments qui portent la
+  classe `groupe-N` (voir `style.css`, § 8).
 
 ## Mettre à jour le site
 
-Tout se fait dans `js/donnees.js` ; les pages se reconstruisent seules :
+| Je veux…                     | Je fais…                                                                 |
+|------------------------------|--------------------------------------------------------------------------|
+| ajouter un PDF               | le déposer dans `pdfs/…`, puis copier une ligne `<li class="liste-documents__element">` dans la bonne section d'`archive.html` |
+| ajouter une étape au parcours | copier un bloc `<li class="etape …">` dans `parcours.html`, à sa place chronologique, avec `groupe-1` (expérience), `groupe-2` (formation) ou `groupe-3` (projet) |
+| ajouter une boîte à l'atelier | copier un bloc `<article class="boite">` dans `loisir.html`             |
+| changer une compétence        | modifier `--niveau`, `aria-label` et le texte « n/5 » dans `parcours.html` |
+| ajouter une page au menu      | copier une ligne `<li class="menu__element">` dans le menu de **chaque** page |
+| changer les couleurs, tailles | bloc `:root` en tête de `style.css`                                      |
 
-| Je veux…                            | Je modifie…                                              |
-|-------------------------------------|----------------------------------------------------------|
-| ajouter une expérience / un projet  | une entrée dans `PARCOURS`                               |
-| ajouter un PDF                      | le fichier dans `pdfs/…`, puis `DOCUMENTS` et `CATEGORIES` |
-| changer une compétence              | `COMPETENCES`                                            |
-| changer le texte de l'accueil       | `ACCUEIL` (démarrage, modules, fiche, à propos)          |
-| ajouter une page au menu            | `SITE.navigation` (+ `data-page` sur le `<body>`)        |
-| changer le statut, la version       | `SITE.statut`, `SITE.version`                            |
-| changer les couleurs, les polices   | bloc `:root` en tête de `style.css`                      |
-
-Références (`STG-03`, `EXP-04`…), durées, chiffres clés et tailles des PDF sont
-calculés automatiquement.
-
-## Tester en local
-
-Les pages fonctionnent en double-cliquant dessus, mais les tailles de PDF et la
-page 404 demandent un petit serveur :
-
-```bash
-python -m http.server 8000
-```
-
-puis ouvrir http://localhost:8000.
-
-## Accessibilité
-
-- Menu utilisable au clavier (Échap pour fermer), lien « Aller au contenu ».
-- Toutes les animations sont coupées si le système demande moins d'animations.
-- La page Parcours s'imprime proprement (fond blanc, sans images ni menus).
+Penser à mettre à jour les compteurs des boutons de tri, par ex. « Stages (7) ».

@@ -1,8 +1,11 @@
 /* ==========================================================================
-   SNAKE — mini-jeu de l'atelier · v4
+   SNAKE — mini-jeu de l'atelier
    --------------------------------------------------------------------------
-   Commandes : flèches, ZQSD ou WASD ; Espace / Entrée / P = démarrer ou
-   pause ; sur écran tactile : glisser sur le plateau ou croix directionnelle.
+   Seul script du site : un jeu ne peut pas fonctionner sans JavaScript.
+   Il est autonome (aucune autre dépendance) et n'est chargé que par snake.html.
+
+   Commandes : flèches, ZQSD ou WASD ; Espace ou P = démarrer / pause ;
+   écran tactile : glisser sur le plateau ou croix directionnelle.
    Les 10 meilleurs scores sont gardés dans le navigateur (localStorage).
 
    SOMMAIRE
@@ -11,7 +14,7 @@
    3. Règles du jeu
    4. Dessin
    5. Scores enregistrés
-   6. Commandes (clavier, tactile)
+   6. Commandes
    7. Initialisation
    ========================================================================== */
 
@@ -26,7 +29,8 @@ const JEU = {
     accelerationParPomme: 3,
     pointsParPomme: 10,
     cleScores: "snakeScores",
-    nombreScores: 10
+    nombreScores: 10,
+    couleurs: { serpent: "#fff", pomme: "#fff", defaut: "#777", grille: "#151515" }
 };
 
 const DIRECTIONS = {
@@ -38,8 +42,7 @@ const DIRECTIONS = {
 
 const TOUCHES = {
     ArrowUp: "haut", ArrowDown: "bas", ArrowLeft: "gauche", ArrowRight: "droite",
-    z: "haut", s: "bas", q: "gauche", d: "droite",
-    w: "haut", a: "gauche"
+    z: "haut", s: "bas", q: "gauche", d: "droite", w: "haut", a: "gauche"
 };
 
 
@@ -59,7 +62,6 @@ const partie = {
 };
 
 let elements = {};
-let couleurs = {};
 
 
 /* ==========================================================================
@@ -131,7 +133,7 @@ function demarrer() {
     partie.etat = "jeu";
     partie.cumul = 0;
     partie.instantPrecedent = performance.now();
-    masquerCalque();
+    elements.calque.hidden = true;
     requestAnimationFrame(boucle);
 }
 
@@ -151,7 +153,7 @@ function terminer() {
     dessiner(true);
     afficherScores();
     const message = rang === 1 ? "Nouveau record !" : `Score : ${partie.score} pts`;
-    afficherCalque("Défaut", `${message} — Espace pour relancer`, "Relancer");
+    afficherCalque("Perdu", `${message} — Espace pour rejouer`, "Rejouer");
 }
 
 /** Boucle d'animation : avance d'un pas toutes les « vitesse » millisecondes. */
@@ -188,15 +190,15 @@ function redimensionner() {
 }
 
 /**
- * @param {boolean} defaut - true : le serpent est dessiné en rouge (fin de partie)
+ * @param {boolean} perdu - true : le serpent est grisé (fin de partie)
  */
-function dessiner(defaut) {
+function dessiner(perdu) {
     const { contexte: c, taille } = elements;
     const caseTaille = taille / JEU.cases;
     c.clearRect(0, 0, taille, taille);
 
-    // Grille
-    c.strokeStyle = couleurs.grille;
+    // Grille discrète
+    c.strokeStyle = JEU.couleurs.grille;
     c.lineWidth = 1;
     c.beginPath();
     for (let i = 1; i < JEU.cases; i++) {
@@ -206,38 +208,20 @@ function dessiner(defaut) {
     }
     c.stroke();
 
-    // Pomme : LED verte qui pulse
-    const pulsation = 0.75 + Math.sin(performance.now() / 160) * 0.25;
-    c.save();
-    c.shadowColor = couleurs.pomme;
-    c.shadowBlur = 14 * pulsation;
-    c.fillStyle = couleurs.pomme;
-    const marge = caseTaille * 0.2;
+    // Pomme : petit carré plein
+    const marge = caseTaille * 0.25;
+    c.fillStyle = JEU.couleurs.pomme;
     c.fillRect(partie.pomme.x * caseTaille + marge, partie.pomme.y * caseTaille + marge, caseTaille - 2 * marge, caseTaille - 2 * marge);
-    c.restore();
 
     // Serpent
-    const couleur = defaut ? couleurs.defaut : couleurs.serpent;
-    partie.serpent.forEach((anneau, index) => {
-        c.fillStyle = couleur;
-        c.globalAlpha = index === 0 ? 1 : Math.max(0.45, 1 - index * 0.02);
+    c.fillStyle = perdu ? JEU.couleurs.defaut : JEU.couleurs.serpent;
+    for (const anneau of partie.serpent) {
         c.fillRect(anneau.x * caseTaille + 1, anneau.y * caseTaille + 1, caseTaille - 2, caseTaille - 2);
-    });
-    c.globalAlpha = 1;
-
-    // Tête : petit repère noir dans le sens de la marche
-    const tete = partie.serpent[0];
-    if (tete) {
-        const centreX = (tete.x + 0.5) * caseTaille + partie.direction.x * caseTaille * 0.22;
-        const centreY = (tete.y + 0.5) * caseTaille + partie.direction.y * caseTaille * 0.22;
-        const repere = caseTaille * 0.22;
-        c.fillStyle = couleurs.fond;
-        c.fillRect(centreX - repere / 2, centreY - repere / 2, repere, repere);
     }
 }
 
 function afficherScore() {
-    elements.score.textContent = String(partie.score).padStart(4, "0");
+    elements.score.textContent = partie.score;
 }
 
 function afficherCalque(titre, texte, bouton) {
@@ -247,15 +231,11 @@ function afficherCalque(titre, texte, bouton) {
     elements.calque.hidden = false;
 }
 
-function masquerCalque() {
-    elements.calque.hidden = true;
-}
-
 
 /* ==========================================================================
    5. SCORES ENREGISTRÉS (localStorage)
-   Le navigateur peut refuser l'accès (navigation privée) : le jeu
-   continue alors sans mémoriser les scores.
+   Si le navigateur refuse l'accès (navigation privée), le jeu continue
+   sans mémoriser les scores.
    ========================================================================== */
 function lireScores() {
     try {
@@ -265,18 +245,12 @@ function lireScores() {
     }
 }
 
-/**
- * Ajoute un score et renvoie son rang (1 = record), ou 0 s'il n'est pas classé.
- * @param {number} score
- * @returns {number}
- */
+/** Ajoute un score et renvoie son rang (1 = record), ou 0 s'il n'est pas classé. */
 function enregistrerScore(score) {
     if (score === 0) return 0;
     const date = new Date().toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
     const entree = { score, date };
-    const scores = [...lireScores(), entree]
-        .sort((a, b) => b.score - a.score)
-        .slice(0, JEU.nombreScores);
+    const scores = [...lireScores(), entree].sort((a, b) => b.score - a.score).slice(0, JEU.nombreScores);
     try {
         localStorage.setItem(JEU.cleScores, JSON.stringify(scores));
     } catch {
@@ -286,13 +260,25 @@ function enregistrerScore(score) {
 }
 
 function afficherScores() {
+    const liste = elements.scores;
+    liste.replaceChildren();
     const scores = lireScores();
-    elements.scores.replaceChildren(...(scores.length
-        ? scores.map(({ score, date }, index) => creerElement("li", {}, [
-              creerElement("span", { texte: `#${deuxChiffres(index + 1)} · ${date}` }),
-              creerElement("span", { texte: `${score} pts` })
-          ]))
-        : [creerElement("li", { texte: "Aucun score pour l'instant" })]));
+
+    if (scores.length === 0) {
+        const vide = document.createElement("li");
+        vide.textContent = "Aucun score";
+        liste.append(vide);
+        return;
+    }
+    scores.forEach(({ score }, index) => {
+        const ligne = document.createElement("li");
+        const rang = document.createElement("span");
+        const points = document.createElement("span");
+        rang.textContent = `#${index + 1}`;
+        points.textContent = `${score} pts`;
+        ligne.append(rang, points);
+        liste.append(ligne);
+    });
 }
 
 
@@ -308,9 +294,9 @@ function activerCommandes() {
             demanderDirection(TOUCHES[touche]);
             return;
         }
-        // Espace / Entrée sur un bouton : le clic du bouton s'en charge déjà
-        const surBouton = evenement.target.closest("button, a");
-        if ([" ", "Enter", "p"].includes(touche) && !surBouton) {
+        // Espace / Entrée sur un bouton ou un lien : le clic s'en charge déjà
+        const surElementActif = evenement.target.closest("button, a, summary");
+        if ([" ", "p"].includes(touche) && !surElementActif) {
             evenement.preventDefault();
             basculerPause();
         }
@@ -361,15 +347,6 @@ document.addEventListener("DOMContentLoaded", () => {
         bouton:      document.getElementById("jeu-demarrer"),
         score:       document.getElementById("jeu-score"),
         scores:      document.getElementById("jeu-scores")
-    };
-
-    const styles = getComputedStyle(document.documentElement);
-    couleurs = {
-        serpent: styles.getPropertyValue("--jaune").trim(),
-        pomme:   styles.getPropertyValue("--vert").trim(),
-        defaut:  styles.getPropertyValue("--rouge").trim(),
-        fond:    styles.getPropertyValue("--ecran").trim(),
-        grille:  "rgba(255, 255, 255, 0.05)"
     };
 
     nouvellePartie();
