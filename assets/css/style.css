@@ -780,15 +780,26 @@ ul, ol { margin: 0; padding: 0; }
 }
 .atelier::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(90deg, rgba(5,7,10,.15) 0%, rgba(5,7,10,.55) 45%, rgba(5,7,10,.85) 100%);
+  background: linear-gradient(180deg, rgba(5,7,10,.82) 0%, rgba(5,7,10,.62) 55%, rgba(5,7,10,.45) 100%);
 }
-.atelier-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 72px); align-items: start; }
-.atelier-text { grid-column: 2; }
+/* Deux colonnes équilibrées : texte + photo à gauche, centres d’intérêt à droite */
+.atelier-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.atelier-text {
+  grid-column: 1; grid-row: 1;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(20px, 2.5vw, 32px);
+  grid-template-areas: "eyebrow photo" "title photo" "para photo";
+}
+.atelier-text .eyebrow { grid-area: eyebrow; justify-self: start; }
+.atelier-text h2 { grid-area: title; font-size: clamp(2rem, 3.4vw, 2.6rem); }
+.atelier-text > p:not(.eyebrow) { grid-area: para; }
+.atelier-photo { grid-area: photo; align-self: center; width: clamp(120px, 11vw, 150px); margin: 0; }
+.atelier-photo .crop-marks { --c: rgba(255, 255, 255, .75); --l: 12px; padding: 7px; }
+.atelier-photo img { aspect-ratio: 3 / 4; object-fit: cover; object-position: 52% 50%; box-shadow: 0 14px 34px -14px rgba(0, 0, 0, .9); }
 .atelier .eyebrow { color: var(--a-ink-2); }
 .atelier .eyebrow-num { color: #FF9A69; }
 .atelier-text p:not(.eyebrow) { color: var(--a-ink-2); font-size: 1.06rem; max-width: 52ch; }
 .interests {
-  grid-column: 2; list-style: none;
+  grid-column: 2; grid-row: 1; list-style: none;
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px;
   background: var(--a-line); border: 1px solid var(--a-line); border-radius: var(--radius); overflow: hidden;
 }
@@ -805,14 +816,22 @@ ul, ol { margin: 0; padding: 0; }
 .interests strong { font-size: .98rem; }
 .interests span:not(.i-code) { grid-column: 2; color: var(--a-ink-2); font-size: .86rem; line-height: 1.4; }
 
+@media (max-width: 1080px) {
+  .atelier-inner { grid-template-columns: 1fr; }
+  .atelier-text, .interests { grid-column: 1; grid-row: auto; }
+  /* La photo suit le texte au lieu de partir au bord droit */
+  .atelier-text { grid-template-columns: minmax(0, 560px) auto; justify-content: start; }
+  .atelier-photo { width: 140px; }
+}
 @media (max-width: 860px) {
   .atelier { background-position: 20% bottom; }
   .atelier::before { background: linear-gradient(180deg, rgba(5,7,10,.88) 0%, rgba(5,7,10,.72) 60%, rgba(5,7,10,.35) 100%); }
-  .atelier-inner { grid-template-columns: 1fr; }
-  .atelier-text, .interests { grid-column: 1; }
 }
 @media (max-width: 520px) {
   .interests { grid-template-columns: 1fr; }
+  /* Sur téléphone, la photo reste à droite du titre et le paragraphe passe dessous */
+  .atelier-text { grid-template-areas: "eyebrow photo" "title photo" "para para"; }
+  .atelier-photo { width: 110px; align-self: end; margin-bottom: 16px; }
 }
 
 /* ---------- Contact ---------- */
