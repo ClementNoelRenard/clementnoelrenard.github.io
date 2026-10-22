@@ -1,4 +1,3 @@
-### En-tête : Présentation
 #### Clément Noël
 Je suis spécialisé dans la conception et l'informatique industrielles. Grâce à mes expériences professionnelles et à mes diplômes (BTS CRSA et BUT GEII parcours AII), je suis capable d'appréhender l'ensemble des métiers impliqués dans un même projet. Mon domaine d'expertise principal reste l'automatisme.
 
