@@ -4,316 +4,244 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Clément Noël — Automaticien</title>
-  <meta name="description" content="Portfolio de Clément Noël, automaticien en Master Génie Industriel à l’INSSET (UPJV), diplômé BTS CRSA et BUT GEII : réalisations, parcours, compétences et rapports techniques en PDF.">
+  <meta name="description" content="Clément Noël (Clément Noël Renard), automaticien en Master Génie Industriel à l'INSSET (UPJV), diplômé BTS CRSA et BUT GEII : automatisme, informatique industrielle, systèmes embarqués.">
+  <link rel="canonical" href="https://clementnoelrenard.codeberg.page/">
   <meta name="theme-color" content="#F3F2EC" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0F1215" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script>
-    // Applique le thème choisi avant l’affichage pour éviter un flash
-    try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
-    document.documentElement.classList.add("js");
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Aperçu du lien quand on le partage (LinkedIn, messageries…) -->
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Clément Noël — Automaticien">
+  <meta property="og:description" content="Master Génie Industriel à l'INSSET, BTS CRSA et BUT GEII : automatisme, informatique industrielle et systèmes embarqués.">
+  <meta property="og:url" content="https://clementnoelrenard.codeberg.page/">
+  <meta property="og:image" content="https://clementnoelrenard.codeberg.page/images/MOI3.jpg">
+  <meta property="profile:first_name" content="Clément">
+  <meta property="profile:last_name" content="Noël">
+
+  <!-- =========================================================
+       DONNÉES STRUCTURÉES (lues par Google, invisibles à l'écran)
+       Elles décrivent qui tu es, pour que Google relie ce site,
+       ton LinkedIn, Codeberg et GitHub à la même personne
+       (et ne te confonde pas avec un homonyme).
+       ========================================================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://clementnoelrenard.codeberg.page/#site",
+        "url": "https://clementnoelrenard.codeberg.page/",
+        "name": "Clément Noël — Automaticien",
+        "inLanguage": "fr-FR",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://clementnoelrenard.codeberg.page/#page",
+        "url": "https://clementnoelrenard.codeberg.page/",
+        "name": "Clément Noël — Automaticien",
+        "inLanguage": "fr-FR",
+        "isPartOf": { "@id": "https://clementnoelrenard.codeberg.page/#site" },
+        "mainEntity": { "@id": "https://clementnoelrenard.codeberg.page/#personne" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://clementnoelrenard.codeberg.page/#personne",
+        "name": "Clément Noël",
+        "alternateName": "Clément Noël Renard",
+        "givenName": "Clément",
+        "familyName": "Noël",
+        "jobTitle": "Automaticien",
+        "description": "Étudiant en Master Génie Industriel (option Conception Électronique) à l'INSSET, diplômé BTS CRSA et BUT GEII, spécialisé en automatisme et informatique industrielle.",
+        "url": "https://clementnoelrenard.codeberg.page/",
+        "image": "https://clementnoelrenard.codeberg.page/images/MOI3.jpg",
+        "email": "mailto:clementnoelrenard2001@ik.me",
+        "sameAs": [
+          "https://www.linkedin.com/in/clement-noel-renard/",
+          "https://codeberg.org/ClementNoelRenard",
+          "https://github.com/ClementNoelRenard"
+        ],
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "INSSET — Université de Picardie Jules Verne"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "IUT de Bordeaux" },
+          { "@type": "EducationalOrganization", "name": "Lycée Val de Garonne, Marmande" }
+        ],
+        "hasCredential": [
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "BUT Génie Électrique et Informatique Industrielle — parcours Automatisme et Informatique Industrielle" },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "BTS Conception et Réalisation de Systèmes Automatiques (CRSA)" },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Bac Pro Métiers de l'Électricité et de ses Environnements Connectés (MELEC)" }
+        ],
+        "knowsAbout": [
+          "Automatisme",
+          "Informatique industrielle",
+          "Systèmes embarqués",
+          "Siemens TIA Portal",
+          "Schneider Electric EcoStruxure",
+          "Conception d'IHM",
+          "Supervision industrielle",
+          "OPC UA",
+          "Régulation PID",
+          "Conception mécanique",
+          "Impression 3D FDM"
+        ],
+        "knowsLanguage": "fr"
+      }
+    ]
+  }
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
-  <header class="topbar" id="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#haut" aria-label="Clément Noël — haut de page">
-        <span class="brand-mark" aria-hidden="true">CN</span>
-        <span class="brand-name">Clément Noël</span>
+  <!-- ===== BARRE DU HAUT (identique sur toutes les pages) ===== -->
+  <header class="barre-haut">
+    <div class="barre-contenu">
+      <a class="marque" href="index.html" aria-label="Clément Noël — accueil">
+        <span class="marque-logo" aria-hidden="true">CN</span>
+        <span class="marque-nom">Clément Noël</span>
       </a>
-
-      <nav class="nav" id="nav" aria-label="Navigation principale">
-        <a href="#realisations"><span class="nav-num">01</span>Réalisations</a>
-        <a href="#parcours"><span class="nav-num">02</span>Parcours</a>
-        <a href="#competences"><span class="nav-num">03</span>Compétences</a>
-        <a href="#documents"><span class="nav-num">04</span>Documents</a>
-        <a href="#atelier"><span class="nav-num">05</span>Loisirs</a>
-        <a href="#contact"><span class="nav-num">06</span>Contact</a>
+      <nav class="menu" aria-label="Navigation principale">
+        <a href="index.html" aria-current="page">Accueil</a>
+        <a href="archive.html">Documents</a>
+        <a href="#contact">Contact</a>
       </nav>
-
-      <div class="topbar-actions">
-        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Changer de thème">
-          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.5 8.5 0 0 1 9.4 4a8.5 8.5 0 1 0 10.6 10.6z"/></svg>
-        </button>
-        <a class="btn btn-sm btn-ink" href="pdfs/cv/CV_Clement-Noel.pdf" target="_blank" rel="noopener">CV <span aria-hidden="true">↗</span></a>
-        <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-      </div>
+      <a class="bouton bouton-petit bouton-encre" href="pdfs/clementnoel_CV_reseau.pdf" target="_blank" rel="noopener">CV ↗</a>
     </div>
   </header>
 
   <main id="contenu">
-    <!-- ============ ACCUEIL ============ -->
-    <section class="hero" id="haut">
-      <div class="wrap hero-grid">
-        <div class="hero-text">
-          <p class="status"><span class="led" aria-hidden="true"></span>Master Génie Industriel · INSSET</p>
-          <h1 class="hero-title">Clément<br>Noël</h1>
-          <p class="hero-role">informatique industrielles et système Embarqué</p>
-          <p class="hero-lede">Spécialisé en conception et en informatique industrielles, avec un domaine d’expertise principal : <em>l’automatisme</em>.</p>
-          <p class="hero-next">Actuellement en Master Génie Industriel, option Conception Électronique, à l’<strong>INSSET</strong> (Université de Picardie Jules Verne).</p>
-          <div class="hero-cta">
-            <a class="btn btn-accent" href="#realisations">Voir mes réalisations</a>
-            <a class="btn btn-line" href="pdfs/cv/CV_Clement-Noel.pdf" download>Télécharger le CV <span class="btn-meta">PDF · 833 ko</span></a>
+
+    <!-- ===== PRÉSENTATION : texte à gauche, photo à droite ===== -->
+    <section class="presentation">
+      <div class="conteneur presentation-grille">
+
+        <div class="apparait">
+          <p class="statut"><span class="voyant" aria-hidden="true"></span>Master Génie Industriel · INSSET</p>
+          <h1 class="titre-principal">Clément<br>Noël</h1>
+          <p class="specialite">Automatisme · informatique industrielle · systèmes embarqués</p>
+
+          <div class="texte-justifie">
+            <p>Actuellement étudiant à l'<strong>INSSET</strong> (Université de Picardie Jules Verne) en Master Génie Industriel, option Conception Électronique, je suis spécialisé dans les domaines de la conception et de l'informatique industrielles. Grâce à mes expériences professionnelles et à mes diplômes (BUT GEII parcours AII et BTS CRSA), je suis capable d'appréhender l'ensemble des métiers impliqués dans un même projet. Mon domaine d'expertise principal reste <strong>l'automatisme</strong>.</p>
+            <p>Pendant mon temps libre, je pratique la conception mécanique et l'impression 3D FDM.</p>
+            <p>J'hésite encore entre deux voies : m'investir dans la recherche et l'enseignement en entreprenant un doctorat, ou devenir Officier dans l'Armée de Terre (génie électrique).</p>
+          </div>
+          <p class="phrase-cle">Dans les deux cas, mon but est de servir mon pays ! ^^</p>
+
+          <div class="actions">
+            <a class="bouton bouton-accent" href="pdfs/clementnoel_CV_reseau.pdf" download>Télécharger mon CV <span class="bouton-info">PDF</span></a>
+            <a class="bouton bouton-contour" href="archive.html">Consulter les documents →</a>
           </div>
         </div>
 
-        <figure class="hero-figure">
-          <div class="crop-marks">
-            <img src="assets/img/portrait.jpg" width="896" height="1195" alt="Portrait de Clément Noël">
+        <figure class="photo apparait apparait-2">
+          <div class="reperes">
+            <img src="images/MOI3.jpg" width="896" height="1195" alt="Photo de Clément Noël">
           </div>
           <table class="cartouche">
-            <caption class="visually-hidden">Fiche d’identité</caption>
+            <caption hidden>Fiche d'identité</caption>
             <tbody>
               <tr><th scope="row">Nom</th><td>Clément Noël</td></tr>
-              <tr><th scope="row">Spécialité</th><td>Automatisme &amp; informatique industrielle, spécialisé système Embarqué</td></tr>
-              <tr><th scope="row">Formation</th><td>Master Génie Industriel - Electronique Embarqué</td></tr>
-              <tr><th scope="row">Diplômes</th><td>BAC PRO MELEC - BTS CRSA - BUT GEII (AII)</td></tr>
+              <tr><th scope="row">Formation</th><td>Master Génie Industriel</td></tr>
+              <tr><th scope="row">Diplômes</th><td>BTS CRSA · BUT GEII (AII)</td></tr>
             </tbody>
           </table>
         </figure>
-      </div>
 
-      <div class="wrap">
-        <dl class="stats" id="stats">
-          <div><dt>Diplômes industriels</dt><dd data-stat="diplomes">2</dd></div>
-          <div><dt>Expériences en entreprise</dt><dd data-stat="experiences">4</dd></div>
-          <div><dt>Projets techniques</dt><dd data-stat="projets">5</dd></div>
-          <div><dt>Documents consultables</dt><dd data-stat="documents">28</dd></div>
-        </dl>
       </div>
     </section>
 
-    <!-- ============ PROFIL ============ -->
-    <section class="section" id="profil" aria-labelledby="profil-titre">
-      <div class="wrap profil-grid">
-        <figure class="profil-photo reveal">
-          <div class="crop-marks">
-            <img src="assets/img/moi4.jpg" width="636" height="635" loading="lazy" alt="Clément Noël photographié derrière un appareil photo">
-          </div>
-        </figure>
-        <div class="profil-text reveal">
-          <p class="eyebrow">Profil</p>
-          <h2 id="profil-titre">Avant tout un automaticien, capable d’appréhender tous les métiers d’un même projet.</h2>
-          <p>Actuellement étudiant à l’INSSET (Université de Picardie Jules Verne) en Master Génie Industriel, option Conception Électronique, je suis spécialisé dans les domaines de la conception et de l’informatique industrielles.</p>
-          <p>Grâce à mes expériences professionnelles et à mes diplômes (BUT GEII parcours AII et BTS CRSA), je suis capable d’appréhender l’ensemble des métiers impliqués dans un même projet. Mon domaine d’expertise principal reste l’automatisme.</p>
-          <p class="profil-more"><a href="#cap">Et après le Master&nbsp;? <span aria-hidden="true">↓</span></a></p>
+    <!-- ===== 01 — À PROPOS ===== -->
+    <section class="section section-alternee a-propos" id="a-propos">
+      <div class="conteneur">
+        <div class="entete-section">
+          <div class="regle" aria-hidden="true"></div>
+          <p class="surtitre"><span class="surtitre-num">01</span>À propos</p>
+          <h2 class="titre-section">Avant tout un automaticien.</h2>
+        </div>
+        <div class="texte-justifie">
+          <p>Double diplômé de cursus industriels à forte valeur ajoutée, j'ai envie d'apprendre tout ce qui touche, de près ou de loin, à ces domaines. Mes compétences sont variées — automatisme, électricité, informatique industrielle, électronique, conception 3D — mais je reste avant tout un automaticien, qui doit savoir communiquer de façon fluide avec tous les métiers qui dialoguent avec le sien.</p>
+          <p>Mon approche est simple : apprendre et faire apprendre. L'information est mieux traitée quand on est plusieurs sur le sujet.</p>
+          <p>Curieux et rigoureux, j'approfondis mes compétences par la veille technologique et en contribuant à des projets open source qui me poussent à progresser.</p>
         </div>
       </div>
     </section>
 
-    <!-- ============ CAP ============ -->
-    <section class="section section-alt cap" id="cap" aria-labelledby="cap-titre">
-      <div class="wrap cap-grid">
-        <header class="section-head reveal">
-          <div class="ruler" aria-hidden="true"></div>
-          <p class="eyebrow">Et après&nbsp;?</p>
-          <h2 id="cap-titre">Deux voies, un même cap</h2>
-          <p class="section-lede">J’hésite encore entre deux voies : m’investir dans la recherche et l’enseignement en entreprenant un doctorat, ou devenir Officier dans l’Armée de Terre (génie électrique).</p>
-          <p class="cap-close">Dans les deux cas, mon but est de servir mon pays&nbsp;! ^^</p>
-        </header>
-
-        <figure class="grafcet reveal">
-          <figcaption class="visually-hidden">Grafcet : depuis l’étape active « Master Génie Industriel », une divergence en OU mène soit au doctorat, soit à la carrière d’officier ; les deux branches convergent vers « Servir mon pays ».</figcaption>
-          <div class="g-row">
-            <span class="g-step g-initial is-active">0</span>
-            <div class="g-action"><strong>Master Génie Industriel</strong><span>INSSET · Conception Électronique</span></div>
-          </div>
-          <div class="g-link" aria-hidden="true"></div>
-          <div class="g-or" aria-hidden="true"></div>
-          <div class="g-branches">
-            <div class="g-branch">
-              <div class="g-trans"><span class="g-cond">voie = doctorat</span></div>
-              <div class="g-row">
-                <span class="g-step">1</span>
-                <div class="g-action"><strong>Doctorat</strong><span>Recherche &amp; enseignement</span></div>
-              </div>
-              <div class="g-trans"><span class="g-cond">= 1</span></div>
-            </div>
-            <div class="g-branch">
-              <div class="g-trans"><span class="g-cond">voie = officier</span></div>
-              <div class="g-row">
-                <span class="g-step">2</span>
-                <div class="g-action"><strong>Officier</strong><span>Armée de Terre · génie électrique</span></div>
-              </div>
-              <div class="g-trans"><span class="g-cond">= 1</span></div>
-            </div>
-          </div>
-          <div class="g-or" aria-hidden="true"></div>
-          <div class="g-link" aria-hidden="true"></div>
-          <div class="g-row">
-            <span class="g-step g-goal">3</span>
-            <div class="g-action g-action-goal"><strong>Servir mon pays</strong></div>
-          </div>
-          <p class="g-legend" aria-hidden="true"><span class="g-token"></span>étape active</p>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ============ RÉALISATIONS ============ -->
-    <section class="section" id="realisations" aria-labelledby="realisations-titre">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <div class="ruler" aria-hidden="true"></div>
-          <p class="eyebrow"><span class="eyebrow-num">01</span>Réalisations</p>
-          <h2 id="realisations-titre">Projets et expériences terrain</h2>
-          <p class="section-lede">De l’armoire au pupitre opérateur : une sélection de ce que j’ai conçu, câblé, programmé et documenté. Chaque fiche renvoie vers les rapports complets.</p>
-        </header>
-        <div class="work-grid" id="work-grid"></div>
-      </div>
-    </section>
-
-    <!-- ============ PARCOURS ============ -->
-    <section class="section section-alt" id="parcours" aria-labelledby="parcours-titre">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <div class="ruler" aria-hidden="true"></div>
-          <p class="eyebrow"><span class="eyebrow-num">02</span>Parcours</p>
-          <h2 id="parcours-titre">Du Bac Pro MELEC au Master Génie Industriel</h2>
-          <p class="section-lede">Expériences en entreprise, formations et projets, du plus récent au plus ancien.</p>
-        </header>
-
-        <div class="filters" role="group" aria-label="Filtrer le parcours" id="timeline-filters">
-          <button type="button" class="chip" data-filter="all" aria-pressed="true">Tout <span class="chip-count"></span></button>
-          <button type="button" class="chip" data-filter="experience" aria-pressed="false"><span class="dot dot-experience" aria-hidden="true"></span>Expériences <span class="chip-count"></span></button>
-          <button type="button" class="chip" data-filter="formation" aria-pressed="false"><span class="dot dot-formation" aria-hidden="true"></span>Formations <span class="chip-count"></span></button>
-          <button type="button" class="chip" data-filter="projet" aria-pressed="false"><span class="dot dot-projet" aria-hidden="true"></span>Projets <span class="chip-count"></span></button>
+    <!-- ===== 02 — PARCOURS ET PROJETS ===== -->
+    <section class="section" id="parcours">
+      <div class="conteneur">
+        <div class="entete-section">
+          <div class="regle" aria-hidden="true"></div>
+          <p class="surtitre"><span class="surtitre-num">02</span>Parcours et projets</p>
+          <h2 class="titre-section">Expériences, projets et compétences.</h2>
+          <p class="chapo">Retrouvez mes expériences professionnelles, stages, projets académiques et compétences, chacun résumé en quelques lignes avec ses rapports PDF.</p>
         </div>
-
-        <ol class="timeline" id="timeline"></ol>
+        <a class="carte-lien" href="archive.html">
+          <span>
+            <span class="carte-lien-titre">Consulter les documents</span>
+            <span class="carte-lien-detail">4 expériences · 5 projets · 10 compétences · 26 PDF</span>
+          </span>
+          <span class="carte-lien-fleche" aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
 
-    <!-- ============ COMPÉTENCES ============ -->
-    <section class="section" id="competences" aria-labelledby="competences-titre">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <div class="ruler" aria-hidden="true"></div>
-          <p class="eyebrow"><span class="eyebrow-num">03</span>Compétences</p>
-          <h2 id="competences-titre">Boîte à outils</h2>
-          <p class="section-lede">Auto-évaluation sur 5, de la découverte (1) à la maîtrise en autonomie (5).</p>
-        </header>
-
-        <div class="skills" id="skills"></div>
-
-        <div class="referentiel reveal">
-          <div class="referentiel-head">
-            <h3>Référentiel BUT GEII — parcours AII</h3>
-            <p>Chaque compétence du référentiel, reliée au document qui en apporte la preuve.</p>
+    <!-- ===== 03 — RESSOURCES ET LIENS ===== -->
+    <section class="section section-alternee" id="liens">
+      <div class="conteneur">
+        <div class="entete-section">
+          <div class="regle" aria-hidden="true"></div>
+          <p class="surtitre"><span class="surtitre-num">03</span>Ressources &amp; liens</p>
+          <h2 class="titre-section">À consulter.</h2>
+        </div>
+        <div class="colonnes-liens">
+          <div>
+            <h3 class="titre-liste">Mes dépôts</h3>
+            <ul class="liste-liens">
+              <li><a href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">Dépôt Codeberg <span class="mono">↗</span></a></li>
+              <li><a href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">GitHub <span class="mono">↗</span></a></li>
+            </ul>
           </div>
-          <div class="ref-grid" id="referentiel"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ DOCUMENTS ============ -->
-    <section class="section section-alt" id="documents" aria-labelledby="documents-titre">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <div class="ruler" aria-hidden="true"></div>
-          <p class="eyebrow"><span class="eyebrow-num">04</span>Documents</p>
-          <h2 id="documents-titre">Archives techniques</h2>
-          <p class="section-lede">Rapports de stage et d’alternance, dossiers de projets et preuves de compétences, au format PDF. Cliquez sur une fiche pour l’ouvrir.</p>
-        </header>
-
-        <div class="doc-toolbar">
-          <div class="filters" role="group" aria-label="Filtrer les documents" id="doc-filters"></div>
-          <label class="search">
-            <span class="visually-hidden">Rechercher un document</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
-            <input type="search" id="doc-search" placeholder="Rechercher (ex. INEO, PID, maintenance…)" autocomplete="off">
-          </label>
-        </div>
-
-        <div id="doc-groups"></div>
-        <p class="doc-empty" id="doc-empty" hidden>Aucun document ne correspond à cette recherche.</p>
-      </div>
-    </section>
-
-    <!-- ============ ATELIER ============ -->
-    <section class="atelier" id="atelier" aria-labelledby="atelier-titre">
-      <div class="wrap atelier-inner">
-        <div class="atelier-text reveal">
-          <p class="eyebrow"><span class="eyebrow-num">05</span>Loisirs</p>
-          <h2 id="atelier-titre">Hors des heures de travail</h2>
-          <p>Pendant mon temps libre, je pratique la conception mécanique et l’impression 3D FDM. Sur un coup de tête, je pars aussi en trail en solitaire dans les Pyrénées et, quand il est trop tard pour allumer l’imprimante, j’optimise mes réseaux sur Factorio&nbsp;!</p>
-          <figure class="atelier-photo">
-            <div class="crop-marks">
-              <img src="assets/img/photo-appareil.jpg" width="1111" height="1009" loading="lazy" decoding="async" alt="Clément Noël souriant, en costume et cravate">
-            </div>
-          </figure>
-        </div>
-        <ul class="interests reveal">
-          <li><span class="i-code">3D</span><strong>Conception mécanique &amp; impression 3D</strong><span>Pièces dessinées puis imprimées en FDM.</span></li>
-          <li><span class="i-code">TRL</span><strong>Trail</strong><span>En solitaire, dans les Pyrénées.</span></li>
-          <li><span class="i-code">FAC</span><strong>Factorio</strong><span>L’automatisme, version usine géante.</span></li>
-          <li><span class="i-code">KSP</span><strong>Kerbal Space Program</strong><span>Concevoir des fusées, puis les faire voler.</span></li>
-          <li><span class="i-code">SRV</span><strong>Auto-hébergement</strong><span>Un serveur maison géré au quotidien.</span></li>
-          <li><span class="i-code">OSS</span><strong>Communs numériques</strong><span>Wikipédia, OpenStreetMap, documentation Debian en français.</span></li>
-          <li><span class="i-code">BIA</span><strong>Aéronautique &amp; spatial</strong><span>Brevet d’Initiation Aéronautique en 2019.</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="section contact" id="contact" aria-labelledby="contact-titre">
-      <div class="wrap contact-grid">
-        <div class="contact-main reveal">
-          <p class="eyebrow"><span class="eyebrow-num">06</span>Contact</p>
-          <h2 id="contact-titre">Une thèse, un projet, une question&nbsp;?</h2>
-          <p class="section-lede">Sujet de doctorat, projet technique ou échange sur la carrière d’officier : le plus simple reste un e-mail.</p>
-          <div class="mail-row">
-            <a class="btn btn-accent btn-lg" href="mailto:clementnoelrenard2001@ik.me">clementnoelrenard2001@ik.me</a>
-            <button class="btn btn-line" type="button" id="copy-mail" data-mail="clementnoelrenard2001@ik.me">Copier l’adresse</button>
+          <div>
+            <h3 class="titre-liste">Ressources que je recommande</h3>
+            <ul class="liste-liens">
+              <li><a href="https://european-alternatives.eu/alternatives-to" target="_blank" rel="noopener">Logiciels alternatifs (UE) <span class="mono">↗</span></a></li>
+              <li><a href="https://distrowatch.com/" target="_blank" rel="noopener">Distributions Linux <span class="mono">↗</span></a></li>
+            </ul>
           </div>
         </div>
-
-        <div class="contact-links reveal">
-          <h3 class="list-title">Retrouvez-moi</h3>
-          <ul class="link-list">
-            <li><a href="https://www.linkedin.com/in/clement-noel-renard/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">Codeberg <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
-          </ul>
-          <h3 class="list-title">Ressources que je recommande</h3>
-          <ul class="link-list">
-            <li><a href="https://european-alternatives.eu/alternatives-to" target="_blank" rel="noopener">Logiciels alternatifs européens <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://distrowatch.com/" target="_blank" rel="noopener">Distributions Linux <span aria-hidden="true">↗</span></a></li>
-          </ul>
-        </div>
       </div>
     </section>
+
+    <!-- ===== 04 — CONTACT ===== -->
+    <section class="section contact" id="contact">
+      <div class="conteneur">
+        <div class="entete-section">
+          <div class="regle" aria-hidden="true"></div>
+          <p class="surtitre"><span class="surtitre-num">04</span>Contact</p>
+          <h2 class="titre-section">Une question, un projet ?</h2>
+          <p class="chapo">Le plus simple reste un e-mail.</p>
+        </div>
+        <p class="courriel">
+          <a class="bouton bouton-accent" href="mailto:clementnoelrenard2001@ik.me">clementnoelrenard2001@ik.me</a>
+        </p>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <p>© 2026 — Clément Noël — v6.0</p>
-      <p class="footer-note">Site statique : ni cookie, ni traceur, ni dépendance externe.</p>
+  <!-- ===== PIED DE PAGE ===== -->
+  <footer class="pied-page">
+    <div class="conteneur pied-contenu">
+      <p>© 2026 — Clément Noël — v3.1</p>
+      <p>Site statique : ni cookie, ni traceur, ni JavaScript.</p>
     </div>
   </footer>
-
-  <!-- Fiche détaillée d’une réalisation -->
-  <dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
-    <div class="sheet-inner" id="sheet-content"></div>
-  </dialog>
-
-  <button class="rocket" id="rocket" type="button" aria-label="Revenir en haut de page">
-    <svg viewBox="0 0 32 40" aria-hidden="true">
-      <path class="rocket-flame" d="M13 31h6l-3 7z"/>
-      <path class="rocket-body" d="M16 3c4.6 3.6 6.8 8.8 6.8 14.6V27H9.2v-9.4C9.2 11.8 11.4 6.6 16 3z"/>
-      <path class="rocket-fin" d="M9.2 19.5 5 24.5v5l4.2-2.5M22.8 19.5l4.2 5v5l-4.2-2.5"/>
-      <circle class="rocket-window" cx="16" cy="14" r="2.6"/>
-    </svg>
-  </button>
-
-  <noscript><p class="noscript">Les listes de projets et de documents nécessitent JavaScript. Le <a href="pdfs/cv/CV_Clement-Noel.pdf">CV en PDF</a> reste disponible.</p></noscript>
-
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/main.js"></script>
 </body>
 </html>

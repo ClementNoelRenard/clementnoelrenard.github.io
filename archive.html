@@ -3,13 +3,590 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documents — Clément Noël</title>
-  <!-- Ancienne adresse : les documents sont désormais une section de la page d’accueil -->
-  <link rel="canonical" href="https://clementnoelrenard.github.io/">
-  <meta http-equiv="refresh" content="0; url=/#documents">
-  <script>location.replace("/#documents");</script>
+  <title>Projets et rapports techniques — Clément Noël, automaticien</title>
+  <meta name="description" content="Expériences et projets de Clément Noël, automaticien : rétrofit d'IHM Schneider, supervision OPC UA, TIA Portal, Ignition, régulation PID, robot mini-sumo. Résumés et rapports PDF.">
+  <link rel="canonical" href="https://clementnoelrenard.codeberg.page/archive.html">
+  <meta name="theme-color" content="#F3F2EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1215" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Aperçu du lien quand on le partage (LinkedIn, messageries…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Projets et rapports techniques — Clément Noël">
+  <meta property="og:description" content="Expériences, projets et preuves de compétences en automatisme, avec leurs rapports PDF.">
+  <meta property="og:url" content="https://clementnoelrenard.codeberg.page/archive.html">
+  <meta property="og:image" content="https://clementnoelrenard.codeberg.page/images/MOI3.jpg">
+
+  <!-- =========================================================
+       DONNÉES STRUCTURÉES (lues par Google, invisibles à l'écran)
+       Une entrée par fiche. Si tu modifies un résumé plus bas,
+       mets aussi à jour sa « description » ici.
+       ========================================================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#page",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html",
+        "name": "Projets et rapports techniques — Clément Noël",
+        "inLanguage": "fr-FR",
+        "isPartOf": { "@id": "https://clementnoelrenard.codeberg.page/#site" },
+        "about": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "breadcrumb": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#fil" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "numberOfItems": 9,
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#ineo-alternance" } },
+            { "@type": "ListItem", "position": 2, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#ineo-stage" } },
+            { "@type": "ListItem", "position": 3, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#isp" } },
+            { "@type": "ListItem", "position": 4, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#lacosse" } },
+            { "@type": "ListItem", "position": 5, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#mugochaud" } },
+            { "@type": "ListItem", "position": 6, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#cave-a-vin" } },
+            { "@type": "ListItem", "position": 7, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#robot-sumo" } },
+            { "@type": "ListItem", "position": 8, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#liaison-sans-fil" } },
+            { "@type": "ListItem", "position": 9, "item": { "@id": "https://clementnoelrenard.codeberg.page/archive.html#tri-ronds-de-serviette" } }
+          ]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#fil",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://clementnoelrenard.codeberg.page/" },
+          { "@type": "ListItem", "position": 2, "name": "Documents", "item": "https://clementnoelrenard.codeberg.page/archive.html" }
+        ]
+      },
+
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#ineo-alternance",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#ineo-alternance",
+        "name": "Alternance automaticien — modernisation d'une baie de test (INEO Aquitaine)",
+        "description": "Rétrofit d'une baie de test informatique obsolète en garantissant la stricte non-régression du système : programmes Siemens TIA Portal, câblage industriel, passerelles Moxa, supervision Ignition et base MySQL.",
+        "temporalCoverage": "2025/2026",
+        "keywords": "TIA Portal, Ignition, MySQL, Moxa, rétrofit, non-régression",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "Organization", "name": "INEO Aquitaine", "parentOrganization": { "@type": "Organization", "name": "Equans" } },
+        "hasPart": [
+          { "@type": "Report", "name": "Rapport d'alternance 2026 — INEO Aquitaine", "url": "https://clementnoelrenard.codeberg.page/pdfs/CN_R_2026.pdf", "encodingFormat": "application/pdf" },
+          { "@type": "PresentationDigitalDocument", "name": "Support de soutenance d'alternance 2026 — INEO Aquitaine", "url": "https://clementnoelrenard.codeberg.page/pdfs/CN_P_2026.pdf", "encodingFormat": "application/pdf" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#ineo-stage",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#ineo-stage",
+        "name": "Rétrofit d'interfaces opérateur Schneider Electric (stage INEO Aquitaine)",
+        "description": "Remplacement d'IHM obsolètes Magelis par des écrans Harmony sous EcoStruxure Operator Terminal Expert : analyse des besoins, conception des écrans, portage des variables automate, alarmes par script et essais sur platine.",
+        "temporalCoverage": "2025",
+        "keywords": "EcoStruxure Operator Terminal Expert, Schneider Electric, Harmony, Magelis, IHM",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "Organization", "name": "INEO Aquitaine" },
+        "hasPart": [
+          { "@type": "Report", "name": "Rapport de stage 2025 — INEO Aquitaine", "url": "https://clementnoelrenard.codeberg.page/pdfs/CN_R_2024.pdf", "encodingFormat": "application/pdf" },
+          { "@type": "PresentationDigitalDocument", "name": "Support de soutenance de stage 2025 — INEO Aquitaine", "url": "https://clementnoelrenard.codeberg.page/pdfs/CN_P_2024.pdf", "encodingFormat": "application/pdf" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#isp",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#isp",
+        "name": "Supervision OPC UA et intégration robotique (stage ISP Aquitaine)",
+        "description": "Supervision de type SCADA reliant un automate Siemens à Excel par OPC UA, programmée en VBA, et participation à l'intégration d'une cellule robotique ABB.",
+        "temporalCoverage": "2024-04/2024-07",
+        "keywords": "OPC UA, TIA Portal, VBA, SCADA, robotique ABB",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "Organization", "name": "ISP Aquitaine" },
+        "hasPart": [
+          { "@type": "Report", "name": "Rapport de stage 2024 — ISP Aquitaine", "url": "https://clementnoelrenard.codeberg.page/pdfs/CN_R_2023.pdf", "encodingFormat": "application/pdf" },
+          { "@type": "PresentationDigitalDocument", "name": "Support de soutenance de stage 2024 — ISP Aquitaine", "url": "https://clementnoelrenard.codeberg.page/pdfs/CN_P_2023.pdf", "encodingFormat": "application/pdf" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#lacosse",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#lacosse",
+        "name": "Restauration d'une machine de découpe de bois (stage Lacosse Emballage)",
+        "description": "Restauration complète d'une machine de découpe de bois, de sa mise aux normes à sa réintégration en production : électricité, mécanique, pneumatique et programmation.",
+        "temporalCoverage": "2021-04/2021-07",
+        "keywords": "maintenance, mise aux normes, pneumatique",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "Organization", "name": "Lacosse Emballage" },
+        "hasPart": [
+          { "@type": "PresentationDigitalDocument", "name": "Support de rapport de stage — Lacosse Emballage", "url": "https://clementnoelrenard.codeberg.page/pdfs/CN_P_lacosse.pdf", "encodingFormat": "application/pdf" }
+        ]
+      },
+
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#mugochaud",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#mugochaud",
+        "name": "MugOchaud — chauffe-mug régulé par automate (SAE S4, BUT GEII)",
+        "description": "Système qui chauffe un mug et maintient son contenu à une température de consigne : dossier de conception, Grafcet, câblage d'armoire et programmation d'un automate Siemens en LADDER.",
+        "temporalCoverage": "2025-01/2025-04",
+        "keywords": "automate Siemens, LADDER, Grafcet, câblage d'armoire",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "CollegeOrUniversity", "name": "IUT de Bordeaux" },
+        "hasPart": [
+          { "@type": "Report", "name": "MugOchaud — Rapport de projet", "url": "https://clementnoelrenard.codeberg.page/pdfs/SAE_S4.pdf", "encodingFormat": "application/pdf" },
+          { "@type": "DigitalDocument", "name": "MugOchaud — Dossier de conception", "url": "https://clementnoelrenard.codeberg.page/pdfs/C4_DDDC.pdf", "encodingFormat": "application/pdf" },
+          { "@type": "DigitalDocument", "name": "MugOchaud — Dossier de fabrication", "url": "https://clementnoelrenard.codeberg.page/pdfs/C4_DDF.pdf", "encodingFormat": "application/pdf" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#cave-a-vin",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#cave-a-vin",
+        "name": "Cave à vin — régulation de température et d'humidité (projet tuteuré, BUT GEII)",
+        "description": "Régulation d'une enceinte climatique sous TIA Portal : température stabilisée jusqu'à 5 °C, humidité à 70 %, régulation PID, sondes PT1000 et transfert dans une nouvelle armoire.",
+        "temporalCoverage": "2024-09/2025-06",
+        "keywords": "TIA Portal, régulation PID, PT1000, automate Siemens",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "CollegeOrUniversity", "name": "IUT de Bordeaux" },
+        "hasPart": [
+          { "@type": "Report", "name": "Projet tuteuré — Cave à vin, rapport", "url": "https://clementnoelrenard.codeberg.page/pdfs/cave_a_vin.pdf", "encodingFormat": "application/pdf" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#robot-sumo",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#robot-sumo",
+        "name": "Robot Mini-Sumo autonome (SAE S3, BUT GEII)",
+        "description": "Conception d'un robot autonome pour le tournoi national de robots mini-sumo, avec choix et implantation des capteurs de détection d'adversaire VL53L0X.",
+        "temporalCoverage": "2024-09/2025-01",
+        "keywords": "robotique, VL53L0X, capteurs, électronique",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "CollegeOrUniversity", "name": "IUT de Bordeaux" },
+        "hasPart": [
+          { "@type": "DigitalDocument", "name": "Robot Mini-Sumo — Cahier des charges", "url": "https://clementnoelrenard.codeberg.page/pdfs/RMS_CDC_v4.1.pdf", "encodingFormat": "application/pdf" },
+          { "@type": "DigitalDocument", "name": "Robot Mini-Sumo — Dossier de conception détaillée", "url": "https://clementnoelrenard.codeberg.page/pdfs/Groupe43_RMS_DDC.pdf", "encodingFormat": "application/pdf" },
+          { "@type": "DigitalDocument", "name": "Robot Mini-Sumo — Dossier de fabrication", "url": "https://clementnoelrenard.codeberg.page/pdfs/RMS_DDF_EQ43.pdf", "encodingFormat": "application/pdf" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#liaison-sans-fil",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#liaison-sans-fil",
+        "name": "Liaison sans fil entre deux Arduino (AOP S4, BUT GEII)",
+        "description": "Étude d'une liaison radio émetteur-récepteur à base de modules NRF24L01 : schémas électroniques, platine de test et programmation Arduino.",
+        "temporalCoverage": "2023/2024",
+        "keywords": "Arduino, NRF24L01, liaison radio",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "CollegeOrUniversity", "name": "IUT de Bordeaux" },
+        "hasPart": [
+          { "@type": "PresentationDigitalDocument", "name": "AOP S4 — Liaison sans fil, support de soutenance", "url": "https://clementnoelrenard.codeberg.page/pdfs/SSL_oral.pdf", "encodingFormat": "application/pdf" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://clementnoelrenard.codeberg.page/archive.html#tri-ronds-de-serviette",
+        "url": "https://clementnoelrenard.codeberg.page/archive.html#tri-ronds-de-serviette",
+        "name": "Machine de tri de ronds de serviette (projet BTS CRSA)",
+        "description": "Projet d'équipe d'un an : conception d'une machine de tri. Responsable du pupitre opérateur : IHM, arrêt d'urgence, colonne lumineuse et implantation des éléments.",
+        "temporalCoverage": "2021-09/2022-06",
+        "keywords": "IHM, pupitre opérateur, automatisme, conception mécanique",
+        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" },
+        "sourceOrganization": { "@type": "EducationalOrganization", "name": "Lycée Val de Garonne, Marmande" },
+        "hasPart": [
+          { "@type": "PresentationDigitalDocument", "name": "Projet BTS CRSA — Support de rapport", "url": "https://clementnoelrenard.codeberg.page/pdfs/CN_P_CRSA.pdf", "encodingFormat": "application/pdf" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <p>Cette page a déménagé : <a href="/#documents">voir les documents sur la page d’accueil</a>.</p>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <!-- ===== BARRE DU HAUT (identique sur toutes les pages) ===== -->
+  <header class="barre-haut">
+    <div class="barre-contenu">
+      <a class="marque" href="index.html" aria-label="Clément Noël — accueil">
+        <span class="marque-logo" aria-hidden="true">CN</span>
+        <span class="marque-nom">Clément Noël</span>
+      </a>
+      <nav class="menu" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="archive.html" aria-current="page">Documents</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="bouton bouton-petit bouton-encre" href="pdfs/clementnoel_CV_reseau.pdf" target="_blank" rel="noopener">CV ↗</a>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- ===== EN-TÊTE DE LA PAGE ===== -->
+    <section class="entete-page">
+      <div class="conteneur apparait">
+        <div class="regle" aria-hidden="true"></div>
+        <p class="surtitre"><span class="surtitre-num">26 PDF</span>Parcours &amp; projets</p>
+        <h1 class="titre-principal">Documents</h1>
+        <p class="chapo">Chaque expérience et chaque projet en quelques lignes, avec ses rapports en PDF juste à côté. Cliquez sur un document pour l'ouvrir.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="conteneur">
+
+        <!-- =====================================================
+             01 — EXPÉRIENCES PROFESSIONNELLES (du plus récent au plus ancien)
+             Modèle d'une fiche : copier un bloc <article> complet.
+             ===================================================== -->
+        <div class="groupe-docs">
+          <div class="groupe-entete">
+            <span class="mono">01</span>
+            <h2>Expériences professionnelles</h2>
+            <span class="groupe-compte">4 fiches · 7 PDF</span>
+          </div>
+
+          <div class="liste-fiches">
+
+            <!-- ----- INEO Aquitaine : alternance ----- -->
+            <article class="fiche" id="ineo-alternance">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">Alternance</span><span>2025 – 2026</span></p>
+                <h3>Modernisation d'une baie de test</h3>
+                <p class="fiche-organisme">INEO Aquitaine (groupe Equans) · Automaticien</p>
+                <p class="fiche-resume">Rétrofit d'une baie de test informatique obsolète, avec une exigence forte : garantir la stricte non-régression du système par rapport à l'installation d'origine.</p>
+                <ul class="fiche-points">
+                  <li>Mise à jour des programmes automates Siemens sous TIA Portal pour suivre les évolutions matérielles</li>
+                  <li>Diagnostic et correction d'erreurs de câblage industriel</li>
+                  <li>Configuration des communications réseau via des passerelles Moxa</li>
+                  <li>Restauration de la supervision Ignition et de sa base MySQL, puis validation en comparant les journaux de test avec l'ancienne installation</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>TIA Portal</li><li>Ignition</li><li>MySQL</li><li>Moxa</li><li>Non-régression</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/CN_R_2026.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">RAP</span><span class="doc-titre">Rapport d'alternance</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                  <li><a class="doc" href="pdfs/CN_P_2026.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">SOU</span><span class="doc-titre">Support de soutenance</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ----- INEO Aquitaine : stage ----- -->
+            <article class="fiche" id="ineo-stage">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">Stage</span><span>2025 · 12 semaines</span></p>
+                <h3>Rétrofit d'interfaces opérateur Schneider Electric</h3>
+                <p class="fiche-organisme">INEO Aquitaine (groupe Equans)</p>
+                <p class="fiche-resume">Remplacement d'IHM obsolètes de la gamme Magelis par des écrans Harmony, en respectant les contraintes du site et les habitudes des opérateurs.</p>
+                <ul class="fiche-points">
+                  <li>Analyse des anciennes interfaces et recueil des besoins des utilisateurs</li>
+                  <li>Conception des nouvelles IHM sous EcoStruxure Operator Terminal Expert</li>
+                  <li>Portage des variables de l'automate et gestion des alarmes par script</li>
+                  <li>Simulation du comportement du système sur une platine de test</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>EcoStruxure</li><li>Harmony</li><li>Magelis</li><li>IHM</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/CN_R_2024.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">RAP</span><span class="doc-titre">Rapport de stage</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                  <li><a class="doc" href="pdfs/CN_P_2024.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">SOU</span><span class="doc-titre">Support de soutenance</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ----- ISP Aquitaine ----- -->
+            <article class="fiche" id="isp">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">Stage</span><span>avr. – juil. 2024 · 4 mois</span></p>
+                <h3>Supervision OPC UA et intégration robotique</h3>
+                <p class="fiche-organisme">ISP Aquitaine · Bureau d'études</p>
+                <p class="fiche-resume">Création d'une supervision de type SCADA reliant un automate Siemens à Excel par le protocole OPC UA, et participation à l'intégration d'une cellule robotique ABB.</p>
+                <ul class="fiche-points">
+                  <li>Activation et configuration du serveur OPC UA de l'automate sous TIA Portal (réseau, authentification)</li>
+                  <li>Interface de supervision sous Excel, programmée en VBA</li>
+                  <li>Aménagement d'une platine de test pour les essais</li>
+                  <li>Intégration d'une cellule robotique ABB</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>OPC UA</li><li>TIA Portal</li><li>VBA</li><li>Robotique ABB</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/CN_R_2023.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">RAP</span><span class="doc-titre">Rapport de stage</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                  <li><a class="doc" href="pdfs/CN_P_2023.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">SOU</span><span class="doc-titre">Support de soutenance</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ----- Lacosse Emballage ----- -->
+            <article class="fiche" id="lacosse">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">Stage</span><span>avr. – juil. 2021 · 4 mois</span></p>
+                <h3>Restauration d'une machine de découpe de bois</h3>
+                <p class="fiche-organisme">Lacosse Emballage · Électricien de maintenance</p>
+                <p class="fiche-resume">Restauration complète d'une machine de découpe de bois, de sa mise aux normes jusqu'à sa réintégration dans la production.</p>
+                <ul class="fiche-points">
+                  <li>Gestion du projet de bout en bout : électricité, mécanique, pneumatique et programmation</li>
+                  <li>Mise aux normes de la machine et remise en production</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>Maintenance</li><li>Mise aux normes</li><li>Pneumatique</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/CN_P_lacosse.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">SOU</span><span class="doc-titre">Support de rapport de stage</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- =====================================================
+             02 — PROJETS (du plus récent au plus ancien)
+             La classe « fiche-projet » passe le liseré en vert.
+             ===================================================== -->
+        <div class="groupe-docs">
+          <div class="groupe-entete">
+            <span class="mono">02</span>
+            <h2>Projets</h2>
+            <span class="groupe-compte">5 fiches · 9 PDF</span>
+          </div>
+
+          <div class="liste-fiches">
+
+            <!-- ----- SAE S4 : MugOchaud ----- -->
+            <article class="fiche fiche-projet" id="mugochaud">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">SAE S4</span><span>janv. – avr. 2025 · BUT GEII</span></p>
+                <h3>MugOchaud — chauffe-mug régulé par automate</h3>
+                <p class="fiche-organisme">IUT de Bordeaux · 30 h en binôme</p>
+                <p class="fiche-resume">Un système qui chauffe un mug et maintient son contenu à une température de consigne, de la conception jusqu'à la procédure de maintenance.</p>
+                <ul class="fiche-points">
+                  <li>Rédaction du dossier de conception et du Grafcet</li>
+                  <li>Câblage de l'armoire et programmation de l'automate Siemens en LADDER</li>
+                  <li>Tests, validation des exigences et rédaction de la procédure de maintenance</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>Automate Siemens</li><li>LADDER</li><li>Grafcet</li><li>Câblage d'armoire</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/SAE_S4.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">RAP</span><span class="doc-titre">Rapport</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                  <li><a class="doc" href="pdfs/C4_DDDC.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">DDC</span><span class="doc-titre">Dossier de conception</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                  <li><a class="doc" href="pdfs/C4_DDF.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">DDF</span><span class="doc-titre">Dossier de fabrication</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ----- Projet tuteuré : Cave à vin ----- -->
+            <article class="fiche fiche-projet" id="cave-a-vin">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">Projet tuteuré</span><span>sept. 2024 – juin 2025 · BUT GEII</span></p>
+                <h3>Cave à vin — régulation de température et d'humidité</h3>
+                <p class="fiche-organisme">IUT de Bordeaux · projet à trois étudiants</p>
+                <p class="fiche-resume">Régulation d'une enceinte climatique : température stabilisée jusqu'à 5 °C malgré les variations extérieures, humidité maintenue à 70 %, consignes réglables depuis l'automate Siemens.</p>
+                <ul class="fiche-points">
+                  <li>Mise à jour du programme TIA Portal et mise au point de la régulation PID</li>
+                  <li>Ajout de deux sondes PT1000 et remplacement de l'étage de puissance à MOSFET</li>
+                  <li>Transfert de la platine de test dans une nouvelle armoire</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>TIA Portal</li><li>Régulation PID</li><li>PT1000</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/cave_a_vin.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">RAP</span><span class="doc-titre">Rapport de projet</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ----- SAE S3 : Robot Mini-Sumo ----- -->
+            <article class="fiche fiche-projet" id="robot-sumo">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">SAE S3</span><span>sept. 2024 – janv. 2025 · BUT GEII</span></p>
+                <h3>Robot Mini-Sumo autonome</h3>
+                <p class="fiche-organisme">IUT de Bordeaux · projet d'équipe</p>
+                <p class="fiche-resume">Conception d'un robot autonome pour le tournoi national de robots mini-sumo, du cahier des charges jusqu'au dossier de fabrication.</p>
+                <ul class="fiche-points">
+                  <li>Choix et implantation des capteurs de détection d'adversaire (VL53L0X)</li>
+                  <li>Schémas électriques et code des capteurs</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>Robotique</li><li>VL53L0X</li><li>Capteurs</li><li>Électronique</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/RMS_CDC_v4.1.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">CDC</span><span class="doc-titre">Cahier des charges</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                  <li><a class="doc" href="pdfs/Groupe43_RMS_DDC.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">DDC</span><span class="doc-titre">Dossier de conception détaillée</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                  <li><a class="doc" href="pdfs/RMS_DDF_EQ43.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">DDF</span><span class="doc-titre">Dossier de fabrication</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ----- AOP S4 : Liaison sans fil ----- -->
+            <article class="fiche fiche-projet" id="liaison-sans-fil">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">AOP S4</span><span>2023 – 2024 · BUT GEII</span></p>
+                <h3>Liaison sans fil entre deux Arduino</h3>
+                <p class="fiche-organisme">IUT de Bordeaux</p>
+                <p class="fiche-resume">Étude d'une liaison radio entre un émetteur et un récepteur, à base de modules NRF24L01.</p>
+                <ul class="fiche-points">
+                  <li>Schémas électroniques et platine de test</li>
+                  <li>Programmation de l'émetteur et du récepteur sous Arduino IDE</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>Arduino</li><li>NRF24L01</li><li>Radio</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/SSL_oral.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">SOU</span><span class="doc-titre">Support de soutenance</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ----- Projet BTS CRSA : tri de ronds de serviette ----- -->
+            <article class="fiche fiche-projet" id="tri-ronds-de-serviette">
+              <div class="fiche-texte">
+                <p class="fiche-meta"><span class="fiche-type">Projet BTS</span><span>sept. 2021 – juin 2022 · BTS CRSA</span></p>
+                <h3>Machine de tri de ronds de serviette</h3>
+                <p class="fiche-organisme">Lycée Val de Garonne, Marmande · projet d'équipe</p>
+                <p class="fiche-resume">Conception en équipe d'une machine qui saisit, oriente et trie des ronds de serviette. J'étais responsable de la fonction «&nbsp;communiquer&nbsp;» : le pupitre opérateur.</p>
+                <ul class="fiche-points">
+                  <li>Conception du pupitre : IHM, arrêt d'urgence et colonne lumineuse</li>
+                  <li>Implantation des éléments sur le pupitre</li>
+                </ul>
+                <ul class="mots-cles" aria-label="Outils">
+                  <li>IHM</li><li>Pupitre opérateur</li><li>Automatisme</li>
+                </ul>
+              </div>
+              <div class="fiche-docs">
+                <h4 class="titre-liste">Documents</h4>
+                <ul class="liste-docs">
+                  <li><a class="doc" href="pdfs/CN_P_CRSA.pdf" target="_blank" rel="noopener">
+                    <span class="doc-code">SOU</span><span class="doc-titre">Support de rapport</span><span class="doc-format">PDF ↗</span>
+                  </a></li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- =====================================================
+             03 — COMPÉTENCES BUT GEII (tuiles colorées par bloc)
+             ===================================================== -->
+        <div class="groupe-docs">
+          <div class="groupe-entete">
+            <span class="mono">03</span>
+            <h2>Preuves des compétences du BUT GEII</h2>
+            <span class="groupe-compte">10 PDF</span>
+          </div>
+          <p class="groupe-intro">Le BUT GEII (parcours Automatisme et Informatique Industrielle) évalue des compétences regroupées en cinq blocs. Pour chacune, un rapport d'activité apporte la preuve de ce que j'ai réalisé.</p>
+          <ul class="tuiles-competences">
+            <li><a class="tuile bloc-concevoir" href="pdfs/C1.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">C1</span>
+              <span><span class="tuile-bloc">Concevoir</span><span class="tuile-nom">Analyse fonctionnelle</span><span class="tuile-phrase">J'identifie les fonctions demandées à la lecture du cahier des charges.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-concevoir" href="pdfs/C2.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">C2</span>
+              <span><span class="tuile-bloc">Concevoir</span><span class="tuile-nom">Solution technique</span><span class="tuile-phrase">Je propose une solution technique pour répondre à une fonction.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-concevoir" href="pdfs/C3.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">C3</span>
+              <span><span class="tuile-bloc">Concevoir</span><span class="tuile-nom">Maquettage</span><span class="tuile-phrase">J'affine une solution technique par un maquettage numérique ou matériel.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-verifier" href="pdfs/V1.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">V1</span>
+              <span><span class="tuile-bloc">Vérifier</span><span class="tuile-nom">Procédure d'essais</span><span class="tuile-phrase">J'applique, j'élabore et je rédige une procédure d'essais.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-verifier" href="pdfs/V2.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">V2</span>
+              <span><span class="tuile-bloc">Vérifier</span><span class="tuile-nom">Non-conformités</span><span class="tuile-phrase">J'identifie et je corrige les non-conformités d'un prototype.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-maintenir" href="pdfs/M1.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">M1</span>
+              <span><span class="tuile-bloc">Maintenir</span><span class="tuile-nom">Opération de maintenance</span><span class="tuile-phrase">J'applique une opération de maintenance à un système.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-maintenir" href="pdfs/M2.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">M2</span>
+              <span><span class="tuile-bloc">Maintenir</span><span class="tuile-nom">Procédure de maintenance</span><span class="tuile-phrase">Je rédige la procédure de maintenance d'un système.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-integrer" href="pdfs/I11.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">I1</span>
+              <span><span class="tuile-bloc">Intégrer</span><span class="tuile-nom">Installation &amp; mise en service</span><span class="tuile-phrase">J'installe, je mets en service et je gère l'installation d'un système.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-manager" href="pdfs/G1.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">G1</span>
+              <span><span class="tuile-bloc">Manager</span><span class="tuile-nom">Documents professionnels</span><span class="tuile-phrase">Je rédige et j'archive des documents professionnels.</span></span>
+            </a></li>
+            <li><a class="tuile bloc-manager" href="pdfs/G2.pdf" target="_blank" rel="noopener">
+              <span class="doc-code">G2</span>
+              <span><span class="tuile-bloc">Manager</span><span class="tuile-nom">Tâches administratives</span><span class="tuile-phrase">J'effectue des tâches administratives.</span></span>
+            </a></li>
+          </ul>
+        </div>
+
+        <p class="retour"><a class="bouton bouton-contour" href="index.html">← Retour à l'accueil</a></p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <footer class="pied-page">
+    <div class="conteneur pied-contenu">
+      <p>© 2026 — Clément Noël — v3.1</p>
+      <p>Site statique : ni cookie, ni traceur, ni JavaScript.</p>
+    </div>
+  </footer>
 </body>
 </html>

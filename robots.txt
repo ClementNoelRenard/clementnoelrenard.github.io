@@ -1,4 +1,5 @@
+# Tout le site peut être exploré par les moteurs de recherche
 User-agent: *
 Allow: /
 
-Sitemap: https://clementnoelrenard.github.io/sitemap.xml
+Sitemap: https://clementnoelrenard.codeberg.page/sitemap.xml
