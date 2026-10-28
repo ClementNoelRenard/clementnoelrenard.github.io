@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://clementnoelrenard.github.io/</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+
+  <!-- CV -->
+  <url><loc>https://clementnoelrenard.github.io/pdfs/cv/CV_Clement-Noel.pdf</loc></url>
+
+  <!-- Stages et alternance -->
+  <url><loc>https://clementnoelrenard.github.io/pdfs/stages/2026_INEO-Aquitaine_Rapport-alternance.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/stages/2026_INEO-Aquitaine_Soutenance-alternance.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/stages/2025_INEO-Aquitaine_Rapport-stage.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/stages/2025_INEO-Aquitaine_Soutenance-stage.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/stages/2024_ISP-Aquitaine_Rapport-stage.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/stages/2024_ISP-Aquitaine_Soutenance-stage.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/stages/2021_Lacosse-Emballage_Rapport-stage.pdf</loc></url>
+
+  <!-- Projets -->
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/SAE-S4_MugOchaud_Rapport.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/SAE-S4_MugOchaud_Dossier-de-conception.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/SAE-S4_MugOchaud_Dossier-de-fabrication.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/SAE-S3_Robot-Mini-Sumo_Cahier-des-charges.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/SAE-S3_Robot-Mini-Sumo_Dossier-de-conception.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/SAE-S3_Robot-Mini-Sumo_Dossier-de-fabrication.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/PTUT_Cave-a-vin_Rapport.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/AOP-S4_Liaison-sans-fil_Soutenance.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/projets/BTS-CRSA_Tri-ronds-de-serviette_Soutenance.pdf</loc></url>
+
+  <!-- Preuves de compétences BUT GEII -->
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_Referentiel-competences.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_C1_Analyse-fonctionnelle.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_C2_Solution-technique.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_C3_Maquettage.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_V1_Procedure-essais.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_V2_Non-conformites.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_M1_Operation-maintenance.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_M2_Procedure-maintenance.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_I1_Installation-mise-en-service.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_G1_Documents-professionnels.pdf</loc></url>
+  <url><loc>https://clementnoelrenard.github.io/pdfs/competences/BUT-GEII_G2_Taches-administratives.pdf</loc></url>
+</urlset>

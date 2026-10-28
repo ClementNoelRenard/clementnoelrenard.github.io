@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page introuvable — Clément Noël</title>
+  <meta name="robots" content="noindex">
+  <!-- Chemins absolus : GitHub Pages sert cette page pour n’importe quelle adresse inconnue -->
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script>
+    try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <style>
+    .notfound { min-height: 100vh; min-height: 100dvh; display: grid; align-items: center; }
+    .notfound h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); }
+    .notfound .hero-next { margin-bottom: 28px; }
+  </style>
+</head>
+<body>
+  <main class="hero notfound">
+    <div class="wrap">
+      <p class="eyebrow"><span class="eyebrow-num">404</span>Page introuvable</p>
+      <h1 class="hero-title">Cette page<br>n’existe pas</h1>
+      <p class="hero-next">L’adresse a peut-être changé : tout le portfolio tient désormais sur une seule page.</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="/">Retour à l’accueil</a>
+        <a class="btn btn-line" href="/#documents">Voir les documents</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
