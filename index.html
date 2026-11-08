@@ -1,248 +1,144 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta name="google-site-verification" content="7LIkmA9L83YCdEHRp2HeOoUelUSItkXxVjuI5-bqVtc" />
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Clément Noël — Automaticien</title>
-  <meta name="description" content="Clément Noël (Clément Noël Renard), automaticien en Master Génie Industriel à l'INSSET (UPJV), diplômé BTS CRSA et BUT GEII : automatisme, informatique industrielle, systèmes embarqués.">
-  <link rel="canonical" href="https://clementnoelrenard.codeberg.page/">
-  <meta name="theme-color" content="#F3F2EC" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0F1215" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clément Noël</title>
+    <link rel="icon" type="image/png" href="./images/LOGO.png">
 
-  <!-- Aperçu du lien quand on le partage (LinkedIn, messageries…) -->
-  <meta property="og:type" content="profile">
-  <meta property="og:locale" content="fr_FR">
-  <meta property="og:title" content="Clément Noël — Automaticien">
-  <meta property="og:description" content="Master Génie Industriel à l'INSSET, BTS CRSA et BUT GEII : automatisme, informatique industrielle et systèmes embarqués.">
-  <meta property="og:url" content="https://clementnoelrenard.codeberg.page/">
-  <meta property="og:image" content="https://clementnoelrenard.codeberg.page/images/MOI3.jpg">
-  <meta property="profile:first_name" content="Clément">
-  <meta property="profile:last_name" content="Noël">
-
-  <!-- =========================================================
-       DONNÉES STRUCTURÉES (lues par Google, invisibles à l'écran)
-       Elles décrivent qui tu es, pour que Google relie ce site,
-       ton LinkedIn, Codeberg et GitHub à la même personne
-       (et ne te confonde pas avec un homonyme).
-       ========================================================= -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://clementnoelrenard.codeberg.page/#site",
-        "url": "https://clementnoelrenard.codeberg.page/",
-        "name": "Clément Noël — Automaticien",
-        "inLanguage": "fr-FR",
-        "author": { "@id": "https://clementnoelrenard.codeberg.page/#personne" }
-      },
-      {
-        "@type": "ProfilePage",
-        "@id": "https://clementnoelrenard.codeberg.page/#page",
-        "url": "https://clementnoelrenard.codeberg.page/",
-        "name": "Clément Noël — Automaticien",
-        "inLanguage": "fr-FR",
-        "isPartOf": { "@id": "https://clementnoelrenard.codeberg.page/#site" },
-        "mainEntity": { "@id": "https://clementnoelrenard.codeberg.page/#personne" }
-      },
-      {
-        "@type": "Person",
-        "@id": "https://clementnoelrenard.codeberg.page/#personne",
-        "name": "Clément Noël",
-        "alternateName": "Clément Noël Renard",
-        "givenName": "Clément",
-        "familyName": "Noël",
-        "jobTitle": "Automaticien",
-        "description": "Étudiant en Master Génie Industriel (option Conception Électronique) à l'INSSET, diplômé BTS CRSA et BUT GEII, spécialisé en automatisme et informatique industrielle.",
-        "url": "https://clementnoelrenard.codeberg.page/",
-        "image": "https://clementnoelrenard.codeberg.page/images/MOI3.jpg",
-        "email": "mailto:clementnoelrenard2001@ik.me",
-        "sameAs": [
-          "https://www.linkedin.com/in/clement-noel-renard/",
-          "https://codeberg.org/ClementNoelRenard",
-          "https://github.com/ClementNoelRenard"
-        ],
-        "affiliation": {
-          "@type": "CollegeOrUniversity",
-          "name": "INSSET — Université de Picardie Jules Verne"
-        },
-        "alumniOf": [
-          { "@type": "CollegeOrUniversity", "name": "IUT de Bordeaux" },
-          { "@type": "EducationalOrganization", "name": "Lycée Val de Garonne, Marmande" }
-        ],
-        "hasCredential": [
-          { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "BUT Génie Électrique et Informatique Industrielle — parcours Automatisme et Informatique Industrielle" },
-          { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "BTS Conception et Réalisation de Systèmes Automatiques (CRSA)" },
-          { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Bac Pro Métiers de l'Électricité et de ses Environnements Connectés (MELEC)" }
-        ],
-        "knowsAbout": [
-          "Automatisme",
-          "Informatique industrielle",
-          "Systèmes embarqués",
-          "Siemens TIA Portal",
-          "Schneider Electric EcoStruxure",
-          "Conception d'IHM",
-          "Supervision industrielle",
-          "OPC UA",
-          "Régulation PID",
-          "Conception mécanique",
-          "Impression 3D FDM"
-        ],
-        "knowsLanguage": "fr"
-      }
-    ]
-  }
-  </script>
+    <!-- Feuille de style commune à toutes les pages -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<main class="contenu-principal">
 
-  <!-- ===== BARRE DU HAUT (identique sur toutes les pages) ===== -->
-  <header class="barre-haut">
-    <div class="barre-contenu">
-      <a class="marque" href="index.html" aria-label="Clément Noël — accueil">
-        <span class="marque-logo" aria-hidden="true">CN</span>
-        <span class="marque-nom">Clément Noël</span>
-      </a>
-      <nav class="menu" aria-label="Navigation principale">
-        <a href="index.html" aria-current="page">Accueil</a>
-        <a href="archive.html">Documents</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="bouton bouton-petit bouton-encre" href="pdfs/clementnoel_CV_reseau.pdf" target="_blank" rel="noopener">CV ↗</a>
-    </div>
-  </header>
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navigation">
+        <a class="lien" href="index.html" aria-current="page">Accueil</a>
+        <a class="lien" href="archive.html">Documents</a>
+        <a class="lien" href="mailto:clementnoelrenard2001@ik.me">Contact</a>
+    </nav>
 
-  <main id="contenu">
+    <!-- ========== EN-TÊTE : présentation ========== -->
+    <header class="en-tete">
+        <h1 class="titre-principal">Clément Noël</h1>
 
-    <!-- ===== PRÉSENTATION : texte à gauche, photo à droite ===== -->
-    <section class="presentation">
-      <div class="conteneur presentation-grille">
+        <!-- Photo de profil (à droite du texte sur grand écran, sous le nom sinon) -->
+        <img class="photo-profil" src="./images/MOI3.jpg" alt="Photo de Clément Noël">
 
-        <div class="apparait">
-          <p class="statut"><span class="voyant" aria-hidden="true"></span>Master Génie Industriel · INSSET</p>
-          <h1 class="titre-principal">Clément<br>Noël</h1>
-          <p class="specialite">Automatisme · informatique industrielle · systèmes embarqués</p>
-
-          <div class="texte-justifie">
-            <p>Actuellement étudiant à l'<strong>INSSET</strong> (Université de Picardie Jules Verne) en Master Génie Industriel, option Conception Électronique, je suis spécialisé dans les domaines de la conception et de l'informatique industrielles. Grâce à mes expériences professionnelles et à mes diplômes (BUT GEII parcours AII et BTS CRSA), je suis capable d'appréhender l'ensemble des métiers impliqués dans un même projet. Mon domaine d'expertise principal reste <strong>l'automatisme</strong>.</p>
-            <p>Pendant mon temps libre, je pratique la conception mécanique et l'impression 3D FDM.</p>
-            <p>J'hésite encore entre deux voies : m'investir dans la recherche et l'enseignement en entreprenant un doctorat, ou devenir Officier dans l'Armée de Terre (génie électrique).</p>
-          </div>
-          <p class="phrase-cle">Dans les deux cas, mon but est de servir mon pays ! ^^</p>
-
-          <div class="actions">
-            <a class="bouton bouton-accent" href="pdfs/clementnoel_CV_reseau.pdf" download>Télécharger mon CV <span class="bouton-info">PDF</span></a>
-            <a class="bouton bouton-contour" href="archive.html">Consulter les documents →</a>
-          </div>
-        </div>
-
-        <figure class="photo apparait apparait-2">
-          <div class="reperes">
-            <img src="images/MOI3.jpg" width="896" height="1195" alt="Photo de Clément Noël">
-          </div>
-          <table class="cartouche">
-            <caption hidden>Fiche d'identité</caption>
-            <tbody>
-              <tr><th scope="row">Nom</th><td>Clément Noël</td></tr>
-              <tr><th scope="row">Formation</th><td>Master Génie Industriel</td></tr>
-              <tr><th scope="row">Diplômes</th><td>BTS CRSA · BUT GEII (AII)</td></tr>
-            </tbody>
-          </table>
-        </figure>
-
-      </div>
-    </section>
-
-    <!-- ===== 01 — À PROPOS ===== -->
-    <section class="section section-alternee a-propos" id="a-propos">
-      <div class="conteneur">
-        <div class="entete-section">
-          <div class="regle" aria-hidden="true"></div>
-          <p class="surtitre"><span class="surtitre-num">01</span>À propos</p>
-          <h2 class="titre-section">Avant tout un automaticien.</h2>
-        </div>
-        <div class="texte-justifie">
-          <p>Double diplômé de cursus industriels à forte valeur ajoutée, j'ai envie d'apprendre tout ce qui touche, de près ou de loin, à ces domaines. Mes compétences sont variées — automatisme, électricité, informatique industrielle, électronique, conception 3D — mais je reste avant tout un automaticien, qui doit savoir communiquer de façon fluide avec tous les métiers qui dialoguent avec le sien.</p>
-          <p>Mon approche est simple : apprendre et faire apprendre. L'information est mieux traitée quand on est plusieurs sur le sujet.</p>
-          <p>Curieux et rigoureux, j'approfondis mes compétences par la veille technologique et en contribuant à des projets open source qui me poussent à progresser.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 02 — PARCOURS ET PROJETS ===== -->
-    <section class="section" id="parcours">
-      <div class="conteneur">
-        <div class="entete-section">
-          <div class="regle" aria-hidden="true"></div>
-          <p class="surtitre"><span class="surtitre-num">02</span>Parcours et projets</p>
-          <h2 class="titre-section">Expériences, projets et compétences.</h2>
-          <p class="chapo">Retrouvez mes expériences professionnelles, stages, projets académiques et compétences, chacun résumé en quelques lignes avec ses rapports PDF.</p>
-        </div>
-        <a class="carte-lien" href="archive.html">
-          <span>
-            <span class="carte-lien-titre">Consulter les documents</span>
-            <span class="carte-lien-detail">4 expériences · 5 projets · 10 compétences · 26 PDF</span>
-          </span>
-          <span class="carte-lien-fleche" aria-hidden="true">→</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ===== 03 — RESSOURCES ET LIENS ===== -->
-    <section class="section section-alternee" id="liens">
-      <div class="conteneur">
-        <div class="entete-section">
-          <div class="regle" aria-hidden="true"></div>
-          <p class="surtitre"><span class="surtitre-num">03</span>Ressources &amp; liens</p>
-          <h2 class="titre-section">À consulter.</h2>
-        </div>
-        <div class="colonnes-liens">
-          <div>
-            <h3 class="titre-liste">Mes dépôts</h3>
-            <ul class="liste-liens">
-              <li><a href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">Dépôt Codeberg <span class="mono">↗</span></a></li>
-              <li><a href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">GitHub <span class="mono">↗</span></a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="titre-liste">Ressources que je recommande</h3>
-            <ul class="liste-liens">
-              <li><a href="https://european-alternatives.eu/alternatives-to" target="_blank" rel="noopener">Logiciels alternatifs (UE) <span class="mono">↗</span></a></li>
-              <li><a href="https://distrowatch.com/" target="_blank" rel="noopener">Distributions Linux <span class="mono">↗</span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 04 — CONTACT ===== -->
-    <section class="section contact" id="contact">
-      <div class="conteneur">
-        <div class="entete-section">
-          <div class="regle" aria-hidden="true"></div>
-          <p class="surtitre"><span class="surtitre-num">04</span>Contact</p>
-          <h2 class="titre-section">Une question, un projet ?</h2>
-          <p class="chapo">Le plus simple reste un e-mail.</p>
-        </div>
-        <p class="courriel">
-          <a class="bouton bouton-accent" href="mailto:clementnoelrenard2001@ik.me">clementnoelrenard2001@ik.me</a>
+        <!-- Ancienne version de la présentation
+        <p class="texte texte--justifie">
+            Je suis spécialisé dans les domaines de la conception et de l'informatique industrielles. Grâce à mes expériences professionnelles et à mes diplômes (BUT GEII parcours AII et BTS CRSA),
         </p>
-      </div>
+
+        <p class="texte texte--justifie">
+            En recherche d'une alternance 2026-2029 en lien avec pour mon cursus d'ingénieur industriel ESTIA à Bidart.
+        </p>
+
+        <p class="texte texte--justifie">
+            je suis capable d'appréhender l'ensemble des métiers impliqués dans un même projet. Mon domaine d'expertise principal reste l'automatisme.
+        </p>
+
+        <p class="texte texte--justifie">
+            Pendant mon temps libre, je pratique la conception mécanique et l'impression 3D FDM.
+        </p>
+        -->
+
+        <p class="texte texte--justifie">
+            Actuellement étudiant à l'INSSET (Université de Picardie Jules Verne) en Master Génie Industriel, option Conception Électronique, je suis spécialisé dans les domaines de la conception et de l'informatique industrielles. Grâce à mes expériences professionnelles et à mes diplômes (BUT GEII parcours AII et BTS CRSA), je suis capable d'appréhender l'ensemble des métiers impliqués dans un même projet. Mon domaine d'expertise principal reste l'automatisme.
+        </p>
+
+        <p class="texte texte--justifie">
+            Pendant mon temps libre, je pratique la conception mécanique et l'impression 3D FDM.
+        </p>
+
+        <p class="texte texte--justifie">
+            J'hésite encore entre deux voies : m'investir dans la recherche et l'enseignement en entreprenant un doctorat, ou devenir Officier dans l'Armée de Terre (génie électrique).
+        </p>
+
+        <p class="texte texte--justifie">
+            Dans les deux cas, mon but est de servir mon pays ! ^^
+        </p>
+
+        <p class="texte">
+            <a class="lien" href="./pdfs/clementnoel_CV_reseau.pdf">Télécharger mon CV (PDF)</a>
+        </p>
+    </header>
+
+    <!-- ========== SECTION : à propos ========== -->
+    <section class="section">
+        <h2 class="titre-section">À propos</h2>
+
+        <p class="texte texte--justifie">
+            Double-Diplomée dans des cursurs à forte valeurs ajouée des dommaines industriels, je nourris une envie d'apprentissage sur tout ce qui
+            touche de prés ou de loin à ces domaines de competences
+            Mes domaines de competences sont génerale, automatisme, electricitée, informatique industriel, electronique ou conception 3D, je reste avant tout un autotmaticien qui ce doit de pouvoir communiqué de façon fluide avec tout les domaines qui viennent à dialogée avec mon metier.
+        </p>
+
+        <p class="texte texte--justifie">
+            Mon approche est simple : apprendre et faire apprendre, l'information est mieux traitée quand ont est plusieurs sur le sujet.
+        </p>
+
+        <p class="texte texte--justifie">
+            Curieux et rigoureux, j'approfondis mes competences en realisant de la veille technologique et en pratiquant sur des projet open sources qui me depasse.
+        </p>
     </section>
 
-  </main>
+    <!-- ========== SECTION : parcours et projets ========== -->
+    <section class="section">
+        <h2 class="titre-section">Parcours et projets</h2>
 
-  <!-- ===== PIED DE PAGE ===== -->
-  <footer class="pied-page">
-    <div class="conteneur pied-contenu">
-      <p>© 2026 — Clément Noël — v3.1</p>
-      <p>Site statique : ni cookie, ni traceur, ni JavaScript.</p>
-    </div>
-  </footer>
+        <p class="texte">
+            Retrouvez mes expériences professionnelles, stages, projets académiques et compétences.
+        </p>
+
+        <p class="texte">
+            <a class="lien" href="archive.html">Consulter les documents →</a>
+        </p>
+    </section>
+
+    <!-- ========== SECTION : centres d'intérêt (masquée) ==========
+    <section class="section">
+        <h2 class="titre-section">Centres d'intérêt</h2>
+
+        <p class="texte texte--justifie">
+            Je realise durant mon temp perdu de la conceptions et de l'impression 3D ou sur un coup de tëte, je part en trail en solitaire dans nos belles montagne pyréenne
+            Quand il est trop tard pour allumer l'imprimante (ou pour prendre un billet de train ^^ ) j'optimise mes reseaux sur factorio !
+        </p>
+
+        <p class="texte">
+            <a class="lien" href="loisir.html">Consulter les documents →</a>
+        </p>
+    </section>
+    -->
+
+    <!-- ========== SECTION : ressources et liens ========== -->
+    <section class="section">
+        <h2 class="titre-section">Ressources &amp; liens</h2>
+
+        <div class="liste-liens">
+            <a class="lien" href="https://european-alternatives.eu/alternatives-to" target="_blank" rel="noopener">🔗 Logiciels alternatifs (EU)</a>
+            <a class="lien" href="https://distrowatch.com/" target="_blank" rel="noopener">🐧 Distributions Linux</a>
+            <a class="lien" href="https://codeberg.org/ClementNoelRenard" target="_blank" rel="noopener">🏔️ Dépôt Codeberg</a>
+            <a class="lien" href="https://github.com/ClementNoelRenard" target="_blank" rel="noopener">🪦 GitHub</a>
+        </div>
+    </section>
+
+    <!-- ========== SECTION : contact ========== -->
+    <section class="section">
+        <h2 class="titre-section">Contact</h2>
+
+        <p class="texte">
+            <a class="lien" href="mailto:clementnoelrenard2001@ik.me">clementnoelrenard2001@ik.me</a>
+        </p>
+    </section>
+
+    <!-- ========== PIED DE PAGE ========== -->
+    <footer class="pied-de-page">
+        © 2026 - Clément Noël - v2.4
+    </footer>
+
+</main>
 </body>
 </html>
