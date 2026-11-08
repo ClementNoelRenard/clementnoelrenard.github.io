@@ -4,5 +4,6 @@ arboresence de mon site (v2.4):
 - contact.html
 
 Second liens  :
-https://clementnoelrenard.github.io/
-https://clementnoelrenard.codeberg.page/
+
+*https://clementnoelrenard.github.io/
+*https://clementnoelrenard.codeberg.page/
